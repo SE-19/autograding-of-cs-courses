@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoGrade for CS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
 </head>
@@ -22,21 +23,21 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="1000">
-                    <img src="img/1.jpg" class="d-block w-100" alt="...">
+                    <img src="../static/img/1.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="1000">
-                    <img src="img/2.jpg" class="d-block w-100" alt="...">
+                    <img src="../static/img/2.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="1000">
-                    <img src="img/3.jpg" class="d-block w-100" alt="...">
+                    <img src="../static/img/3.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>
@@ -51,53 +52,6 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
-        <hr>
-        <div class="col">
-            <h2 class="text-center">Carousels</h2>
-            <div class="text-center">
-                <a class="btn btn-primary text-center" data-bs-toggle="collapse" data-bs-target="#Collapse">Click for more info</a>
-            </div>
-        </div>
-        <div class="collapse text-center" id="Collapse">
-            <h4>About Carousels attributes</h4>
-            <p>data-bs-target: target on click.</p>
-            <p>data-bs-ride: to make carousel move.</p>
-            <p>data-bs-touch: to disable touch movement.</p>
-            <p>data-bs-slide-to: towards which carousel page.</p>
-            <p>data-bs-slide: if you want them to slide, either left slide/right slide/slide(auto).</p>
-            <p>data-bs-interval: To give specific interval to the carousels if false then they will not change automatically.</p>
-        </div>
-    </div>
-    <div class="container">
-        <div class="features">
-            <div class="container1">
-                <div class="image">
-
-                </div>
-                <div class="text">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam magni, culpa incidunt, explicabo voluptate impedit modi aliquam nulla tempore maxime optio consequatur minus! Dolorem magni, rem ex neque enim quod impedit officia necessitatibus natus
-                    consequatur suscipit minus distinctio earum vel quidem aut eos tempore itaque assumenda minima amet accusamus modi.
-                </div>
-            </div>
-            <div class="container2">
-                <div class="text">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam magni, culpa incidunt, explicabo voluptate impedit modi aliquam nulla tempore maxime optio consequatur minus! Dolorem magni, rem ex neque enim quod impedit officia necessitatibus natus
-                    consequatur suscipit minus distinctio earum vel quidem aut eos tempore itaque assumenda minima amet accusamus modi.
-                </div>
-                <div class="image">
-
-                </div>
-            </div>
-            <div class="container3">
-                <div class="image">
-
-                </div>
-                <div class="text">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam magni, culpa incidunt, explicabo voluptate impedit modi aliquam nulla tempore maxime optio consequatur minus! Dolorem magni, rem ex neque enim quod impedit officia necessitatibus natus
-                    consequatur suscipit minus distinctio earum vel quidem aut eos tempore itaque assumenda minima amet accusamus modi.
-                </div>
-            </div>
         </div>
     </div>
 </body>
