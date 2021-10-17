@@ -3,50 +3,20 @@
     padding: 0%;
 }
 
-.navbar-nav li {
-    padding: 0 25px;
-    align-self: center;
-    justify-self: right;
+#signinsection{
+    margin-top: 2rem;
 }
-
-.navbar-nav li a {
-    color: white !important;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.navbar-brand {
-    color: white !important;
-}
-
-.navbar {
-    /* background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
-    /* background-image: linear-gradient(to right, #434343 0%, black 100%); */
-    background-color: black;
-
-}
-
-@media only screen and (max-width: 991px) {
-    .navbar-brand {
-        margin-left: 25px;
-
-    }
-
-}
-
-.navbar-toggler {
-    outline: none !important;
-    border: none;
-}
-
-@media only screen and (max-width: 360px) {
-    #dmsheading {
-        text-align: center;
-    }
-}
-
-footer ul li a {
-    color: white;
-    font-weight: 700;
+/* .form-box{
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    padding: 0.2rem;
+    background-color: lightgray;
+} */
+body{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
 }
