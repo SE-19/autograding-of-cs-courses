@@ -19,5 +19,9 @@ def create_assignment():
 def mark_assignment():
     return render_template("mark_assignment.html")
 
+@app.route("/assignments")
+def assignments():
+    return render_template("assignments.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

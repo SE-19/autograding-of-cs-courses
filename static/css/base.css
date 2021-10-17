@@ -6,8 +6,8 @@
 :root {
   font-size: 16px;
   --font-family: "Poppins" !important;
-  --bg-color: #0099ff;
-  --secondary-bg-color: #00ffff;
+  --bg-color: #9c5606;
+  --secondary-bg-color: #ec8a1a;
 }
 /* To put footer on the bottom */
 html {
@@ -53,7 +53,11 @@ header {
   align-items: center; /* Aligning to the center */
   background-color: var(--bg-color);
   color: white;
+  opacity: 0.8;
 }
+/* .Navbar:hover{
+  opacity: 1;
+} */
 
 /* Title/Logo of our Page with a bit of padding using viewport */
 .title {
