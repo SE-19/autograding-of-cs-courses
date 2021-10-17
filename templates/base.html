@@ -33,12 +33,13 @@
             <li><a href="#">Create</a></li>
             <li><a href="#">Mark</a></li>
             <li><a href="#">About</a></li>
-            <li><button class="login-button" href="#">Login</button></li>
+            <li><button class="login-button" href="#">Login / Register</button></li>
           </ul>
         </div>
       </nav>
     </header>
     <!-- MAIN CONTENT WILL GO HERE -->
+    {% block content %}
     <div class="main">
       <h2>Heading</h2>
       <p>
@@ -48,6 +49,7 @@
         id recusandae accusantium nam!
       </p>
     </div>
+    {% endblock %}
     <!-- Footer here -->
     <footer>
       <div class="main-content">

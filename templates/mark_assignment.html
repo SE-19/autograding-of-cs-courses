@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Assignment</title>
+{% extends "base.html" %}
+{% block content %}
     <link rel="stylesheet" href="{{url_for('static',filename='css/mark_assignment.css')}}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-</head>
-<!-- body of the page -->
-<body>
     <h1 id="heading">Mark Assignment</h1>
 
     <!-- adding the image -->
-    <img src="../static/images/mark_image.png" alt="Image Error" class="img">
+    <!-- <img src="../static/images/mark_image.png" alt="Image Error" class="img"> -->
 
     <!-- Adding the assignment selector -->
     <div class="container">
@@ -79,6 +71,4 @@
             document.getElementById("download").style.visibility = 'visible';
         }
     </script>
-
-</body>
-</html>
+{% endblock %}
