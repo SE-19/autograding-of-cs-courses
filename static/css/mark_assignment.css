@@ -9,15 +9,17 @@ body {
     background-attachment: fixed;
 }
 #heading {
-    text-align: center;
+    /* text-align: center; */
+    margin-left: 122px;
     font-family: 'Poppins';
     font-size: 28pt;
     color: white;
+    font-weight: bold;
 }
 .container-t {
     border: 0;
     user-select: none;
-    margin-left: 190px;
+    margin-left: 122px;
     width: 555px;
     padding: 2rem;
     background-color:aqua;
