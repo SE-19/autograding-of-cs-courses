@@ -1,0 +1,46 @@
+.color {
+    color: black;
+    background-color: rgba(255, 68, 0, 0.452);
+}
+
+.color:hover {
+    background-color: rgb(231, 108, 63);
+}
+
+.features {
+    padding: 10px;
+    height: 70px;
+    font-size: 2rem;
+    text-align: center;
+    background-color: rgb(236, 102, 54);
+}
+
+.heading-1 {
+    margin-top: 70px;
+}
+
+.heading-2 {
+    margin-top: 70px;
+}
+
+.text {
+    margin-top: 10px;
+    font-size: 18pt;
+    text-align: justify;
+}
+
+.image-1 {
+    width: 780px;
+    border-radius: 40px;
+}
+
+.image-2 {
+    margin-top: 40px;
+    width: 780px;
+    border-radius: 40px;
+}
+
+.box-height {
+    height: 400px;
+    background-color: coral;
+}
