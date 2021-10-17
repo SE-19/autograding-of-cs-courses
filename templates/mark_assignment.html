@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Assignment</title>
     <link rel="stylesheet" href="{{url_for('static',filename='css/mark_assignment.css')}}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 </head>
 <!-- body of the page -->
 <body>
@@ -50,7 +51,7 @@
 
         <!-- evaluate button -->
         <div style="text-align: center;">
-            <input type="submit" class="btns" id="evaluate" value="Evaluate">  
+            <button type="button" id="evaluate">Evaluate <i class="fa fa-check"></i></button>
         </div>
     </div>  
 
@@ -60,9 +61,8 @@
 
 
     <!-- download button -->
-    <div style="clear: both;"></div>
-    <div style="text-align: center; visibility:hidden">
-        <input type="submit" class="btns" id="download" value="Download">
+    <div class="d-btn">
+        <button type="button" id="download">Download <i class="fa fa-download"></i></button>
     </div>
     <!-- editing visibility of download button -->
     <script>
