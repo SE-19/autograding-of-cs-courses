@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Assignment</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/mark_assignment.css')}}">
+</head>
+<!-- body of the page -->
+<body>
+    <h1 id="heading">Mark Assignment</h1>
+
+    <!-- adding the image -->
+    <img src="../static/img/mark_image.png" alt="Image Error" style="float: right; margin-right:170px; transform:scale(0.8)">
+
+    <!-- Adding the assignment selector -->
+    <div class="container">
+        <label for="select_assignment" id="select_assignment_lbl"> Select Assignment</label>
+        <select name="select_assignment" class="select_assignment" required="True">
+            <option value="a1">Assignment lab 1</option>
+            <option value="a2">Assignment lab 2</option>
+            <option value="a3">Assignment lab 3</option>
+        </select>
+        <br>
+    
+        
+        <!-- choose assignment -->
+        <label id="upload_assignment_lbl">Upload Assignment</label>
+        <input type="file" id="choose" name="filename"> <br>
+        
+
+        <!-- checkboxes for plag, log, grading -->
+        <p style="font-size: 14pt; font-family: 'Poppins'">Select the options that you want to evaluate:</p>
+        <div class="checkboxes">
+            <label>
+                <input type="checkbox" name="grading" id="grading" checked class="check-color">
+                Grading
+            </label> <br>
+            <label>
+                <input type="checkbox" name="plagiarism" id="plagiarism" class="check-color">
+                Plagiarism
+            </label> <br>
+            <label>
+                <input type="checkbox" name="logfile" id="logfile" class="check-color">
+                Log File
+            </label> <br>
+        </div>
+        
+
+        <!-- evaluate button -->
+        <div style="text-align: center;">
+            <input type="submit" class="btns" id="evaluate" value="Evaluate">  
+        </div>
+    </div>  
+
+
+    <!-- removing issue of float in image style -->
+    <div style="clear: both;"></div>
+
+
+    <!-- download button -->
+    <div style="clear: both;"></div>
+    <div style="text-align: center; visibility:hidden">
+        <input type="submit" class="btns" id="download" value="Download">
+    </div>
+    <!-- editing visibility of download button -->
+    <script>
+        document.getElementById("evaluate").onclick = function() {
+            document.getElementById("download").style.visibility = 'visible';
+        }
+    </script>
+
+</body>
+</html>
