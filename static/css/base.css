@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins &display=swap');
+* {
+  box-sizing: border-box;
+}
+/* setting font and common color */
+:root {
+  font-size: 16px;
+  font-family: 'Poppins';
+  --bg-color: #131418;
+  --secondary-bg-color: #61dafb;
+}
+/* To put footer on the bottom */
+html {
+  height: 100%;
+}
+/* flex and min height to put footer on the bottom and other setting to make the body look good */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+/* Scroll bar settings because the default one is ugly */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* NavBar */
+.navbar {
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly; /* Putting each item spaced evenly */
+  align-items: center; /* Aligning to the center */
+  background-color: var(--bg-color);
+  color: white;
+}
+/* Title/Logo of our Page with a bit of padding using viewport */
+.title {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  padding: 1vh 1vw;
+  text-align: center;
+}
+
+.title a {
+  text-decoration: none;
+  margin: 0 0.7vw;
+  color: white;
+}
+.title a:hover {
+  color: var(--secondary-bg-color);
+  cursor: pointer;
+}
+/* Nav Links Setting width using viewport-width for responsiveness */
+.navbar-links ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 80vw;
+  padding: 0 0.7vw;
+  justify-content: space-evenly;
+  align-items: center;
+  text-transform: uppercase;
+}
+/* Removing link style */
+.navbar-links li {
+  list-style: none;
+  position: relative;
+}
+/* Removing underline and setting text color */
+.navbar-links a {
+  text-decoration: none;
+  margin: 0 0.7vw;
+  color: white;
+}
+/* Hover effect */
+.navbar-links a:hover {
+  color: var(--secondary-bg-color);
+}
+/* Firstly setting the start point of animated underline */
+.navbar-links li a::before {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 0%;
+  position: absolute;
+  top: 20px;
+  background-color: var(--secondary-bg-color);
+
+  transition: all ease-in-out 250ms;
+  margin: 0 0 0 10%;
+}
+/* When hovered making it bigger  */
+.navbar-links li a:hover::before {
+  width: 80%;
+}
+/* Login Button */
+.login-button {
+  background-color: transparent;
+  border: 1.5px solid #f2f5f7;
+  border-radius: 2em;
+  padding: 0.6rem 0.8rem;
+  margin-left: 2vw;
+  font-size: 1rem;
+  cursor: pointer; /* changing pointer when it is on it*/
+  color: white;
+}
+/* On hover fade in effect */
+.login-button:hover {
+  color: var(--bg-color);
+  background-color: #f2f5f7;
+  border: 1.5px solid #f2f5f7;
+  transition: all ease-in-out 350ms;
+}
+/* Setting hamburger icon to none because it'll be available on smaller devices*/
+.hamburger {
+  display: none;
+}
+/* Making each lines of hamburger icon separeted by 5px margin */
+.hamburger div {
+  width: 30px;
+  height: 3px;
+  background: #f2f5f7;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+/* For the cool cross animation */
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .line2 {
+  transition: all 0.7s ease;
+  width: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+/* For smaller devices */
+@media (max-width: 800px) {
+  /* Setting position to relative so it doesn't overlap with the content and making flex direction to column */
+  .navbar {
+    position: relative;
+    z-index: 3;
+    flex-direction: column;
+  }
+  /* Showing the hamburger icon */
+  .hamburger {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    transform: translate(-5%, -50%); /*aligning it*/
+    z-index: 4;
+    transition: all 0.7s ease;
+  }
+  /* Navbar links won't show till we click hamburger icon */
+  .navbar-links {
+    display: none;
+  }
+  /* Making the navbar a column */
+  .navbar-links ul {
+    width: 100%;
+    flex-direction: column;
+  }
+  /* Aligning links to center */
+  .navbar-links li {
+    padding: 10px;
+    text-align: center;
+  }
+  /* Aligning login button */
+  .login-button {
+    margin: 0;
+  }
+  /* This will show the nav bar items */
+  .navbar-links.open {
+    display: flex;
+  }
+}
+/* Footer of the page */
+footer {
+  width: 100%;
+  background-color: var(--bg-color);
+  color: white;
+  margin-top: auto;
+}
+/* Making a flexbox with each items at end positions */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+}
+/* padding of the box */
+.main-content .box {
+  padding: 10px 20px;
+}
+/* Heading of about us */
+.box h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+/* setting left margin */
+.box .content {
+  margin: 20px 0 0 0;
+}
+/* Fixing the size of about us section */
+.left {
+  width: 40%;
+}
+/* Justifying the text of about us */
+.left .content p {
+  text-align: justify;
+}
+/* Setting margin of the social icons */
+.left .content .social {
+  margin: 20px 0 0 0;
+}
+
+.left .content .social a {
+  padding: 0 2px;
+}
+/* Aligning the social icons and setting their colors */
+.left .content .social a span {
+  height: 40px;
+  width: 40px;
+  background: #1a1a1a;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+}
+/* On hover action on social icons */
+.left .content .social a span:hover {
+  color: var(--secondary-bg-color);
+}
+
+.right div {
+  margin-top: 5px;
+}
