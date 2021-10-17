@@ -3,17 +3,6 @@ body {
     font-family: 'Poppins';
     background-image: linear-gradient(to right, #7b4397, #dc2430);
 }
-/* @media only screen and(max-width: 600px) {
-                .main-div {
-                    width: 100%;
-                }
-            } */
-.actual-img {
-    border-radius: 40% 40% 40% 40% / 20% 20% 20% 20%;
-    margin-left: 2rem;
-    height: 100vh;
-    width: 100%;
-}
 .shadow-box {
     padding: 2rem;
 }
@@ -26,7 +15,6 @@ body {
     margin-top: 1.6rem;
     padding: 1rem;
     background-color: white;
-    /* overflow-y: scroll; */
     overflow-x: scroll;
 }
 .main-div {

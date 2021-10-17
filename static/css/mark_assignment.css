@@ -6,12 +6,7 @@
     font-family: 'Poppins';
     font-size: 28pt;
 }
-.img {
-    margin-top: 15px;
-    float: right; 
-    margin-right:170px; 
-    transform:scale(0.84);
-}
+
 .container {
     border: 0;
     border-radius: 50px;
