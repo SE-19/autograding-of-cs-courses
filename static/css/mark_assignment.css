@@ -1,12 +1,20 @@
 /* Styling the page */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+body {
+    font-family: 'Poppins';
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
+}
 #heading {
     text-align: center;
     font-family: 'Poppins';
     font-size: 28pt;
+    color: white;
 }
-.container {
+.container-t {
     border: 0;
     user-select: none;
     margin-left: 190px;
@@ -159,7 +167,7 @@
     visibility:hidden
 }
 @media (min-width: 650px) and (max-width: 950px ) {
-    .container {
+    .container-t {
       margin: auto;
     }
 }
@@ -168,7 +176,7 @@
         width: 385px;
         margin: auto;
     } 
-    .container {
+    .container-t {
         width: 430px;
         padding:1rem;
         margin: auto;
