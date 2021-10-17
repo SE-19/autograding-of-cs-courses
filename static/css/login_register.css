@@ -3,8 +3,8 @@
   padding: 0%;
 }
 
-#signinsection {
-  margin-top: 2rem;
+#signinsection{
+    margin-top: 2rem;
 }
 /* .form-box{
     width: 380px;
@@ -14,29 +14,9 @@
     padding: 0.2rem;
     background-color: lightgray;
 } */
-body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/static/images/bg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-#signinsection {
-  margin-top: 2rem;
-}
-/* .form-box{
-    width: 380px;
-    height: 480px;
-    position: relative;
-    margin: 6% auto;
-    padding: 0.2rem;
-    background-color: lightgray;
-} */
-body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/static/images/bg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
+body{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
 }
