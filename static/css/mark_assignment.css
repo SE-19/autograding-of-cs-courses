@@ -1,25 +1,34 @@
 /* Styling the page */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+body {
+    font-family: 'Poppins';
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
+}
 #heading {
-    text-align: center;
+    /* text-align: center; */
+    margin-left: 122px;
     font-family: 'Poppins';
     font-size: 28pt;
+    color: white;
+    font-weight: bold;
 }
-
-.container {
+.container-t {
     border: 0;
-    border-radius: 50px;
     user-select: none;
-    margin-left: 190px;
-    width: 600px;
+    margin-left: 122px;
+    width: 555px;
+    padding: 2rem;
+    background-color:aqua;
 }
 .inside-container {
-    width: 514px;
-    margin-left: 43px;
+    width: 490px;
 }
 #select_assignment_lbl, #upload_assignment_lbl {
-    font-size: 16pt;
+    font-size: 14pt;
     font-family: 'Poppins';
     
 }
@@ -29,9 +38,9 @@
     padding: 1px 11px;
     width: 300px;
     text-align:center;
-    color: #000000;
-    background: #3A75BB;
-    border: 2px solid #3A75BB;
+    color: #0d6efd;
+    background: #ffffff;
+    border: 1px solid #0d6efd;
     cursor: pointer;
     border-radius: 5px;
     font-family: 'Poppins';
@@ -41,10 +50,11 @@
 .select_assignment:focus,
 #choose::-webkit-file-upload-button:hover{
     outline: none;
-    border: 2px solid #7ca4d4;
+    color:#ffffff;
+    background-color: #0d6efd;
 }
 .select_assignment option{
-    border: 2px solid #3A75BB;
+    border: 2px solid #0d6efd;
 }
 #choose{
     margin-top: 40px;
@@ -54,13 +64,18 @@
     font-family: 'Poppins';
 }
 #choose::-webkit-file-upload-button{
-    border: 2px solid #3A75BB;
+    border: 1px solid #0d6efd;
     border-radius: 5px;
     width: 160px;
     padding: 1px 11px;
-    background: #3A75BB;
+    color: #0d6efd;
+    background-color: #ffffff;
     font-size: 14pt;
     font-family: 'Poppins';
+}
+.check-line-text {
+    font-size: 14pt;
+    font-family: 'Poppins'
 }
 .checkboxes{
     margin-left: 30px;
@@ -69,7 +84,7 @@
 }
 .check-color:checked::after{
     animation: click-wave 0.5s;
-    background:#3A75BB;
+    background:#0d6efd;
     content: '';
     display: block;
     position: relative;
@@ -103,7 +118,7 @@
     height: 30px;
     width: 30px;
     transition: all 0.15s ease-out 0s;
-    background:#3A75BB;
+    background:#0d6efd;
     border: 0;
     color: #000000;
     cursor: pointer;
@@ -132,21 +147,70 @@
     padding: 5px 24px;
     font-size: 14pt;
     font-family: 'Poppins';
-    background-color:#3A75BB;
-    border: 0;
-    border-radius: 10px;
+    color: #0d6efd;
+    background-color:#ffffff;
+    border: 1px solid #0d6efd;
+    border-radius: 3px;
 }
 
 
 #evaluate:hover, #download:hover{
     cursor: pointer;
-    transform: scale(1.1);
-    box-shadow: 0px 0px 25px #194e8f;
+    background-color:#0d6efd;
+    color: #ffffff;
 }
 #evaluate:active, #download:active{
-    background-color:#194e8f;
+    transition: color .15s ease-in-out;
+    background-color:color .15s ease-in-out;
+    border-color: .15s ease-in-out;
+    box-shadow: .15s ease-in-out;
 }
-.d-btn {
-    text-align: center; 
+.d-btn { 
     visibility:hidden
+}
+@media (min-width: 650px) and (max-width: 950px ) {
+    .container-t {
+      margin: auto;
+    }
+}
+@media (min-width: 0px) and (max-width: 650px ) {
+    .inside-container{
+        width: 385px;
+        margin: auto;
+    } 
+    .container-t {
+        width: 430px;
+        padding:1rem;
+        margin: auto;
+      }
+    #evaluate, #download {
+      font-size: 12pt;
+      width: 160px;
+    }
+    #select_assignment_lbl, #upload_assignment_lbl {
+        font-size: 12pt;
+    }
+    .select_assignment, #choose{
+        font-size: 12pt;
+        width: 220px;
+    }
+    #choose::-webkit-file-upload-button{
+        font-size: 11pt;
+        width: 100px;
+    }
+    .checkboxes, .check-line-text {
+        font-size: 12pt;
+    }
+    .check-color:checked::before {
+        font-size: 12pt;
+        width: 19px;
+        height: 19px;
+        line-height: 20px;
+    }
+    .check-color {
+        font-size: 12pt;
+        width: 19px;
+        height: 19px;
+        top: 8px;
+    }
 }

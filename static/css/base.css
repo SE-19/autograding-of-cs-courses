@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins &display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins &display=swap");
 * {
   box-sizing: border-box;
 }
 /* setting font and common color */
 :root {
   font-size: 16px;
-  font-family: 'Poppins';
-  --bg-color: #131418;
-  --secondary-bg-color: #61dafb;
+  --font-family: "Poppins" !important;
+  --bg-color: #9c5606;
+  --secondary-bg-color: #ec8a1a;
 }
 /* To put footer on the bottom */
 html {
-  height: 100%;
+  min-height: 100% !important;
 }
 /* flex and min height to put footer on the bottom and other setting to make the body look good */
 body {
@@ -20,11 +20,12 @@ body {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh !important;
+  font-family: var(--font-family) !important;
 }
 /* Scroll bar settings because the default one is ugly */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px !important;
 }
 
 /* Track */
@@ -34,22 +35,30 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--bg-color) !important;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--secondary-bg-color) !important;
+}
+header {
+  margin-bottom: 2rem;
 }
 /* NavBar */
-.navbar {
+.Navbar {
   display: flex;
   width: 100vw;
   justify-content: space-evenly; /* Putting each item spaced evenly */
   align-items: center; /* Aligning to the center */
   background-color: var(--bg-color);
   color: white;
+  opacity: 0.8;
 }
+/* .Navbar:hover{
+  opacity: 1;
+} */
+
 /* Title/Logo of our Page with a bit of padding using viewport */
 .title {
   font-size: 1.5rem;
@@ -63,12 +72,12 @@ body {
   margin: 0 0.7vw;
   color: white;
 }
-.title a:hover {
+.title:hover {
   color: var(--secondary-bg-color);
   cursor: pointer;
 }
 /* Nav Links Setting width using viewport-width for responsiveness */
-.navbar-links ul {
+.Navbar-links ul {
   margin: 0;
   padding: 0;
   display: flex;
@@ -79,35 +88,35 @@ body {
   text-transform: uppercase;
 }
 /* Removing link style */
-.navbar-links li {
+.Navbar-links li {
   list-style: none;
   position: relative;
 }
 /* Removing underline and setting text color */
-.navbar-links a {
+.Navbar-links a {
   text-decoration: none;
   margin: 0 0.7vw;
   color: white;
 }
 /* Hover effect */
-.navbar-links a:hover {
+.Navbar-links a:hover {
   color: var(--secondary-bg-color);
 }
 /* Firstly setting the start point of animated underline */
-.navbar-links li a::before {
+.Navbar-links li a::before {
   content: "";
   display: block;
   height: 3px;
   width: 0%;
   position: absolute;
-  top: 20px;
+  top: 22px;
   background-color: var(--secondary-bg-color);
 
   transition: all ease-in-out 250ms;
   margin: 0 0 0 10%;
 }
 /* When hovered making it bigger  */
-.navbar-links li a:hover::before {
+.Navbar-links li a:hover::before {
   width: 80%;
 }
 /* Login Button */
@@ -154,7 +163,7 @@ body {
 /* For smaller devices */
 @media (max-width: 800px) {
   /* Setting position to relative so it doesn't overlap with the content and making flex direction to column */
-  .navbar {
+  .Navbar {
     position: relative;
     z-index: 3;
     flex-direction: column;
@@ -171,16 +180,16 @@ body {
     transition: all 0.7s ease;
   }
   /* Navbar links won't show till we click hamburger icon */
-  .navbar-links {
+  .Navbar-links {
     display: none;
   }
-  /* Making the navbar a column */
-  .navbar-links ul {
+  /* Making the Navbar a column */
+  .Navbar-links ul {
     width: 100%;
     flex-direction: column;
   }
   /* Aligning links to center */
-  .navbar-links li {
+  .Navbar-links li {
     padding: 10px;
     text-align: center;
   }
@@ -188,22 +197,34 @@ body {
   .login-button {
     margin: 0;
   }
-  /* This will show the nav bar items */
-  .navbar-links.open {
+  /* This will show the Nav bar items */
+  .Navbar-links.open {
     display: flex;
   }
 }
 /* Footer of the page */
 footer {
+  padding-top: 20px;
+
   width: 100%;
   background-color: var(--bg-color);
   color: white;
   margin-top: auto;
 }
+footer h1 {
+  font-size: 30px;
+}
+.footer-main {
+  display: flex;
+  flex-direction: column;
+  padding-left: 3rem;
+}
+
 /* Making a flexbox with each items at end positions */
 .main-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  padding-left: 2px;
 }
 /* padding of the box */
 .main-content .box {
@@ -219,37 +240,50 @@ footer {
 .box .content {
   margin: 20px 0 0 0;
 }
-/* Fixing the size of about us section */
+
 .left {
+  padding-right: 4.5rem !important;
+  padding-left: 0 !important;
+}
+.left div {
+  margin-top: 5px;
+}
+.text {
+  font-size: 16px !important;
+}
+
+.vl {
+  border-left: 1px solid white;
+  height: inherit;
+}
+
+/* Fixing the size of about us section */
+.right {
   width: 40%;
 }
 /* Justifying the text of about us */
-.left .content p {
+.right .content p {
   text-align: justify;
 }
 /* Setting margin of the social icons */
-.left .content .social {
+.right .content .social {
   margin: 20px 0 0 0;
 }
 
-.left .content .social a {
+.right .content .social a {
   padding: 0 2px;
 }
 /* Aligning the social icons and setting their colors */
-.left .content .social a span {
-  height: 40px;
-  width: 40px;
-  background: #1a1a1a;
+.right .content .social a span {
+  height: 70px;
+  width: 70px;
+  background: transparent;
   line-height: 40px;
   text-align: center;
   font-size: 18px;
   color: white;
 }
 /* On hover action on social icons */
-.left .content .social a span:hover {
+.right .content .social a span:hover {
   color: var(--secondary-bg-color);
-}
-
-.right div {
-  margin-top: 5px;
 }

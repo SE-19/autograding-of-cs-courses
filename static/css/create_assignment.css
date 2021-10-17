@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins &display=swap');
 body {
     font-family: 'Poppins';
-    background-image: linear-gradient(to right, #7b4397, #dc2430);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
 }
 .shadow-box {
     padding: 2rem;
