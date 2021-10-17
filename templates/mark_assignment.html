@@ -13,7 +13,7 @@
     <h1 id="heading">Mark Assignment</h1>
 
     <!-- adding the image -->
-    <img src="../static/img/mark_image.png" alt="Image Error" style="float: right; margin-right:170px; transform:scale(0.8)">
+    <img src="../static/img/mark_image.png" alt="Image Error" class="img">
 
     <!-- Adding the assignment selector -->
     <div class="container">
@@ -30,9 +30,16 @@
         <label id="upload_assignment_lbl">Upload Assignment</label>
         <input type="file" id="choose" name="filename"> <br>
         
+        
+        <!-- statement before checkboxes -->
+        <p style="font-size: 14pt; font-family: 'Poppins'">
+            <i class="fa fa-chevron-double-right" style="color: #3A75BB;"></i>
+            <i class="fa fa-chevron-double-right" style="color: #3A75BB; margin-left:-9px;"></i>
+            Select the options that you want to evaluate:
+        </p>
 
-        <!-- checkboxes for plag, log, grading -->
-        <p style="font-size: 14pt; font-family: 'Poppins'">Select the options that you want to evaluate:</p>
+
+         <!-- checkboxes for plag, log, grading -->
         <div class="checkboxes">
             <label>
                 <input type="checkbox" name="grading" id="grading" checked class="check-color">
