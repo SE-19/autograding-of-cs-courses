@@ -1,10 +1,6 @@
 /* Styling the page */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-body {
-    background-color:rgb(255, 255, 255);
-    user-select: none;
-}
 #heading {
     text-align: center;
     font-family: 'Poppins';
@@ -17,8 +13,15 @@ body {
     transform:scale(0.84);
 }
 .container {
+    border: 0;
+    border-radius: 50px;
+    user-select: none;
     margin-left: 190px;
     width: 600px;
+}
+.inside-container {
+    width: 514px;
+    margin-left: 43px;
 }
 #select_assignment_lbl, #upload_assignment_lbl {
     font-size: 16pt;
