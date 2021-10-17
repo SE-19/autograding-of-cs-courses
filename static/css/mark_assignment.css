@@ -1,0 +1,140 @@
+/* Styling the page */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+body {
+    background-color:aqua;
+    linear-gradient: 12px 10px;
+}
+#heading {
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 28pt;
+}
+.container {
+    margin-left: 170px;
+    width: 515px;
+}
+#select_assignment_lbl, #upload_assignment_lbl {
+    font-size: 16pt;
+    font-family: 'Poppins';
+    
+}
+.select_assignment {
+    margin-top: 70px;
+    margin-left: 10px;
+    padding: 1px 11px;
+    width: 300px;
+    text-align:center;
+    color: #000000;
+    background: #3A75BB;
+    border: 2px solid #3A75BB;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Poppins';
+    font-size: 14pt;
+}
+.select_assignment:hover,
+.select_assignment:focus,
+#choose::-webkit-file-upload-button:hover{
+    outline: none;
+    border: 2px solid #7ca4d4;
+}
+.select_assignment option{
+    border: 2px solid #3A75BB;
+}
+#choose{
+    margin-top: 40px;
+    margin-bottom: 30px;
+    width: 300px;
+    font-size: 14pt;
+    font-family: 'Poppins';
+}
+#choose::-webkit-file-upload-button{
+    border: 2px solid #3A75BB;
+    border-radius: 5px;
+    width: 160px;
+    padding: 1px 11px;
+    background: #3A75BB;
+    font-size: 14pt;
+    font-family: 'Poppins';
+}
+.checkboxes{
+    margin-top: 5px;
+    margin-left: 30px;
+    font-size: 14pt;
+    font-family: 'Poppins';
+}
+.check-color:checked::after{
+    animation: click-wave 0.5s;
+    background:#3A75BB;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+@keyframes click-wave {
+    0% {
+        height: 30px;
+        width: 30px;
+        opacity: 0.35;
+        position: relative;
+    }
+    100% {
+        height: 100px;
+        width: 100px;
+        margin-left: -80px;
+        margin-top: -80px;
+        opacity: 0;
+    }
+}
+.check-color {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    transition: all 0.15s ease-out 0s;
+    background:#3A75BB;
+    border: 0;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    position: relative;
+    outline: none;
+    z-index: 1000;
+}
+.check-color:checked::before{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    content: '✓';
+    display: inline-block;
+    font-size: 25.5559px;
+    text-align: center;
+    line-height: 30px;
+}
+.btns {
+    margin-top: 40px;
+    width: 180px;
+    padding: 5px 24px;
+    font-size: 14pt;
+    font-family: 'Poppins';
+    background-color:#3A75BB;
+    border: 0;
+    border-radius: 10px;
+}
+.btns:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 25px #194e8f;
+}
+.btns:active{
+    background-color:#194e8f;
+}
