@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins &display=swap');
+body {
+    font-family: 'Poppins';
+    background-image: linear-gradient(to right, #7b4397, #dc2430);
+}
+/* @media only screen and(max-width: 600px) {
+                .main-div {
+                    width: 100%;
+                }
+            } */
+.actual-img {
+    border-radius: 40% 40% 40% 40% / 20% 20% 20% 20%;
+    margin-left: 2rem;
+    height: 100vh;
+    width: 100%;
+}
+.shadow-box {
+    padding: 2rem;
+}
+#confirmation-table {
+    background-color: white;
+    width: 100%;
+    overflow-y: scroll;
+}
+.secondary {
+    margin-top: 1.6rem;
+    padding: 1rem;
+    background-color: white;
+    /* overflow-y: scroll; */
+    overflow-x: scroll;
+}
+.main-div {
+    width: 50%;
+}
+@media(max-width: 769px) {
+    .main-div {
+        width: 100%;
+    }
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
