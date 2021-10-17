@@ -6,7 +6,7 @@
 :root {
   font-size: 16px;
   --font-family: "Poppins" !important;
-  --bg-color: #9c5606;
+  --bg-color: #be6a09;
   --secondary-bg-color: #ec8a1a;
 }
 /* To put footer on the bottom */
@@ -205,10 +205,9 @@ header {
 /* Footer of the page */
 footer {
   padding-top: 20px;
-
   width: 100%;
-  background-color: var(--bg-color);
-  color: white;
+  background-color: #a85e08;
+  color: #f1f1f1;
   margin-top: auto;
 }
 footer h1 {
