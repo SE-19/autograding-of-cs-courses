@@ -1,18 +1,27 @@
 /* Styling the page */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-body {
-    background-color:aqua;
-    linear-gradient: 12px 10px;
-}
 #heading {
     text-align: center;
     font-family: 'Poppins';
     font-size: 28pt;
 }
+.img {
+    margin-top: 15px;
+    float: right; 
+    margin-right:170px; 
+    transform:scale(0.84);
+}
 .container {
-    margin-left: 170px;
-    width: 515px;
+    border: 0;
+    border-radius: 50px;
+    user-select: none;
+    margin-left: 190px;
+    width: 600px;
+}
+.inside-container {
+    width: 514px;
+    margin-left: 43px;
 }
 #select_assignment_lbl, #upload_assignment_lbl {
     font-size: 16pt;
@@ -59,7 +68,6 @@ body {
     font-family: 'Poppins';
 }
 .checkboxes{
-    margin-top: 5px;
     margin-left: 30px;
     font-size: 14pt;
     font-family: 'Poppins';
@@ -118,11 +126,14 @@ body {
     display: inline-block;
     font-size: 25.5559px;
     text-align: center;
+    font-weight:bold;
     line-height: 30px;
 }
-.btns {
-    margin-top: 40px;
-    width: 180px;
+
+#evaluate, #download {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    width: 220px;
     padding: 5px 24px;
     font-size: 14pt;
     font-family: 'Poppins';
@@ -130,11 +141,17 @@ body {
     border: 0;
     border-radius: 10px;
 }
-.btns:hover{
+
+
+#evaluate:hover, #download:hover{
     cursor: pointer;
     transform: scale(1.1);
     box-shadow: 0px 0px 25px #194e8f;
 }
-.btns:active{
+#evaluate:active, #download:active{
     background-color:#194e8f;
+}
+.d-btn {
+    text-align: center; 
+    visibility:hidden
 }
