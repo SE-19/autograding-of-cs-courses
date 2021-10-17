@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoGrade for CS</title>
+{% extends "base.html" %}
+{% block content %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../static/css/style.css">
-</head>
-
-<body style="color: balck;">
-    <div class="container-fluid p-0">
+    <div class=" p-0">
         <div id="Carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-touch="false">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#Carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -23,14 +14,14 @@
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="5000">
 
-                    <img src="../static/img/1.jpg" class="d-block w-100" alt="...">
+                    <img src="../static/images/1.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block color">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="5000">
-                    <img src="../static/img/2.jpg" class="d-block w-100" alt="...">
+                    <img src="../static/images/2.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block color">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id placeat labore ex ipsam amet excepturi recusandae explicabo debitis nesciunt? Perspiciatis porro optio,
@@ -38,7 +29,7 @@
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="5000">
-                    <img src="../static/img/3.jpg" class="d-block w-100" alt="...">
+                    <img src="../static/images/3.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block color">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>
@@ -61,12 +52,12 @@
                 <p class="ms-3 text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ex, aspernatur officia illo non obcaecati eligendi impedit quae explicabo cumque corporis magni quas ullam consectetur harum vel suscipit debitis. Totam, iusto</p>
             </div>
             <div class="float-sm-end col-md-6 ">
-                <img src="../static/img/1.jpg" class="img-fluid image-1 me-3" alt="feature-1">
+                <img src="../static/images/1.jpg" class="img-fluid image-1 me-3" alt="feature-1">
             </div>
         </div>
         <div class="col-md-12 box-height">
             <div class="float-sm-start col-md-6 ">
-                <img src="../static/img/2.jpg" class="img-fluid image-2 ms-5" alt="feature-1">
+                <img src="../static/images/2.jpg" class="img-fluid image-2 ms-5" alt="feature-1">
             </div>
             <div class="float-sm-end mt-3 col-md-6 px-5">
                 <h1 class="me-3 heading-2">Reliability</h1>
@@ -79,10 +70,8 @@
                 <p class="ms-3 text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ex, aspernatur officia illo non obcaecati eligendi impedit quae explicabo cumque corporis magni quas ullam consectetur harum vel suscipit debitis. Totam, iusto</p>
             </div>
             <div class="float-sm-end col-md-6 ">
-                <img src="../static/img/3.jpg" class="img-fluid image-1" alt="feature-1">
+                <img src="../static/images/3.jpg" class="img-fluid image-1" alt="feature-1">
             </div>
         </div>
     </div>
-</body>
-
-</html>
+{% endblock %}
