@@ -33,20 +33,41 @@
             #confirmation-table {
                 background-color: white;
                 width: 100%;
+                overflow-y: scroll;
             }
             .secondary {
                 margin-top: 1.6rem;
                 padding: 1rem;
                 background-color: white;
+                /* overflow-y: scroll; */
+                overflow-x: scroll;
             }
-            .main-div{
+            .main-div {
                 width: 50%;
             }
-            @media (max-width: 769px) {
+            @media(max-width: 769px) {
                 .main-div {
                     width: 100%;
                 }
-            } 
+            }
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
         </style>
     </head>
     <body>
@@ -55,7 +76,8 @@
             <form
                 action="" method="post" class="my-4">
                 <!-- <div class="main-div"> -->
-                <div class="main-div shadow shadow-box bg-white">
+                <div
+                    class="main-div shadow shadow-box bg-white">
                     <!-- Assignment title -->
                     <div class="form-floating field">
                         <input class="form-control my-2" id="assignment-title" type="text" placeholder="Assignment Title" autocomplete="off">
