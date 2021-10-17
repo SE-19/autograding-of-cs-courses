@@ -13,7 +13,7 @@
     />
 
     <link rel="stylesheet" href="/static/css/base.css" />
-    <title>Auto Grading</title>
+    <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
     <!-- Navigation bar -->
@@ -43,7 +43,6 @@
     </header>
     <!-- MAIN CONTENT WILL GO HERE -->
     {% block content %} {% endblock %}
-
     <!-- Footer here -->
     <footer>
       <div class="footer-main">

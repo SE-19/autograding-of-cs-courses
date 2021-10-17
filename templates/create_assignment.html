@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Autograde | Create Assignment{% endblock %}
 {% block content %}
         <!-- Bootstrap CSS -->
         <link
@@ -7,12 +8,12 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
         <link rel="stylesheet" href="/static/css/create_assignment.css" />
         <main class="container">
-            <h1 class="text-white">Create Assignment</h1>
+            <h1 class="text-white mt-3">Create Assignment</h1>
             <form
                 action="" method="post" class="my-4">
                 <!-- <div class="main-div"> -->
                 <div
-                    class="main-div shadow shadow-box bg-white">
+                    class="main-div shadow shadow-box bg-white rounded">
                     <!-- Assignment title -->
                     <div class="form-floating field">
                         <input class="form-control my-2" id="assignment-title" type="text" placeholder="Assignment Title" autocomplete="off">
@@ -51,7 +52,7 @@
                     <button id="newTestCase" type="button" class="btn btn-outline-primary">New Test Case</button>
                     <button id="newFunction" type="button" class="btn btn-outline-secondary">New Function</button>
                 </div>
-                <div class="secondary">
+                <div class="secondary rounded">
                     <table class="table mt-4" id="confirmation-table">
                         <thead>
                             <tr>
