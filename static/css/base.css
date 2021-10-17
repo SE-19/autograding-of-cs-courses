@@ -5,7 +5,7 @@
 /* setting font and common color */
 :root {
   font-size: 16px;
-  font-family: "Poppins";
+  --font-family: "Poppins" !important;
   --bg-color: #0099ff;
   --secondary-bg-color: #00ffff;
 }
@@ -21,10 +21,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh !important;
+  font-family: var(--font-family) !important;
 }
 /* Scroll bar settings because the default one is ugly */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px !important;
 }
 
 /* Track */
@@ -34,12 +35,12 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--bg-color) !important;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--secondary-bg-color) !important;
 }
 header {
   margin-bottom: 2rem;

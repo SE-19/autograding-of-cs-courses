@@ -42,7 +42,8 @@
     text-align: center;
   }
 }
-/* Added so the footer doesn't look weird */
-footer {
-  margin-top: 20rem !important;
+
+footer ul li a {
+  color: white;
+  font-weight: 700;
 }
