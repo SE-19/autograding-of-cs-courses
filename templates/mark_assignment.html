@@ -4,11 +4,10 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <h1 id="heading">Mark Assignment</h1>
 
-    <!-- adding the image -->
-    <!-- <img src="../static/images/mark_image.png" alt="Image Error" class="img"> -->
-
+    
     <!-- Adding the assignment selector -->
     <div class="container">
+        
         <div class="inside-container">
             <label for="select_assignment" id="select_assignment_lbl"> Select Assignment</label>
             <select name="select_assignment" class="select_assignment" required="True">
@@ -25,9 +24,9 @@
             
             
             <!-- statement before checkboxes -->
-            <p style="font-size: 14pt; font-family: 'Poppins'">
-                <i class="fa fa-chevron-double-right" style="color: #3A75BB;"></i>
-                <i class="fa fa-chevron-double-right" style="color: #3A75BB; margin-left:-9px;"></i>
+            <p class="check-line-text">
+                <i class="fa fa-chevron-double-right" style="color: #0d6efd;"></i>
+                <i class="fa fa-chevron-double-right" style="color: #0d6efd; margin-left:-9px;"></i>
                 Select the options that you want to evaluate:
             </p>
 
@@ -53,18 +52,15 @@
             <div style="text-align: center;">
                 <button type="button" id="evaluate">Evaluate <i class="fa fa-check"></i></button>
             </div>
+
+            <!-- download button -->
+            <div class="d-btn" style="text-align: center;">
+                <button type="button" id="download">Download <i class="fa fa-download"></i></button>
+            </div>
         </div>
     </div>  
 
-
-    <!-- removing issue of float in image style -->
-    <div style="clear: both;"></div>
-
-
-    <!-- download button -->
-    <div class="d-btn">
-        <button type="button" id="download">Download <i class="fa fa-download"></i></button>
-    </div>
+    
     <!-- editing visibility of download button -->
     <script>
         document.getElementById("evaluate").onclick = function() {
