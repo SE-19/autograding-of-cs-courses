@@ -11,14 +11,16 @@
         <!-- Font Awesome CSS -->
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
         <style>
-            @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+            @import url('https://fonts.googleapis.com/css?family=Poppins &display=swap');
             body {
                 font-family: 'Poppins';
                 background-image: linear-gradient(-15deg, #7b4397, #dc2430);
             }
-            .main-div {
-                display: flex;
-            }
+            /* @media only screen and(max-width: 600px) {
+                .main-div {
+                    width: 100%;
+                }
+            } */
             .actual-img {
                 border-radius: 40% 40% 40% 40% / 20% 20% 20% 20%;
                 margin-left: 2rem;
@@ -32,57 +34,65 @@
                 background-color: white;
                 width: 100%;
             }
-            .secondary{
+            .secondary {
                 margin-top: 1.6rem;
                 padding: 1rem;
                 background-color: white;
             }
+            .main-div{
+                width: 50%;
+            }
+            @media (max-width: 769px) {
+                .main-div {
+                    width: 100%;
+                }
+            } 
         </style>
     </head>
     <body>
         <main class="container">
             <h1 class="text-white">Create Assignment</h1>
-            <form action="" method="post" class="my-4">
-                <div class="main-div col-md-12">
-                    <div class="left-div col-md-6 shadow shadow-box bg-white">
-                        <div class="form-floating field">
-                            <input class="form-control my-2" id="assignment-title" type="text" placeholder="Assignment Title" autocomplete="off">
-                            <label for="assignment-title">Assignment Title</label>
-                        </div>
-                        <div class="form-floating field">
-                            <input class="form-control my-2" id="func-name" type="text" placeholder="Function Name" autocomplete="off">
-                            <label for="func-name">Function Name</label>
-                        </div>
-                        <div class="form-floating field">
-                            <input class="form-control my-2" id="params" type="text" placeholder="Parameters (comma separated)" autocomplete="off">
-                            <label for="params">Parameters (comma separated)</label>
-                        </div>
-                        <div class="form-floating field">
-                            <input class="form-control my-2" id="marks" type="number" placeholder="Marks" autocomplete="off" max="100" min="0" step="0.5">
-                            <label for="marks">Marks</label>
-                        </div>
-                        <div class="form-floating field">
-                            <textarea class="form-control my-2" name="" id="docstring" cols="40" rows="5"></textarea>
-                            <label for="docstring">Docstring</label>
-                        </div>
-                        <div class="form-floating field">
-                            <input class="form-control my-2" id="test-params" type="text" placeholder="Test Parameters" autocomplete="off">
-                            <label for="test-params">Test Parameters</label>
-                        </div>
-                        <div class="form-floating field">
-                            <input class="form-control my-2" id="ex-value" type="text" placeholder="Expected Value" autocomplete="off">
-                            <label for="ex-value">Expected Value</label>
-                        </div>
-                        <button id="newTestCase" type="button" class="btn btn-outline-primary">New Test Case</button>
-                        <button id="newFunction" type="button" class="btn btn-outline-secondary">New Function</button>
+            <form
+                action="" method="post" class="my-4">
+                <!-- <div class="main-div"> -->
+                <div class="main-div shadow shadow-box bg-white">
+                    <!-- Assignment title -->
+                    <div class="form-floating field">
+                        <input class="form-control my-2" id="assignment-title" type="text" placeholder="Assignment Title" autocomplete="off">
+                        <label for="assignment-title">Assignment Title</label>
                     </div>
-
-
-                    <div class="right-div col-md-6 ms-2">
-                        <div class="img-div">
-                            <img class="img-fluid actual-img shadow rounded" src="../static/images/luis-villasmil-mlVbMbxfWI4-unsplash.jpg" alt="">
-                        </div>
+                    <!-- Function name -->
+                    <div class="form-floating field">
+                        <input class="form-control my-2" id="func-name" type="text" placeholder="Function Name" autocomplete="off">
+                        <label for="func-name">Function Name</label>
                     </div>
+                    <!-- Parameters -->
+                    <div class="form-floating field">
+                        <input class="form-control my-2" id="params" type="text" placeholder="Parameters (comma separated)" autocomplete="off">
+                        <label for="params">Parameters (comma separated)</label>
+                    </div>
+                    <!-- Marks -->
+                    <div class="form-floating field">
+                        <input class="form-control my-2" id="marks" type="number" placeholder="Marks" autocomplete="off" max="100" min="0" step="0.5">
+                        <label for="marks">Marks</label>
+                    </div>
+                    <!-- Docstring -->
+                    <div class="form-floating field">
+                        <textarea class="form-control my-2" name="" id="docstring" cols="40" rows="5"></textarea>
+                        <label for="docstring">Docstring</label>
+                    </div>
+                    <!-- Test Parameters -->
+                    <div class="form-floating field">
+                        <input class="form-control my-2" id="test-params" type="text" placeholder="Test Parameters" autocomplete="off">
+                        <label for="test-params">Test Parameters</label>
+                    </div>
+                    <!-- Expected Value -->
+                    <div class="form-floating field">
+                        <input class="form-control my-2" id="ex-value" type="text" placeholder="Expected Value" autocomplete="off">
+                        <label for="ex-value">Expected Value</label>
+                    </div>
+                    <button id="newTestCase" type="button" class="btn btn-outline-primary">New Test Case</button>
+                    <button id="newFunction" type="button" class="btn btn-outline-secondary">New Function</button>
                 </div>
                 <div class="secondary">
                     <table class="table mt-4" id="confirmation-table">
