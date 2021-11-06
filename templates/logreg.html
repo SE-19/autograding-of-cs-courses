@@ -13,6 +13,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="/static/css/login_register.css"/>
     <div class="seksi-background">
+        {% for messages in get_flashed_messages() %}
+            <div class="container-fluid alert alert-danger">{{ messages }}</div>
+        {% endfor %}
         <div class="container bg-white py-4 rounded col-md-6" id="signinsection">
                 <form action="" method="post">
                     <div class="mb-3 form-floating">
@@ -21,11 +24,11 @@
                         </label>
                     </div>
                     <div class="mb-3 form-floating">
-                        <input id="pf" name="pf" type="password" class="form-control" placeholder="Password" required autocomplete="off">
-                        <label for="pf" class="form-label" style="font-weight: bolder;">Password</label>
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Password" required autocomplete="off">
+                        <label for="password" class="form-label" style="font-weight: bolder;">Password</label>
                         <img id="showpass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px;cursor:pointer;" src="/static/images/visibility.png" alt="">
                         <img id="hidepass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px; display: none;cursor:pointer;" src="/static/images/visibility (1).png" alt="">
-                        <a href="" style="text-decoration: none;float:right !important; font-weight: bolder;color: white;">Forgot
+                        <a href="" style="text-decoration: none;float:right !important; font-weight: bolder;">Forgot
                                                                                                                                                             Password?</a>
                     </div>
                     <button type="submit" class="btn btn-primary">Sign in</button>
