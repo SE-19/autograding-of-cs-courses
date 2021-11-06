@@ -1,287 +1,366 @@
-    .color {
-        color: white;
-        background-color: #0000009f
-    }
-    
-    .color:hover {
-        background-color: #0F0E0E;
-    }
-    
-    .svg {
-        width: auto;
-    }
-    
-    .image-right {
-        float: right;
-        width: 1000px;
-        padding: 0px 50px;
-    }
-    
-    .left-t {
-        width: 800px;
-        padding: 0px 50px;
-    }
-    
-    .image-left {
-        float: left;
-        width: 1000px;
-        padding: 0px 50px;
-    }
-    
-    .right-t {
-        float: right;
-        width: 800px;
-        padding: 0px 50px;
-    }
-    
-    .img {
-        border-radius: 50px;
-    }
-    
-    .features {
-        padding: 0px;
-        margin: 0px 0px 0px 200px;
-        position: relative;
-        top: -160px;
-        width: 300px;
-        color: white;
-        /* background-color: black; */
-        text-align: left;
-        font-size: 35pt;
-    }
-    
-    .box-1 {
-        display: flex;
-        justify-content: center;
-        width: 1200px;
-        margin-top: 100px;
-    }
-    
-    .box-2 {
-        display: flex;
-        justify-content: center;
-        width: 1200px;
-        margin-top: 100px;
-    }
-    
-    .box-3 {
-        display: flex;
-        justify-content: center;
-        width: 1200px;
-        margin-top: 100px;
-    }
-    
-    .clear {
-        clear: both;
-    }
-    
-    .box-a {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .button {
-        text-align: center;
-        padding: 50px;
-    }
-    
-    .btn-lg {
-        background: white;
-        color: black;
-        border: 1px solid black;
-    }
-    
-    .btn-lg:hover {
-        background-color: black;
-        color: white;
-    }
-    
-    @media (min-width:1200px) and (max-width:1514px) {
-        .image-right {
-            width: 800px;
-        }
-        .left-t {
-            width: 700px;
-        }
-        .image-left {
-            width: 800px;
-        }
-        .right-t {
-            width: 700px;
-        }
-        .features {
-            top: -130px;
-            margin: 0px 0px 0px 120px;
-        }
-        .box-1 {
-            flex-direction: row;
-            width: 1000px;
-            margin-top: 80px;
-        }
-        .box-2 {
-            flex-direction: row;
-            width: 1000px;
-            margin-top: 80px;
-        }
-        .box-3 {
-            flex-direction: row;
-            width: 1000px;
-            margin-top: 80px;
-        }
-        .button {
-            padding: 30px;
-        }
-    }
-    
-    @media (min-width:900px) and (max-width:1200px) {
-        .image-right {
-            width: 600px;
-            padding: 0px 50px;
-        }
-        .left-t {
-            width: 600px;
-            padding: 0px 50px;
-        }
-        .image-left {
-            width: 600px;
-            padding: 0px 40px;
-        }
-        .right-t {
-            width: 600px;
-            padding: 0px 40px;
-        }
-        h1 {
-            font-size: 22pt;
-        }
-        .features {
-            font-size: 28pt;
-            top: -120px;
-            margin: 0px 0px 0px 90px;
-        }
-        .box-1 {
-            flex-direction: column;
-            width: 600px;
-            margin-top: 60px;
-        }
-        .box-2 {
-            flex-direction: column-reverse;
-            width: 600px;
-            margin-top: 60px;
-        }
-        .box-3 {
-            flex-direction: column;
-            width: 600px;
-            margin-top: 60px;
-        }
-        .button {
-            padding: 30px;
-        }
-        .box-a {
-            margin: auto;
-            padding: 0px;
-            width: 600px;
-        }
-    }
-    
-    @media (min-width:600px) and (max-width:900px) {
-        .image-right {
-            width: 500px;
-            padding: 0px 30px;
-        }
-        .left-t {
-            width: 500px;
-            padding: 0px 30px;
-        }
-        .image-left {
-            width: 500px;
-            padding: 0px 30px;
-        }
-        .right-t {
-            width: 500px;
-            padding: 0px 30px;
-        }
-        h1 {
-            font-size: 18pt;
-        }
-        .features {
-            width: 200px;
-            font-size: 24pt;
-            top: -90px;
-            margin: 0px 0px 0px 60px;
-        }
-        .box-1 {
-            flex-direction: column;
-            width: 500px;
-            margin-top: 30px;
-        }
-        .box-2 {
-            flex-direction: column-reverse;
-            width: 500px;
-            margin-top: 30px;
-        }
-        .box-3 {
-            flex-direction: column;
-            width: 500px;
-            margin-top: 30px;
-        }
-        .button {
-            padding: 20px;
-        }
-        .box-a {
-            margin: auto;
-            padding: 0px;
-            width: 500px;
-        }
-    }
-    
-    @media (min-width:450px) and (max-width:600px) {
-        .image-right {
-            width: 400px;
-            padding: 0px 30px;
-        }
-        .left-t {
-            width: 400px;
-            padding: 0px 30px;
-        }
-        .image-left {
-            width: 400px;
-            padding: 0px 30px;
-        }
-        .right-t {
-            width: 400px;
-            padding: 0px 30px;
-        }
-        h1 {
-            font-size: 18pt;
-        }
-        .features {
-            width: 150px;
-            top: -60px;
-            margin: 0px 0px 0px 60px;
-        }
-        .box-1 {
-            flex-direction: column;
-            width: 400px;
-            margin-top: 30px;
-        }
-        .box-2 {
-            flex-direction: column-reverse;
-            width: 400px;
-            margin-top: 30px;
-        }
-        .box-3 {
-            flex-direction: column;
-            width: 400px;
-            margin-top: 30px;
-        }
-        .button {
-            padding: 20px;
-        }
-        .box-a {
-            margin: auto;
-            padding: 0px;
-            width: 400px;
-        }
-    }
+header {
+  margin-bottom: 0;
+}
+
+.color {
+  color: white;
+  background-color: var(--bg-color);
+  opacity: 0.8;
+}
+
+.color:hover {
+  opacity: 0.9;
+}
+
+.svg {
+  width: auto;
+}
+
+.image-right {
+  float: right;
+  width: 1000px;
+  padding: 0px 50px;
+}
+
+.left-t {
+  width: 800px;
+  padding: 0px 50px;
+}
+
+.image-left {
+  float: left;
+  width: 1000px;
+  padding: 0px 50px;
+}
+
+.right-t {
+  float: right;
+  width: 800px;
+  padding: 0px 50px;
+}
+
+.img {
+  border-radius: 50px;
+}
+
+.features {
+  padding: 0px;
+  margin: 0px 0px 0px 200px;
+  position: relative;
+  top: -160px;
+  width: 300px;
+  color: white;
+  /* background-color: black; */
+  text-align: left;
+  font-size: 35pt;
+}
+
+.box-1 {
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+  margin-top: 100px;
+}
+
+.box-2 {
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+  margin-top: 100px;
+}
+
+.box-3 {
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+  margin-top: 100px;
+}
+
+.clear {
+  clear: both;
+}
+
+.box-a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  text-align: center;
+  padding: 50px;
+}
+
+.btn-lg {
+  background: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.btn-lg:hover {
+  background-color: black;
+  color: white;
+}
+
+@media (min-width: 1200px) and (max-width: 1514px) {
+  .image-right {
+    width: 800px;
+  }
+  .left-t {
+    width: 700px;
+  }
+  .image-left {
+    width: 800px;
+  }
+  .right-t {
+    width: 700px;
+  }
+  .features {
+    top: -130px;
+    margin: 0px 0px 0px 120px;
+  }
+  .box-1 {
+    flex-direction: row;
+    width: 1000px;
+    margin-top: 80px;
+  }
+  .box-2 {
+    flex-direction: row;
+    width: 1000px;
+    margin-top: 80px;
+  }
+  .box-3 {
+    flex-direction: row;
+    width: 1000px;
+    margin-top: 80px;
+  }
+  .button {
+    padding: 30px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1200px) {
+  .image-right {
+    width: 600px;
+    padding: 0px 50px;
+  }
+  .left-t {
+    width: 600px;
+    padding: 0px 50px;
+  }
+  .image-left {
+    width: 600px;
+    padding: 0px 40px;
+  }
+  .right-t {
+    width: 600px;
+    padding: 0px 40px;
+  }
+  h1 {
+    font-size: 22pt;
+  }
+  .features {
+    font-size: 28pt;
+    top: -120px;
+    margin: 0px 0px 0px 90px;
+  }
+  .box-1 {
+    flex-direction: column;
+    width: 600px;
+    margin-top: 60px;
+  }
+  .box-2 {
+    flex-direction: column-reverse;
+    width: 600px;
+    margin-top: 60px;
+  }
+  .box-3 {
+    flex-direction: column;
+    width: 600px;
+    margin-top: 60px;
+  }
+  .button {
+    padding: 30px;
+  }
+  .box-a {
+    margin: auto;
+    padding: 0px;
+    width: 600px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .image-right {
+    width: 500px;
+    padding: 0px 30px;
+  }
+  .left-t {
+    width: 500px;
+    padding: 0px 30px;
+  }
+  .image-left {
+    width: 500px;
+    padding: 0px 30px;
+  }
+  .right-t {
+    width: 500px;
+    padding: 0px 30px;
+  }
+  h1 {
+    font-size: 18pt;
+  }
+  .features {
+    width: 200px;
+    font-size: 24pt;
+    top: -90px;
+    margin: 0px 0px 0px 60px;
+  }
+  .box-1 {
+    flex-direction: column;
+    width: 500px;
+    margin-top: 30px;
+  }
+  .box-2 {
+    flex-direction: column-reverse;
+    width: 500px;
+    margin-top: 30px;
+  }
+  .box-3 {
+    flex-direction: column;
+    width: 500px;
+    margin-top: 30px;
+  }
+  .button {
+    padding: 20px;
+  }
+  .box-a {
+    margin: auto;
+    padding: 0px;
+    width: 500px;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 600px) {
+  .image-right {
+    width: 400px;
+    padding: 0px 30px;
+  }
+  .left-t {
+    width: 400px;
+    padding: 0px 30px;
+  }
+  .image-left {
+    width: 400px;
+    padding: 0px 30px;
+  }
+  .right-t {
+    width: 400px;
+    padding: 0px 30px;
+  }
+  h1 {
+    font-size: 18pt;
+  }
+  .features {
+    width: 150px;
+    top: -60px;
+    margin: 0px 0px 0px 60px;
+  }
+  .box-1 {
+    flex-direction: column;
+    width: 400px;
+    margin-top: 30px;
+  }
+  .box-2 {
+    flex-direction: column-reverse;
+    width: 400px;
+    margin-top: 30px;
+  }
+  .box-3 {
+    flex-direction: column;
+    width: 400px;
+    margin-top: 30px;
+  }
+  .button {
+    padding: 20px;
+  }
+  .box-a {
+    margin: auto;
+    padding: 0px;
+    width: 400px;
+  }
+}
+
+.split-cards {
+  display: flex;
+  height: 80vh;
+  margin: 10rem 3rem;
+  justify-content: space-between;
+
+  margin-bottom: 10rem;
+}
+.page-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 50%;
+  border-radius: 30px;
+}
+.left-card {
+  background-color: var(--secondary-bg-color);
+  margin-right: 3rem;
+}
+.right-card {
+  background-color: var(--bg-color);
+  margin-left: 3rem;
+}
+.card-heading {
+  border: 1px solid var(--light-color);
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  text-align: center;
+}
+.card-heading:hover {
+  background-color: var(--light-color);
+  color: var(--secondary-bg-color);
+}
+.card-text {
+  width: 20rem;
+  text-align: center;
+}
+@media (max-width: 800px) {
+  .card-text {
+    width: 15rem;
+  }
+}
+@media (max-width: 500px) {
+  .split-cards {
+    flex-direction: column;
+    margin: 1rem;
+    align-items: center;
+    height: auto;
+  }
+  .card-text {
+    width: 10rem;
+  }
+  .card-heading {
+    margin-top: 1.5rem;
+  }
+  .card-heading h1 {
+    font-size: 16pt;
+  }
+  .left-card {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  .right-card {
+    background-color: var(--bg-color);
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}
