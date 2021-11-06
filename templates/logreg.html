@@ -48,12 +48,12 @@
                     <label for="cnic" class="form-label" style="font-weight: bolder;">CNIC</label>
                 </div>
                 <div class="form-floating my-2">
-                    <input type="text" class="form-control" id="institue" name="institue" required autocomplete="off" placeholder="Department">
-                    <label for="institue" style="font-weight: bolder; margin-bottom: 8px;">Department</label>
+                    <input type="text" class="form-control" id="department" name="department" required autocomplete="off" placeholder="Department">
+                    <label for="department" style="font-weight: bolder; margin-bottom: 8px;">Department</label>
                 </div>
                 <div class="form-floating my-2">
-                    <input type="text" class="form-control" id="contact" name="contact" required autocomplete="off" placeholder="Contact">
-                    <label for="contact" class="form-label" style="font-weight: bolder;">Contact</label>
+                    <input type="text" class="form-control" id="phone_no" name="phone_no" required autocomplete="off" placeholder="Phone No">
+                    <label for="phone_no" class="form-label" style="font-weight: bolder;">Phone No</label>
                 </div>
                 <div class="form-floating my-2">
                     <select class="form-select" aria-label="Default select example" id="role" name="role" required>
@@ -64,8 +64,8 @@
                     <label for="role" class="form-label" style="font-weight: bolder;">Role</label>
                 </div>
                 <div class="form-floating my-2">
-                    <input type="email" class="form-control" id="email_register" aria-describedby="emailHelp" name="email_register" required autocomplete="off" placeholder="Email">
-                    <label for="email_register" class="form-label" style="font-weight: bolder;">Email address</label>
+                    <input type="email" class="form-control" id="email_add" aria-describedby="emailHelp" name="email_add" required autocomplete="off" placeholder="Email">
+                    <label for="email_add" class="form-label" style="font-weight: bolder;">Email address</label>
                     <div id="emailHelp" class="form-text" style="font-weight: 600;">Email must be correct. It serves as your username and makes account recovery possible.</div>
                 </div>
 
@@ -97,7 +97,7 @@
     <script>
         function visiblesignin(e) {
 
-            var x = document.getElementById("pf");
+            var x = document.getElementById("password");
             if (e.target.id == "showpass") {
                 e.target.style.display = "none";
                 document.getElementById("hidepass").style.display = "block";

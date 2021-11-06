@@ -31,16 +31,16 @@ def homepage():
 def login_register():
     if request.method == "POST":
         error = None
-        email = request.form['email']
-        if email != "":
+        if 'email' in request.form:
             # meaning first form fill kia hai
+            email = request.form['email']
             password = request.form['password']
             print(email, password)
             teacher = Teacher.query.filter_by(email=email).first()# get record from database.
             if teacher == None:
                 error = "Email not found!"
             else:
-                if password == teacher.password:
+                if check_password_hash(teacher.password, password):
                     print("logged in successfully")
                     session['logged_in_user_id'] = teacher.teacher_id
                     flash("Log-in Successful!")
@@ -48,6 +48,16 @@ def login_register():
                 else:
                     error = "The Password did not match! Please try again!"
             flash(error)
+        elif request.form['name'] != "":
+            name = request.form['name']
+            cnic = request.form['cnic']
+            department = request.form['department']
+            phone_no = request.form['phone_no']
+            email_add = request.form['email_add']
+            password = request.form['pass']
+            new_teacher = Teacher(name=name, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password))
+            db.session.add(new_teacher)
+            db.session.commit()
     return render_template("logreg.html")
 
 @app.route("/create_assignment")
