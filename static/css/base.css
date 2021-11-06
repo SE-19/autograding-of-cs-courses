@@ -2,13 +2,15 @@
 * {
   box-sizing: border-box;
 }
+
 /* setting font and common color */
 #heading {
   font-weight: bold;
+  color: var(--bg-color) !important;
 }
 :root {
   font-size: 16px;
-  --font-family: "Poppins" !important;
+  --font-family: "Poppins", sans-serif !important;
   --bg-color: #222831;
   --secondary-bg-color: #393e46;
   --tertiary-bg-color: #fd7014;
@@ -27,11 +29,7 @@ body {
   flex-direction: column;
   min-height: 100vh !important;
   font-family: var(--font-family) !important;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/static/images/bg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
+  background-color: var(--bg-color);
 }
 /* Scroll bar settings because the default one is ugly */
 ::-webkit-scrollbar {
@@ -73,7 +71,7 @@ header {
 .title {
   font-size: 1.5rem;
   margin: 0.5rem;
-  padding: 1vh 1vw;
+  padding: 0.5vh 1vw;
   text-align: center;
 }
 
@@ -227,7 +225,7 @@ header {
 footer {
   padding-top: 20px;
   width: 100%;
-  background-color: #a85e08;
+  background-color: var(--bg-color);
   color: #f1f1f1;
   margin-top: auto;
 }
