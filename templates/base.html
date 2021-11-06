@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
+        <link rel="icon" href="/static/images/favicon.png" type="image/gif">
+        <!-- <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
         <link rel="stylesheet" href="/static/css/base.css"/>
         <title>
             {% block title %}{% endblock %}
@@ -28,19 +29,19 @@
                 <div class="Navbar-links">
                     <ul>
                         <li>
-                            <a href="#">Home</a>
+                            <a href="{{url_for('homepage')}}">Home</a>
                         </li>
                         <li>
-                            <a href="#">Create</a>
+                            <a href="{{url_for('create_assignment')}}">Create</a>
                         </li>
                         <li>
-                            <a href="#">Mark</a>
+                            <a href="{{url_for('mark_assignment')}}">Mark</a>
                         </li>
                         <li>
-                            <a href="#">About</a>
+                            <a href="#about">About</a>
                         </li>
                         <li>
-                            <button class="login-button" href="#">Login / Register</button>
+                            <button class="login-button" href="{{url_for('login_register')}}">Login / Register</button>
                         </li>
                     </ul>
                 </div>
@@ -49,7 +50,7 @@
         <!-- MAIN CONTENT WILL GO HERE -->
         {% block content %}{% endblock %}
         <!-- Footer here -->
-        <footer>
+        <footer id="about">
             <div class="footer-main">
                 <div class="main-footer-heading">
                     <h1>About Us</h1>

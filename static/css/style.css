@@ -18,7 +18,6 @@
     }
     
     .left-t {
-        font-size: 14pt;
         width: 800px;
         padding: 0px 50px;
     }
@@ -33,7 +32,6 @@
         float: right;
         width: 800px;
         padding: 0px 50px;
-        font-size: 14pt;
     }
     
     .img {
@@ -50,7 +48,6 @@
         /* background-color: black; */
         text-align: left;
         font-size: 35pt;
-        font-family: poppins;
     }
     
     .box-1 {
@@ -107,14 +104,12 @@
         }
         .left-t {
             width: 700px;
-            font-size: 12pt;
         }
         .image-left {
             width: 800px;
         }
         .right-t {
             width: 700px;
-            font-size: 12pt;
         }
         .features {
             top: -130px;
@@ -148,7 +143,6 @@
         .left-t {
             width: 600px;
             padding: 0px 50px;
-            font-size: 12pt;
         }
         .image-left {
             width: 600px;
@@ -157,7 +151,6 @@
         .right-t {
             width: 600px;
             padding: 0px 40px;
-            font-size: 12pt;
         }
         h1 {
             font-size: 22pt;
@@ -200,7 +193,6 @@
         .left-t {
             width: 500px;
             padding: 0px 30px;
-            font-size: 12pt;
         }
         .image-left {
             width: 500px;
@@ -209,7 +201,6 @@
         .right-t {
             width: 500px;
             padding: 0px 30px;
-            font-size: 12pt;
         }
         h1 {
             font-size: 18pt;
@@ -236,7 +227,6 @@
             margin-top: 30px;
         }
         .button {
-            font-size: 10pt;
             padding: 20px;
         }
         .box-a {
@@ -254,7 +244,6 @@
         .left-t {
             width: 400px;
             padding: 0px 30px;
-            font-size: 12pt;
         }
         .image-left {
             width: 400px;
@@ -263,14 +252,12 @@
         .right-t {
             width: 400px;
             padding: 0px 30px;
-            font-size: 12pt;
         }
         h1 {
             font-size: 18pt;
         }
         .features {
             width: 150px;
-            font-size: 16pt;
             top: -60px;
             margin: 0px 0px 0px 60px;
         }
@@ -290,7 +277,6 @@
             margin-top: 30px;
         }
         .button {
-            font-size: 10pt;
             padding: 20px;
         }
         .box-a {
