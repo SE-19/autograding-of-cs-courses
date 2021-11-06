@@ -1,102 +1,190 @@
-{% extends "base.html" %}
-{% block title %}Autograde | Homepage{% endblock %}
-{% block content %}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<link rel="stylesheet" href="../static/css/style.css">
-<style>
-    header{
-        margin: 0 !important;
-        opacity: 0.8;
-    }
-    body {
-        font-family: 'Poppins';
-        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
-        background-position: center;
-        background-size:cover;
-        background-attachment: fixed;
-        color: white;
-    }
-</style>
-<div class=" p-0">
-    <div id="Carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-touch="false">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#Carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#Carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#Carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="5000">
+{% extends "base.html" %} {% block title %}Autograde | Homepage{% endblock %} {%
+block content %}
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+  crossorigin="anonymous"
+></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+/>
+<link rel="stylesheet" href="../static/css/style.css" />
 
-                <img src="../static/images/1.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block color">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="5000">
-                <img src="../static/images/2.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block color">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id placeat labore ex ipsam amet excepturi recusandae explicabo debitis nesciunt? Perspiciatis porro optio, nihil
-                        ea voluptatum fuga? Facilis rerum fugit ullam.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="5000">
-                <img src="../static/images/3.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block color">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#Carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#Carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+<div class="p-0">
+  <div
+    id="Carousel"
+    class="carousel slide carousel-fade"
+    data-bs-ride="carousel"
+    data-bs-touch="false"
+  >
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#Carousel"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#Carousel"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#Carousel"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
     </div>
-    <img src="../static/images/homepage.svg" class="svg" alt="">
-    <div class="box-a">
-        <div class="box-1">
-            <div class="text-left left-t">
-                <h1>Relaiability</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni repudiandae minima corporis eligendi. Eos, cumque?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi repellendus veritatis odio, molestiae dolorem porro!Lorem15</p>
-            </div>
-            <div class="image-right">
-                <img src="../static/images/1.jpg" class="img-fluid img" width="600px" alt="">
-            </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="5000">
+        <img src="../static/images/1.jpg" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block color">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
         </div>
-        <div class="clear"></div>
-        <div class="box-2">
-            <div class="image-left">
-                <img src="../static/images/2.jpg" class="img-fluid img" width="600px" alt="">
-            </div>
-            <div class="text-right right-t">
-                <h1>Relaiability</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni repudiandae minima corporis eligendi. Eos, cumque?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi repellendus veritatis odio, molestiae dolorem porro!</p>
-            </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img src="../static/images/2.jpg" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block color">
+          <h5>Second slide label</h5>
+          <p>
+            Some representative placeholder content for the second slide. Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit. Id placeat
+            labore ex ipsam amet excepturi recusandae explicabo debitis
+            nesciunt? Perspiciatis porro optio, nihil ea voluptatum fuga?
+            Facilis rerum fugit ullam.
+          </p>
         </div>
-        <div class="clear"></div>
-        <div class="box-3">
-            <div class="text-left left-t">
-                <h1>Relaiability</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni repudiandae minima corporis eligendi. Eos, cumque?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi repellendus veritatis odio, molestiae dolorem porro!Lorem15</p>
-            </div>
-            <div class="image-right">
-                <img src="../static/images/1.jpg" class="img-fluid img" width="600px" alt="">
-            </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img src="../static/images/3.jpg" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block color">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
         </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#Carousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#Carousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <img src="../static/images/homepage.svg" class="svg" alt="" />
+  <div class="split-cards">
+    <div class="left-card page-card">
+      <div class="card-heading">
+        <h1>Create Assignment</h1>
+      </div>
+      <div class="card-text">
+        <p>
+          Create a Python assignment using our amazing website. It will create
+          your coding assignments in a few steps.
+        </p>
+      </div>
+    </div>
+    <div class="right-card page-card">
+      <div class="card-heading">
+        <h1>Mark Assignment</h1>
+      </div>
+      <div class="card-text">
+        <p>
+          When your students have submitted their assignments. You can just
+          upload that file for marking here.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="box-a">
+    <div class="box-1">
+      <div class="text-left left-t">
+        <h1>Relaiability</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+          repudiandae minima corporis eligendi. Eos, cumque?Lorem ipsum dolor
+          sit amet consectetur adipisicing elit. Nisi repellendus veritatis
+          odio, molestiae dolorem porro!Lorem15
+        </p>
+      </div>
+      <div class="image-right">
+        <img
+          src="../static/images/1.jpg"
+          class="img-fluid img"
+          width="600px"
+          alt=""
+        />
+      </div>
     </div>
     <div class="clear"></div>
-    <div class="button text-center">
-        <p class="fs-3">Join Us to create and check Assignments</p>
-        <button class="btn-lg">Create Assignment</button>
+    <div class="box-2">
+      <div class="image-left">
+        <img
+          src="../static/images/2.jpg"
+          class="img-fluid img"
+          width="600px"
+          alt=""
+        />
+      </div>
+      <div class="text-right right-t">
+        <h1>Relaiability</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+          repudiandae minima corporis eligendi. Eos, cumque?Lorem ipsum dolor
+          sit amet consectetur adipisicing elit. Nisi repellendus veritatis
+          odio, molestiae dolorem porro!
+        </p>
+      </div>
     </div>
+    <div class="clear"></div>
+    <div class="box-3">
+      <div class="text-left left-t">
+        <h1>Relaiability</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+          repudiandae minima corporis eligendi. Eos, cumque?Lorem ipsum dolor
+          sit amet consectetur adipisicing elit. Nisi repellendus veritatis
+          odio, molestiae dolorem porro!Lorem15
+        </p>
+      </div>
+      <div class="image-right">
+        <img
+          src="../static/images/1.jpg"
+          class="img-fluid img"
+          width="600px"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="button text-center">
+    <p class="fs-3">Join Us to create and check Assignments</p>
+    <button class="btn-lg">Create Assignment</button>
+  </div> -->
 </div>
 <div class="clear"></div>
 {% endblock %}

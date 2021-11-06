@@ -1,48 +1,37 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins &display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins &display=swap");
 body {
-    font-family: 'Poppins';
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
-    background-position: center;
-    background-size:cover;
-    background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
+
 .shadow-box {
-    padding: 2rem;
+  padding: 2rem;
 }
 #confirmation-table {
-    background-color: white;
-    width: 100%;
-    overflow-y: scroll;
+  background-color: white;
+  width: 100%;
+  overflow-y: scroll;
 }
 .secondary {
-    margin-top: 1.6rem;
-    padding: 1rem;
-    background-color: white;
-    overflow-x: scroll;
+  margin-top: 1.6rem;
+  padding: 1rem;
+  background-color: white;
+  overflow-x: scroll;
 }
 .main-div {
-    width: 50%;
+  width: 50%;
 }
-@media(max-width: 769px) {
-    .main-div {
-        width: 100%;
-    }
+.new-test-case-btn {
+  color: var(--tertiary-bg-color) !important;
+  border-color: var(--tertiary-bg-color) !important;
 }
-::-webkit-scrollbar {
-    width: 10px;
+.new-test-case-btn:hover {
+  background-color: var(--tertiary-bg-color);
+  color: var(--light-color) !important;
 }
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+@media (max-width: 769px) {
+  .main-div {
+    width: 100%;
+  }
 }
