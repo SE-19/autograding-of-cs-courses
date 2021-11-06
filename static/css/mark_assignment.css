@@ -1,36 +1,10 @@
-/* Styling the page */
 
-@import url('https://fonts.googleapis.com/css?family=Poppins');
-body {
-    font-family: 'Poppins';
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
-    background-position: center;
-    background-size:cover;
-    background-attachment: fixed;
-}
-#heading {
-    /* text-align: center; */
-    margin-left: 122px;
-    font-family: 'Poppins';
-    font-size: 28pt;
-    color: white;
-    font-weight: bold;
-}
-.container-t {
-    border: 0;
-    user-select: none;
-    margin-left: 122px;
-    width: 555px;
-    padding: 2rem;
-    background-color:aqua;
-}
+
 .inside-container {
-    width: 490px;
+    width: 100%;
 }
-#select_assignment_lbl, #upload_assignment_lbl {
-    font-size: 14pt;
-    font-family: 'Poppins';
-    
+.outside-container{
+    width: 50vw;
 }
 .select_assignment {
     margin-top: 70px;
@@ -43,8 +17,7 @@ body {
     border: 1px solid #0d6efd;
     cursor: pointer;
     border-radius: 5px;
-    font-family: 'Poppins';
-    font-size: 14pt;
+    /* font-size: 14pt; */
 }
 .select_assignment:hover,
 .select_assignment:focus,
@@ -60,8 +33,6 @@ body {
     margin-top: 40px;
     margin-bottom: 30px;
     width: 300px;
-    font-size: 14pt;
-    font-family: 'Poppins';
 }
 #choose::-webkit-file-upload-button{
     border: 1px solid #0d6efd;
@@ -70,17 +41,9 @@ body {
     padding: 1px 11px;
     color: #0d6efd;
     background-color: #ffffff;
-    font-size: 14pt;
-    font-family: 'Poppins';
-}
-.check-line-text {
-    font-size: 14pt;
-    font-family: 'Poppins'
 }
 .checkboxes{
     margin-left: 30px;
-    font-size: 14pt;
-    font-family: 'Poppins';
 }
 .check-color:checked::after{
     animation: click-wave 0.5s;
@@ -134,7 +97,6 @@ body {
     position: absolute;
     content: '✓';
     display: inline-block;
-    font-size: 25.5559px;
     text-align: center;
     font-weight:bold;
     line-height: 30px;
@@ -145,7 +107,7 @@ body {
     margin-bottom: 40px;
     width: 220px;
     padding: 5px 24px;
-    font-size: 14pt;
+    /* font-size: 14pt; */
     font-family: 'Poppins';
     color: #0d6efd;
     background-color:#ffffff;
@@ -168,12 +130,12 @@ body {
 .d-btn { 
     visibility:hidden
 }
-@media (min-width: 650px) and (max-width: 950px ) {
-    .container-t {
-      margin: auto;
-    }
-}
+/* @media (min-width: 650px) and (max-width: 950px ) {
+} */
 @media (min-width: 0px) and (max-width: 650px ) {
+    .outside-container{
+        width: 100%;
+    }
     .inside-container{
         width: 385px;
         margin: auto;
@@ -184,31 +146,20 @@ body {
         margin: auto;
       }
     #evaluate, #download {
-      font-size: 12pt;
       width: 160px;
     }
-    #select_assignment_lbl, #upload_assignment_lbl {
-        font-size: 12pt;
-    }
     .select_assignment, #choose{
-        font-size: 12pt;
         width: 220px;
     }
     #choose::-webkit-file-upload-button{
-        font-size: 11pt;
         width: 100px;
     }
-    .checkboxes, .check-line-text {
-        font-size: 12pt;
-    }
     .check-color:checked::before {
-        font-size: 12pt;
         width: 19px;
         height: 19px;
         line-height: 20px;
     }
     .check-color {
-        font-size: 12pt;
         width: 19px;
         height: 19px;
         top: 8px;

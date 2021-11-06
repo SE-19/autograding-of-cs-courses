@@ -1,7 +1,7 @@
 // Getting the hamburger icon toggle button
 const hamburger = document.getElementsByClassName("hamburger")[0];
 // Getting the navbar-links
-const navLinks = document.getElementsByClassName("navbar-links")[0];
+const navLinks = document.getElementsByClassName("Navbar-links")[0];
 // Setting on click action which opens the navbar
 // And runs the animation on hamburger icon
 hamburger.addEventListener("click", () => {
