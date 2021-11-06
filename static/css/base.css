@@ -114,7 +114,7 @@ header {
   color: var(--light-color);
 }
 /* Firstly setting the start point of animated underline */
-.Navbar-links li a::before {
+.Navbar-links .link::before {
   content: "";
   display: block;
   height: 3px;
@@ -127,10 +127,11 @@ header {
   margin: 0 0 0 10%;
 }
 /* When hovered making it bigger  */
-.Navbar-links li a:hover::before {
+.Navbar-links .link:hover::before {
   width: 80%;
 }
 /* Login Button */
+
 .login-button {
   background-color: transparent;
   border: 1.5px solid #f2f5f7;
@@ -143,10 +144,10 @@ header {
 }
 /* On hover fade in effect */
 .login-button:hover {
-  color: var(--bg-color);
-  background-color: #f2f5f7;
-  border: 1.5px solid #f2f5f7;
-  transition: all ease-in-out 350ms;
+  color: var(--bg-color) !important;
+  background-color: #f2f5f7 !important;
+  border: 1.5px solid #f2f5f7 !important;
+  transition: all ease-in-out 350ms !important;
 }
 /* Setting hamburger icon to none because it'll be available on smaller devices*/
 .hamburger {
@@ -204,12 +205,12 @@ header {
     padding: 10px;
     text-align: center;
   }
-  .Navbar-links li a::before {
+  .Navbar-links .link::before {
     position: relative;
     top: 24px;
     left: -4px;
   }
-  .Navbar-links li a:hover::before {
+  .Navbar-links .link:hover::before {
     width: 90%;
   }
   /* Aligning login button */

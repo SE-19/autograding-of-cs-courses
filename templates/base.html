@@ -1,107 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-        <link rel="icon" href="/static/images/favicon.png" type="image/gif">
-        <!-- <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
-        <link rel="stylesheet" href="/static/css/base.css"/>
-        <title>
-            {% block title %}{% endblock %}
-        </title>
-    </head>
-    <body>
-        <!-- Navigation bar -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" href="/static/images/favicon.png" type="image/gif" />
+    <!-- <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <!-- Navigation bar -->
 
-        <header>
-            <nav class="Navbar">
-                <div class="title">
-                    <a>AUTOGRADE</a>
-                </div>
-                <div class="hamburger">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                    <div class="line3"></div>
-                </div>
-                <div class="Navbar-links">
-                    <ul>
-                        <li>
-                            <a href="{{url_for('homepage')}}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{url_for('create_assignment')}}">Create</a>
-                        </li>
-                        <li>
-                            <a href="{{url_for('mark_assignment')}}">Mark</a>
-                        </li>
-                        <li>
-                            <a href="#about">About</a>
-                        </li>
-                        <li>
-                            <button class="login-button" href="{{url_for('login_register')}}">Login / Register</button>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- MAIN CONTENT WILL GO HERE -->
-        {% block content %}{% endblock %}
-        <!-- Footer here -->
-        <footer id="about">
-            <div class="footer-main">
-                <div class="main-footer-heading">
-                    <h1>About Us</h1>
-                </div>
-                <div class="main-content">
-                    <div class="left box">
-                        <h2>The Team</h2>
-                        <div class="team-names">
-                            <span class="fas fa-angle-right"></span>
-                            <span class="text">Moiz</span>
-                        </div>
-                        <div class="team-names">
-                            <span class="fas fa-angle-right"></span>
-                            <span class="text">Tajammul</span>
-                        </div>
-                        <div class="team-names">
-                            <span class="fas fa-angle-right"></span>
-                            <span class="text">M. Hammad</span>
-                        </div>
-                        <div class="team-names">
-                            <span class="fas fa-angle-right"></span>
-                            <span class="text">Nabeel</span>
-                        </div>
-                        <div class="team-names">
-                            <span class="fas fa-angle-right"></span>
-                            <span class="text">Hussnain</span>
-                        </div>
-                        <div class="team-names">
-                            <span class="fas fa-angle-right"></span>
-                            <span class="text">Ali Hassan</span>
-                        </div>
-                        <div class="team-names">
-                            <span class="fas fa-angle-right"></span>
-                            <span class="text">Abdul Qadir</span>
-                        </div>
-                    </div>
-                    <div class="vl"></div>
-                    <div class="right box">
-                        <h2>Contact Us</h2>
-                        <div class="content">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-                                                quos fuga culpa inventore quas amet odio sint deleniti, dolore
-                                                in optio adipisci aut provident harum voluptatem necessitatibus
-                                                iste ducimus repudiandae.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <header>
+      <nav class="Navbar">
+        <div class="title">
+          <a>AUTOGRADE</a>
+        </div>
+        <div class="hamburger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <div class="Navbar-links">
+          <ul>
+            <li>
+              <a class="link" href="{{url_for('homepage')}}">Home</a>
+            </li>
+            <li>
+              <a class="link" href="{{url_for('create_assignment')}}">Create</a>
+            </li>
+            <li>
+              <a class="link" href="{{url_for('mark_assignment')}}">Mark</a>
+            </li>
+            <li>
+              <a class="link" href="#about">About</a>
+            </li>
+            <li>
+              <a class="login-button" href="{{url_for('login_register')}}"
+                >Login / Register</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- MAIN CONTENT WILL GO HERE -->
+    {% block content %}{% endblock %}
+    <!-- Footer here -->
+    <footer id="about">
+      <div class="footer-main">
+        <div class="main-footer-heading">
+          <h1>About Us</h1>
+        </div>
+        <div class="main-content">
+          <div class="left box">
+            <h2>The Team</h2>
+            <div class="team-names">
+              <span class="fas fa-angle-right"></span>
+              <span class="text">Moiz</span>
             </div>
-        </footer>
-    </body>
-    <script src="/static/js/base.js"></script>
+            <div class="team-names">
+              <span class="fas fa-angle-right"></span>
+              <span class="text">Tajammul</span>
+            </div>
+            <div class="team-names">
+              <span class="fas fa-angle-right"></span>
+              <span class="text">M. Hammad</span>
+            </div>
+            <div class="team-names">
+              <span class="fas fa-angle-right"></span>
+              <span class="text">Nabeel</span>
+            </div>
+            <div class="team-names">
+              <span class="fas fa-angle-right"></span>
+              <span class="text">Hussnain</span>
+            </div>
+            <div class="team-names">
+              <span class="fas fa-angle-right"></span>
+              <span class="text">Ali Hassan</span>
+            </div>
+            <div class="team-names">
+              <span class="fas fa-angle-right"></span>
+              <span class="text">Abdul Qadir</span>
+            </div>
+          </div>
+          <div class="vl"></div>
+          <div class="right box">
+            <h2>Contact Us</h2>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
+                quos fuga culpa inventore quas amet odio sint deleniti, dolore
+                in optio adipisci aut provident harum voluptatem necessitatibus
+                iste ducimus repudiandae.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="/static/js/base.js"></script>
 </html>
