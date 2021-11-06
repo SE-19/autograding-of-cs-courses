@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/static/css/login_register.css"/>
     <div class="seksi-background">
         {% for messages in get_flashed_messages() %}
-            <div class="container-fluid alert alert-danger">{{ messages }}</div>
+            <div onclick="disappear(this)" class="container-fluid alert alert-danger">{{ messages }}</div>
         {% endfor %}
         <div class="container bg-white py-4 rounded col-md-6" id="signinsection">
                 <form action="" method="post">
@@ -138,6 +138,10 @@
 
 
             }
+        }
+        function disappear(el) {
+            var element = el;
+            element.remove();
         }
     </script>
 {% endblock %}
