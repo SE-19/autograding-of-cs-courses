@@ -18,6 +18,9 @@ block content %}
 <link rel="stylesheet" href="../static/css/style.css" />
 
 <div class="p-0">
+  {% for messages in get_flashed_messages() %}
+            <div onclick="disappear(this)" class="container-fluid alert alert-success text-center">{{ messages }}</div>
+        {% endfor %}
   <div
     id="Carousel"
     class="carousel slide carousel-fade"
@@ -187,4 +190,10 @@ block content %}
   </div> -->
 </div>
 <div class="clear"></div>
+    <script>
+        function disappear(el) {
+            var element = el;
+            element.remove();
+        }
+    </script>
 {% endblock %}
