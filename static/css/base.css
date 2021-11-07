@@ -3,16 +3,17 @@
   box-sizing: border-box;
 }
 /* setting font and common color */
-#heading{
+#heading {
   font-weight: bold;
+  color: var(--bg-color) !important;
 }
 :root {
   font-size: 16px;
-  --font-family: "Poppins" !important;
+  --font-family: "Poppins", sans-serif !important;
   --bg-color: #222831;
-  --secondary-bg-color: #393E46;
-  --tertiary-bg-color: #FD7014;
-  --light-color: #EEEEEE;
+  --secondary-bg-color: #393e46;
+  --tertiary-bg-color: #fd7014;
+  --light-color: #eeeeee;
 }
 /* To put footer on the bottom */
 html {
@@ -27,10 +28,6 @@ body {
   flex-direction: column;
   min-height: 100vh !important;
   font-family: var(--font-family) !important;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
-  background-position: center;
-  background-size:cover;  
-  background-attachment: fixed;
 }
 /* Scroll bar settings because the default one is ugly */
 ::-webkit-scrollbar {
@@ -84,7 +81,7 @@ header {
   margin-left: 2rem;
   color: var(--tertiary-bg-color) !important;
 }
-.title:hover a{
+.title:hover a {
   color: white !important;
   cursor: pointer;
 }
@@ -115,7 +112,7 @@ header {
   color: var(--light-color);
 }
 /* Firstly setting the start point of animated underline */
-.Navbar-links li a::before {
+.Navbar-links .link::before {
   content: "";
   display: block;
   height: 3px;
@@ -128,7 +125,7 @@ header {
   margin: 0 0 0 10%;
 }
 /* When hovered making it bigger  */
-.Navbar-links li a:hover::before {
+.Navbar-links .link:hover::before {
   width: 80%;
 }
 /* Login Button */
@@ -144,7 +141,7 @@ header {
 }
 /* On hover fade in effect */
 .login-button:hover {
-  color: var(--bg-color);
+  color: var(--bg-color) !important;
   background-color: #f2f5f7;
   border: 1.5px solid #f2f5f7;
   transition: all ease-in-out 350ms;
@@ -205,12 +202,12 @@ header {
     padding: 10px;
     text-align: center;
   }
-  .Navbar-links li a::before{
+  .Navbar-links .link::before {
     position: relative;
     top: 24px;
     left: -4px;
   }
-  .Navbar-links li a:hover::before {
+  .Navbar-links .link:hover::before {
     width: 90%;
   }
   /* Aligning login button */

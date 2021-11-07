@@ -11,9 +11,15 @@
     padding: 0.2rem;
     background-color: lightgray;
 } */
-body{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
-    background-position: center;
-    background-size:cover;
-    background-attachment: fixed;
+#loginorregister {
+  color: var(--bg-color) !important;
+}
+.btn-primary {
+  color: var(--tertiary-bg-color) !important;
+  border-color: var(--tertiary-bg-color) !important;
+  background-color: transparent !important;
+}
+.btn-primary:hover {
+  background-color: var(--tertiary-bg-color) !important;
+  color: var(--light-color) !important;
 }
