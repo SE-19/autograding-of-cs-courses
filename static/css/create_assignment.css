@@ -1,10 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins &display=swap");
-body {
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
 .shadow-box {
   padding: 2rem;
 }
