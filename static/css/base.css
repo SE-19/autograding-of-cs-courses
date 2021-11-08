@@ -5,7 +5,7 @@
 /* setting font and common color */
 #heading {
   font-weight: bold;
-  /* color: var(--bg-color) !important; */
+  color: var(--secondary-bg-color) !important;
 }
 :root {
   font-size: 16px;
@@ -28,7 +28,7 @@ body {
   flex-direction: column;
   min-height: 100vh !important;
   font-family: var(--font-family) !important;
-  background-image: linear-gradient(332deg, rgba(72,77,84,1) 25%, rgba(253,112,20,1) 100%);
+  background-image: linear-gradient(332deg, #d1d8ec 25%, #d1d8ec 100%);
   background-position: center;
   background-size: cover;
   /* background-attachment: fixed; */

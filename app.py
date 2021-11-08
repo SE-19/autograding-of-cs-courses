@@ -60,6 +60,10 @@ def login_register():
             db.session.commit()
     return render_template("logreg.html")
 
+@app.route("/auth")
+def authentication():
+    return render_template("new-log-reg.html")
+
 @app.route("/create_assignment")
 def create_assignment():
     return render_template("create_assignment.html")
