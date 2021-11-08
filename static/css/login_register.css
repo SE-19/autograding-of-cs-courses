@@ -11,6 +11,10 @@
     padding: 0.2rem;
     background-color: lightgray;
 } */
+.box-title{
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
 #loginorregister {
   color: var(--bg-color) !important;
 }
