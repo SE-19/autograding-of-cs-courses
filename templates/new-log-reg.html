@@ -7,13 +7,17 @@ block content %}
   crossorigin="anonymous" />
 
 <main>
+  {% for messages in get_flashed_messages() %}
+            <div onclick="disappear(this)" class="container-fluid alert alert-danger">{{ messages }}</div>
+        {% endfor %}
   <div class="form-collection">
     <div class="card elevation-3 limit-width log-in-card below turned">
-      <h1 class="box-title">Login</h1>
+      <form action="" method="post">
+        <h1 class="box-title">Login</h1>
       <div class="card-body">
         <div class="input-group email">
           <i class="fa fa-user"></i>
-          <input type="email" id="email" name="email" required autocomplete="off" placeholder="Email" />
+          <input type="email" id="email" name="email" autocomplete="off" placeholder="Email" />
         </div>
         <div class="input-group password">
           <i class="fa fa-lock"></i>
@@ -28,10 +32,12 @@ block content %}
       <div class="card-footer">
         <button type="submit" class="login-btn">Log in</button>
       </div>
+      </form>
     </div>
 
     <div class="card elevation-2 limit-width sign-up-card above">
-      <h1 class="box-title">Sign up</h1>
+      <form action="" method="post">
+        <h1 class="box-title">Sign up</h1>
       <div class="card-body">
         <div class="input-group fullname">
           <i class="fa fa-user"></i>
@@ -60,6 +66,7 @@ block content %}
           <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password-register"></span>
           </div>
         </div>
+      </form>
       </div>
       <div class="card-footer">
         <button type="submit" class="signup-btn">Sign Up</button>
@@ -88,6 +95,10 @@ block content %}
       }
 
     }
+    function disappear(el) {
+            var element = el;
+            element.remove();
+        }
   </script>
   <script>
     $("body").on('click', '.toggle-password-register', function() {
