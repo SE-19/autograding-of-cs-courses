@@ -27,7 +27,7 @@ class Teacher(db.Model):
 def homepage():
     return render_template("index.html")
 
-@app.route("/login_register", methods=["GET", "POST"])
+@app.route("/auth", methods=["GET", "POST"])
 def login_register():
     if request.method == "POST":
         error = None
@@ -59,6 +59,7 @@ def login_register():
             db.session.add(new_teacher)
             db.session.commit()
     return render_template("logreg.html")
+
 
 @app.route("/create_assignment")
 def create_assignment():
