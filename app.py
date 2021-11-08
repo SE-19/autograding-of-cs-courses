@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exc
 from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
 SECRET_KEY = secrets.token_urlsafe(16)
@@ -56,8 +57,12 @@ def login_register():
             email_add = request.form['email_add']
             password = request.form['pass']
             new_teacher = Teacher(name=name, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password))
-            db.session.add(new_teacher)
-            db.session.commit()
+            try:
+                db.session.add(new_teacher)
+                db.session.commit()
+            except exc.IntegrityError:
+                error = "CNIC, Phone No or Email address already exist!"
+                flash(error)
     return render_template("logreg.html")
 
 
