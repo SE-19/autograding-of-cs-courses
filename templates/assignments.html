@@ -6,10 +6,10 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link
+  rel="stylesheet"
+  href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
@@ -19,15 +19,21 @@
         }
 
         body {
-            font-family: 'Poppins';
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/bg.jpg");
-            background-position: center;
-            background-size: cover;
-            background-attachment: fixed;
-            color: white;
+            color: #393e46;
         }
         footer {
             margin-top: 16rem;
+        }
+        #confirmation-table {
+            background-color: white;
+            width: 100%;
+            overflow-y: scroll;
+            /* padding: 2rem; */
+        }
+        .outter-box{
+            padding: 0.6rem;
+            background-color: white;
+            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
         }
     </style>
     <section>
@@ -35,93 +41,45 @@
 
             <div class="row">
                 <div class="col-md-6 ">
-                    <h3 style="color: white;font-size: 20px; font-weight: bolder; " id="dmsheading">Assignments
+                    <h3 style="font-weight: bolder; " id="dmsheading">Assignments
                     </h3>
-                    <p style="color: white;font-size: 15px; font-weight: 400; text-align: justify;">
-                        Here are the assignments created by
-                        {{ user }}.Check status whether they are graded or not. Moreover, you can delete and edit assignments too.</p>
+                    <p style="font-weight: 400; text-align: justify;">
+                        Here are the assignments created by user. You can directly check assignments of the students for a particular one. Moreover, you can delete and edit assignments too.</p>
                 </div>
                 <div class="col-md-6 text-center" style="align-self: center;justify-self: center;">
                     <img class="img-fluid" src="/static/images/assignment.png" style="width: 150px; height: 150px; " alt=""></div>
             </div>
 
         </div>
-        <!-- <img class="img-fluid" style="width: 100%;" src="/static/wave1.png" alt=""> -->
     </section>
 
-    <div
-        class="container" id="viewsection" style="margin-top: 30px; font-size: 15px;">
-        <!-- <form class="row g-3" id="viewform" action="" method="post">
-                                        <div class="col-md-4">
-                                            <label for="assignmentid" class="form-label" style="font-weight: bolder;">Id</label>
-                                            <input type="text" class="form-control" id="assignmentid" name="assignmentid" required disabled></div>
-        
-                                            <div class="col-md-4">
-                                                <label for="name" style="font-weight: bolder; margin-bottom: 8px;">Name</label>
-                                                <input type="text" class="form-control" id="name" name="name" required></div>
-        
-                                                <div class="col-md-4">
-                                                    <label for="status" style="font-weight: bolder; margin-bottom: 8px;">Status</label>
-                                                    <input type="text" class="form-control" id="status" name="status" required disabled></div>
-        
-                                                    <div class="col-12">
-                                                        <button class="btn btn-primary" type="submit">Update</button>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <hr></div>
-                                                    </form>
-                                                </div>
-        
-                                                <div class="container" id="note">
-                                                    <p style="color: red; font-size: 12px; font-weight: bolder; text-align: justify;">Note: Be careful while clicking crosses! Clicking a cross will delete that  assignment and record permanently.</p>
-                                                </div> -->
+    <div class="container col-md-8">
+        <div
+        class="outter-box rounded" id="viewsection">
 
-        <div class="container table-responsive" id="tablesection" style="margin-top: 20px;">
-            <table class="table table-sm table-bordered table-hover" id="assignmentstable" style="font-size: 13px; max-height: 400px;background-color: white;">
+        <div class="container" id="tablesection">
+            <table class="table" id="confirmation-table">
                 <thead>
-                    <tr class="table-dark" style="background-color: black !important;">
-                        <th class="text-center align-middle" scope="col">#</th>
-                        <th class="text-center align-middle" scope="col">Name</th>
-                        <th class="text-center align-middle" scope="col">Status</th>
-                        <th class="text-center align-middle" scope="col"></th>
-                    </tr>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Assignment Title</th>
+                    <th scope="col">Mark Assignments</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
                 </thead>
-                <tbody id="tablebody" style="font-weight: 600;">
-                    <tr id="0">
-                        <td id="id-0">0</td>
-                        <td id="name-0">PF</td>
-                        <td id="status-0">Not Graded</td>
-                        <td>
-                            <img id="img-0" src="/static/images/remove (3).png" alt=""></td>
-                    </tr>
-                    <tr id="1">
-                        <td id="id-1">1</td>
-                        <td id="name-1">Graded</td>
-                        <td id="status-1">DSA</td>
-                        <td>
-                            <img id="img-1" src="/static/images/remove (3).png" alt=""></td>
+                <tbody class="table-body">
+                    <tr>
+                        <th>1</th>
+                        <td>PF Assignment</td>
+                        <td><i class="fas fa-external-link-alt btn btn-outline-success"></i></td>
+                        <td><i class="fas fa-edit btn btn-outline-primary"></i></td>
+                        <td><i class="fas fa-trash-alt btn btn-outline-danger"></i></td>
                     </tr>
                 </tbody>
-            </table>
+                <tbody id="table-body"></tbody>
+              </table>
         </div>
-
-        <!--------------------------------------------- Ajax Portion----------------------------------------------------------->
-        <script>
-            $(document).ready(function () {
-                $(document).on('click', '#assignmentstable tbody tr td img', function () {
-                    var id = this.id.split("-")[1]
-                    $("#" + id + "").remove()
-                    $('#assignmentstable').fadeOut(500).fadeIn(500)
-                });
-
-                $(document).on('click', '#assignmentstable tbody tr', function () {
-                    var id = this.id;
-                    $('#viewsection').fadeOut(200).fadeIn(200);
-                    document.getElementById("assignmentid").value = $("#id-" + id + "").text();
-                    document.getElementById("name").value = $("#name-" + id + "").text();
-                    document.getElementById("status").value = $("#status-" + id + "").text();
-                });
-            });
-        </script>
+    </div>
     </div>
 {% endblock %}
