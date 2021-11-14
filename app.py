@@ -122,9 +122,14 @@ def mark_assignment():
 def assignments():
     return render_template("assignments.html")
 
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('homepage'))
+
 if __name__ == "__main__":
     app.run(debug=True)
