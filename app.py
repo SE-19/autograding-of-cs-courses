@@ -20,8 +20,8 @@ class Teacher(db.Model):
     phone_no = db.Column(db.String(11), unique=True, nullable=False)
     department = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(500), nullable=False)
-    tas=db.relationship('TA',backref="head")
-    assignments=db.relationship('Assignment',backref="teacher")
+    # tas=db.relationship('TA',backref="head")
+    # assignments=db.relationship('Assignment',backref="teacher")
     
     def __repr__(self) -> str:
         return f"{self.teacher_id}, {self.name}"
@@ -41,7 +41,7 @@ class Assignment(db.Model):
     title = db.Column(db.String(1000), unique=True, nullable=False)
     graded=db.Column(db.Boolean,default=False,nullable=False)
     teacher_id = db.Column(db.Integer,db.ForeignKey('teacher.teacher_id'))
-    functions=db.relationship('Function',backref="assignment")
+    # functions=db.relationship('Function',backref="assignment")
 
 class Function(db.Model):
     function_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
@@ -49,13 +49,13 @@ class Function(db.Model):
     assignment_id = db.Column(db.Integer,db.ForeignKey('assignment.assignment_id'))
     docstring = db.Column(db.String(2000))
     marks = db.Column(db.Integer,nullable=False)
-    parameters_id=db.relationship('FPR',backref="function")
+    # parameters_id=db.relationship('FPR',backref="function")
 
 class Fpr(db.Model):
     func_param_rel_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     function_id = db.Column(db.Integer,db.ForeignKey('function.function_id'))
-    parameters=db.relationship('Parameter',backref="funcparamrel",uselist=False)
-    expected_values=db.relationship('ExpectedValue',backref="funcparamrel",uselist=False)
+    # parameters=db.relationship('Parameter',backref="funcparamrel",uselist=False)
+    # expected_values=db.relationship('ExpectedValue',backref="funcparamrel",uselist=False)
 
 class Parameter(db.Model):
     param_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
