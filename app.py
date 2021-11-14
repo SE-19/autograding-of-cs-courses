@@ -118,7 +118,8 @@ def login_register():
             phone_no = request.form['phone_no']
             email_add = request.form['email_add']
             password = request.form['pass']
-            new_teacher = Teacher(name=name, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password))
+            otp = OTPgenerator()
+            new_teacher = Teacher(name=name, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password), otp=otp)
             try:
                 db.session.add(new_teacher)
                 db.session.commit()
