@@ -90,11 +90,22 @@ def login_register():
             print(email, password)
             teacher = Teacher.query.filter_by(email=email).first()# get record from database.
             if teacher == None:
-                error = "Email not found!"
+                ta = TA.query.filter_by(email=email).first()
+                if ta == None:
+                    error = "Email not found!"
+                    flash(error)
+                else:
+                    if check_password_hash(ta.password, password):
+                        print("logged in successfully")
+                        session['logged_in_ta_id'] = ta.ta_id
+                        flash("Log-in Successful!")
+                        return redirect(url_for("homepage"))
+                    else:
+                        error = "The Password did not match! Please try again!"
             else:
                 if check_password_hash(teacher.password, password):
                     print("logged in successfully")
-                    session['logged_in_user_id'] = teacher.teacher_id
+                    session['logged_in_teacher_id'] = teacher.teacher_id
                     flash("Log-in Successful!")
                     return redirect(url_for("homepage"))
                 else:
@@ -107,7 +118,8 @@ def login_register():
             phone_no = request.form['phone_no']
             email_add = request.form['email_add']
             password = request.form['pass']
-            new_teacher = Teacher(name=name, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password))
+            otp = OTPgenerator()
+            new_teacher = Teacher(name=name, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password), otp=otp)
             try:
                 db.session.add(new_teacher)
                 db.session.commit()
