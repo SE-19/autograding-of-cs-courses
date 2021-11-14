@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, redirect, session, url_for, f
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
+import math
+import random
+
 from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
 SECRET_KEY = secrets.token_urlsafe(16)
@@ -20,9 +23,13 @@ class Teacher(db.Model):
     phone_no = db.Column(db.String(11), unique=True, nullable=False)
     department = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(500), nullable=False)
+    otp = db.Column(db.String(25), nullable=False)
+
+
     # tas=db.relationship('TA',backref="head")
     # assignments=db.relationship('Assignment',backref="teacher")
     
+
     def __repr__(self) -> str:
         return f"{self.teacher_id}, {self.name}"
 
@@ -121,6 +128,11 @@ def login_register():
     return render_template("logreg.html")
 
 
+
+
+
+
+
 @app.route("/create_assignment")
 def create_assignment():
     return render_template("create_assignment.html")
@@ -133,9 +145,23 @@ def mark_assignment():
 def assignments():
     return render_template("assignments.html")
 
+@app.route("/TA_manage")
+def TA_manage():
+    return render_template("TA_manage.html")
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('homepage'))
+
+def OTPgenerator():
+    string = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    OTP = ""
+
+    for c in range(22):
+        OTP += string[math.floor(random.randint(0,len(string)-1))]
+    return OTP
+
 if __name__ == "__main__":
     app.run(debug=True)
+

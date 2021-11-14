@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block title %}Autograde | TA {% endblock %} {%
+block content %}
+
+<link rel="stylesheet" href="static/css/TA_manage.css" />
+
+<div class="TA-box">
+  <div class="TA-header">
+    <div class="TA-heading">Teaching Assistants:</div>
+    <div class="OTP-text">
+      <label for="OTP-text">OTP for new TA: </label>
+      <input id="OTP-text" class="form-control" type="text" readonly />
+      <span id="ct-icon" class="fas fa-clone ct-icon">
+        <span class="tooltiptext" id="myTooltip">Copy to clipboard</span></span
+      >
+    </div>
+  </div>
+  <div class="TA-cards">
+    <div class="TA-card">
+      <img src="static/images/profile img.png" alt="" class="TA-img" />
+      <div class="name">TEMP</div>
+      <div class="subject">TEMP 001</div>
+      <a href="#" class="TA-del-btn">Delete</a>
+    </div>
+    <div class="TA-card">
+      <img src="static/images/profile img.png" alt="" class="TA-img" />
+      <div class="name">TEMP</div>
+      <div class="subject">TEMP 001</div>
+      <a href="#" class="TA-del-btn">Delete</a>
+    </div>
+    <div class="TA-card">
+      <img src="static/images/profile img.png" alt="" class="TA-img" />
+      <div class="name">Temp</div>
+      <div class="subject">Programming 101</div>
+      <a href="#" class="TA-del-btn">Delete</a>
+    </div>
+  </div>
+</div>
+<script>
+  // Function to generate OTP
+  function generateOTP() {
+    // Declare a string variable
+    // which stores all string
+    var string =
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let OTP = "";
+
+    // Find the length of string
+    var len = string.length;
+    for (let i = 0; i < 30; i++) {
+      OTP += string[Math.floor(Math.random() * len)];
+    }
+    return OTP;
+  }
+
+  document.getElementById("OTP-text").value = generateOTP();
+  document.getElementById("ct-icon").addEventListener("click", () => {
+    var copyText = document.getElementById("OTP-text");
+    navigator.clipboard.writeText(copyText.value);
+  });
+</script>
+{% endblock %}
