@@ -112,25 +112,45 @@ def login_register():
                     error = "The Password did not match! Please try again!"
             flash(error)
         elif request.form['name'] != "":
-            name = request.form['name']
-            cnic = request.form['cnic']
-            department = request.form['department']
-            phone_no = request.form['phone_no']
-            email_add = request.form['email_add']
-            password = request.form['pass']
-            otp = OTPgenerator()
-            new_teacher = Teacher(name=name, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password), otp=otp)
-            try:
-                db.session.add(new_teacher)
-                db.session.commit()
-            except exc.IntegrityError:
-                error = "CNIC, Phone No or Email address already exist!"
-                flash(error)
+            if request.form['role'] == '1':
+                name = request.form['name']
+                cnic = request.form['cnic']
+                department = request.form['department']
+                phone_no = request.form['phone_no']
+                email_add = request.form['email_add']
+                password = request.form['pass']
+                otp = OTPgenerator()
+                new_teacher = Teacher(name=name, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password), otp=otp)
+
+                try:
+                    db.session.add(new_teacher)
+                    db.session.commit()
+                except exc.IntegrityError:
+                    error = "CNIC, Phone No or Email address already exist!"
+                    flash(error)
+            elif request.form['role'] == '2':
+                name = request.form['name']
+                cnic = request.form['cnic']
+                department = request.form['department']
+                phone_no = request.form['phone_no']
+                email_add = request.form['email_add']
+                password = request.form['pass']
+                otp = request.form['otp']
+                teacher = Teacher.query.filter_by(otp=otp).first()
+                if teacher == None:
+                    error = "OTP is incorrect"
+                    flash("OTP is incorrect")
+                else:
+                    new_teacher = TA(name=name,head_id=teacher.teacher_id, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password))
+
+                try:
+                    db.session.add(new_teacher)
+                    db.session.commit()
+                except exc.IntegrityError:
+                    error = "CNIC, Phone No or Email address already exist!"
+                    flash(error)
+
     return render_template("logreg.html")
-
-
-
-
 
 
 
@@ -146,9 +166,16 @@ def mark_assignment():
 def assignments():
     return render_template("assignments.html")
 
-@app.route("/TA_manage")
+@app.route("/TA_manage", methods=['GET','POST'])
 def TA_manage():
-    return render_template("TA_manage.html")
+    if request.method == 'POST':
+        ta_id = request.form['ta_id']
+        TA.query.filter_by(ta_id = ta_id).delete()
+    teacher = Teacher.query.filter_by(teacher_id=session['logged_in_teacher_id']).first()
+    data = {}
+    data['Teacher_otp'] = teacher.otp
+    data['TAs'] = TA.query.filter_by(head_id = session['logged_in_teacher_id']).all()
+    return render_template("TA_manage.html",data=data)
 
 @app.route('/logout')
 def logout():

@@ -62,12 +62,16 @@
                     </select>
                     <label for="role" class="form-label" style="font-weight: bolder;">Role</label>
                 </div>
+                <div id="otp-section" class="form-floating my-2" style="display:none">
+                    <input type="text" class="form-control" id="teacher_otp" name="otp" autocomplete="off" placeholder="OTP">
+                    <label for="otp" class="form-label" style="font-weight: bolder;">OTP</label>
+                    <div id="otpHelp" class="form-text" style="font-weight: 600;">Write the OTP that your teacher provided.</div>    
+                </div>
                 <div class="form-floating my-2">
                     <input type="email" class="form-control" id="email_add" aria-describedby="emailHelp" name="email_add" required autocomplete="off" placeholder="Email">
                     <label for="email_add" class="form-label" style="font-weight: bolder;">Email address</label>
                     <div id="emailHelp" class="form-text" style="font-weight: 600;">Email must be correct. It serves as your username and makes account recovery possible.</div>
                 </div>
-
                 <div class="form-floating my-2">
                     <input type="password" class="form-control" id="pass" name="pass" required autocomplete="off" placeholder="Password">
                     <label for="pass" class="form-label" style="font-weight: bolder;">Password</label>
@@ -138,9 +142,25 @@
 
             }
         }
+
+        function otp_show_or_not(){
+            role = document.getElementById("role");
+            if (role.value == 2){
+                otp = document.getElementById("otp-section");
+                otp.style.display = 'block';
+                otp.required = true
+            }
+            else {
+                otp = document.getElementById("otp-section");
+                otp.style.display = 'none';
+                otp.required = false
+            }
+        }
+
         function disappear(el) {
             var element = el;
             element.remove();
         }
+        document.getElementById("role").addEventListener('change',()=>otp_show_or_not());
     </script>
 {% endblock %}
