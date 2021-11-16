@@ -20,25 +20,26 @@ block content %}
       >
     </div>
   </div>
+
   <div class="TA-cards">
-    <div class="TA-card">
-      <img src="static/images/profile img.png" alt="" class="TA-img" />
-      <div class="name">TEMP</div>
-      <div class="subject">TEMP 001</div>
-      <a href="#" class="TA-del-btn">Delete</a>
-    </div>
-    <div class="TA-card">
-      <img src="static/images/profile img.png" alt="" class="TA-img" />
-      <div class="name">TEMP</div>
-      <div class="subject">TEMP 001</div>
-      <a href="#" class="TA-del-btn">Delete</a>
-    </div>
-    <div class="TA-card">
-      <img src="static/images/profile img.png" alt="" class="TA-img" />
-      <div class="name">Temp</div>
-      <div class="subject">Programming 101</div>
-      <a href="#" class="TA-del-btn">Delete</a>
-    </div>
+    {% for TA in data.TAs %}
+    <form class="" action="" method="post">
+      <div class="TA-card">
+        <img src="static/images/profile img.png" alt="" class="TA-img" />
+
+        <div class="name">{{TA.name}}</div>
+        <div class="subject">{{TA.department}}</div>
+        <input
+          type="text"
+          value="{{TA.ta_id}}"
+          id="ta_id"
+          name="ta_id"
+          style="display: none"
+        />
+        <button type="submit" class="TA-del-btn">Delete</button>
+      </div>
+    </form>
+    {% endfor %}
   </div>
 </div>
 <script>

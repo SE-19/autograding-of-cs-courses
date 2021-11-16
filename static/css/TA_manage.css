@@ -94,9 +94,11 @@
   border-radius: 2em;
   padding: 0.6rem 0.8rem;
   font-size: 1rem;
+  background-color: transparent;
   border-color: var(--tertiary-bg-color) !important;
   transition: all 250ms ease-in-out;
   text-decoration: none;
+  cursor: pointer;
 }
 .TA-del-btn:hover {
   background-color: var(--tertiary-bg-color);
