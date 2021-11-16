@@ -148,7 +148,10 @@ def assignments():
 
 @app.route("/TA_manage")
 def TA_manage():
-    return render_template("TA_manage.html")
+    teacher = Teacher.query.filter_by(teacher_id=session['logged_in_teacher_id']).first()
+    data = {}
+    data['Teacher_otp'] = teacher.otp
+    return render_template("TA_manage.html",data =data)
 
 @app.route('/logout')
 def logout():

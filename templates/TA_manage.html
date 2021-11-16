@@ -8,7 +8,13 @@ block content %}
     <div class="TA-heading">Teaching Assistants:</div>
     <div class="OTP-text">
       <label for="OTP-text">OTP for new TA: </label>
-      <input id="OTP-text" class="form-control" type="text" readonly />
+      <input
+        id="OTP-text"
+        value="{{data.Teacher_otp}}"
+        class="form-control"
+        type="text"
+        readonly
+      />
       <span id="ct-icon" class="fas fa-clone ct-icon">
         <span class="tooltiptext" id="myTooltip">Copy to clipboard</span></span
       >
@@ -36,23 +42,6 @@ block content %}
   </div>
 </div>
 <script>
-  // Function to generate OTP
-  function generateOTP() {
-    // Declare a string variable
-    // which stores all string
-    var string =
-      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let OTP = "";
-
-    // Find the length of string
-    var len = string.length;
-    for (let i = 0; i < 30; i++) {
-      OTP += string[Math.floor(Math.random() * len)];
-    }
-    return OTP;
-  }
-
-  document.getElementById("OTP-text").value = generateOTP();
   document.getElementById("ct-icon").addEventListener("click", () => {
     var copyText = document.getElementById("OTP-text");
     navigator.clipboard.writeText(copyText.value);
