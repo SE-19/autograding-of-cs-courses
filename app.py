@@ -141,14 +141,14 @@ def login_register():
                     error = "OTP is incorrect"
                     flash("OTP is incorrect")
                 else:
-                    new_teacher = TA(name=name,head_id=teacher.teacher_id, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password))
-
-                try:
-                    db.session.add(new_teacher)
-                    db.session.commit()
-                except exc.IntegrityError:
-                    error = "CNIC, Phone No or Email address already exist!"
-                    flash(error)
+                    teacher.otp = OTPgenerator()
+                    new_TA = TA(name=name,head_id=teacher.teacher_id, cnic=cnic,department=department, phone_no=phone_no, email=email_add, password=generate_password_hash(password))
+                    try:
+                        db.session.add(new_TA)
+                        db.session.commit()
+                    except exc.IntegrityError:
+                        error = "CNIC, Phone No or Email address already exist!"
+                        flash(error)
 
     return render_template("logreg.html")
 
