@@ -1,126 +1,121 @@
-{% extends "base.html" %} {% block title %}Autograde | Login & Registration{% endblock %} {%
-block content %}
+{% extends "base.html" %} {% block title %}Autograde | Login & Registration{% endblock %} {% block content %}
 <link rel="stylesheet" href="static/css/new-log-reg.css">
 <!-- Frontawesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-  integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-  crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
 <main>
-  {% for messages in get_flashed_messages() %}
-            <div onclick="disappear(this)" class="container-fluid alert alert-danger">{{ messages }}</div>
-        {% endfor %}
-  <div class="form-collection">
-    <div class="card elevation-3 limit-width log-in-card below turned">
-      <form action="" method="post">
-        <h1 class="box-title">Login</h1>
-      <div class="card-body">
-        <div class="input-group email">
-          <i class="fa fa-user"></i>
-          <input type="email" id="email" name="email" autocomplete="off" placeholder="Email" />
+    {% for messages in get_flashed_messages() %}
+    <div onclick="disappear(this)" class="container-fluid alert alert-danger">{{ messages }}</div>
+    {% endfor %}
+    <div class="form-collection">
+        <div class="card elevation-3 limit-width log-in-card below turned">
+            <form action="" method="post">
+                <h1 class="box-title">Login</h1>
+                <div class="card-body">
+                    <div class="input-group email">
+                        <i class="fa fa-user"></i>
+                        <input type="email" id="email" name="email" autocomplete="off" placeholder="Email" />
+                    </div>
+                    <div class="input-group password">
+                        <i class="fa fa-lock"></i>
+
+                        <div style="display: flex;">
+                            <input type="password" id="password" name="password" placeholder="Password" />
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password-login"></span>
+                        </div>
+                    </div>
+                    <a href="#" class="box-btn"><small>Forgot Password?</small></a>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="login-btn">Log in</button>
+                </div>
+            </form>
         </div>
-        <div class="input-group password">
-          <i class="fa fa-lock"></i>
-          
-          <div style="display: flex;">
-            <input type="password" id="password" name="password" placeholder="Password" />
-          <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password-login"></span>
-          </div>
+
+        <div class="card elevation-2 limit-width sign-up-card above">
+            <form action="" method="post">
+                <h1 class="box-title">Sign up</h1>
+                <div class="card-body">
+                    <div class="input-group fullname">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="name" name="name" required autocomplete="off" placeholder="Full Name" />
+                    </div>
+                    <div class="input-group cnic">
+                        <i class="fa fa-id-card"></i>
+                        <input type="text" id="cnic" name="cnic" required autocomplete="off" placeholder="CNIC" />
+                    </div>
+                    <div class="input-group department">
+                        <i class="fa fa-building"></i>
+                        <input type="text" id="department" name="department" required autocomplete="off" placeholder="Department" />
+                    </div>
+                    <div class="input-group phoneno">
+                        <i class="fa fa-phone-alt"></i>
+                        <input type="text" id="phone_no" name="phone_no" required autocomplete="off" placeholder="Phone No" />
+                    </div>
+                    <div class="input-group email">
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" id="email_add" name="email_add" required autocomplete="off" placeholder="Email" />
+                    </div>
+                    <div class="input-group password">
+                        <i class="fa fa-lock"></i>
+                        <div style="display: flex;">
+                            <input type="password" id="pass" name="pass" required autocomplete="off" placeholder="Password" />
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password-register"></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        <a href="#" class="box-btn"><small>Forgot Password?</small></a>
-      </div>
-      <div class="card-footer">
-        <button type="submit" class="login-btn">Log in</button>
-      </div>
-      </form>
+        <div class="card-footer">
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </div>
     </div>
 
-    <div class="card elevation-2 limit-width sign-up-card above">
-      <form action="" method="post">
-        <h1 class="box-title">Sign up</h1>
-      <div class="card-body">
-        <div class="input-group fullname">
-          <i class="fa fa-user"></i>
-          <input type="text" id="name" name="name" required autocomplete="off" placeholder="Full Name" />
-        </div>
-        <div class="input-group cnic">
-          <i class="fa fa-id-card"></i>
-          <input type="text" id="cnic" name="cnic" required autocomplete="off" placeholder="CNIC" />
-        </div>
-        <div class="input-group department">
-          <i class="fa fa-building"></i>
-          <input type="text" id="department" name="department" required autocomplete="off" placeholder="Department" />
-        </div>
-        <div class="input-group phoneno">
-          <i class="fa fa-phone-alt"></i>
-          <input type="text" id="phone_no" name="phone_no" required autocomplete="off" placeholder="Phone No" />
-        </div>
-        <div class="input-group email">
-          <i class="fa fa-envelope"></i>
-          <input type="email" id="email_add" name="email_add" required autocomplete="off" placeholder="Email" />
-        </div>
-        <div class="input-group password">
-          <i class="fa fa-lock"></i>
-          <div style="display: flex;">
-            <input type="password" id="pass" name="pass" required autocomplete="off" placeholder="Password" />
-          <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password-register"></span>
-          </div>
-        </div>
-      </form>
-      </div>
-      <div class="card-footer">
-        <button type="submit" class="signup-btn">Sign Up</button>
-      </div>
-    </div>
-  </div>
-  </div>
+    <!-- Jquery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous"></script>
+    <script src="static/js/new-log-reg.js"></script>
+    <script>
+        function visiblesignup1(e) {
+            console.log("Is this working?");
+            var x = document.getElementById("pass");
+            if (e.target.id == "showpass1") {
+                e.target.style.display = "none";
+                document.getElementById("hidepass1").style.display = "block";
+                x.type = "text";
+            } else if (e.target.id == "hidepass1") {
+                e.target.style.display = "none";
+                document.getElementById("showpass1").style.display = "block";
+                x.type = "password";
+            }
 
-  <!-- Jquery CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
-    integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
-    crossorigin="anonymous"></script>
-  <script src="static/js/new-log-reg.js"></script>
-  <script>
-    function visiblesignup1(e) {
-      console.log("Is this working?");
-      var x = document.getElementById("pass");
-      if (e.target.id == "showpass1") {
-        e.target.style.display = "none";
-        document.getElementById("hidepass1").style.display = "block";
-        x.type = "text";
-      } else if (e.target.id == "hidepass1") {
-        e.target.style.display = "none";
-        document.getElementById("showpass1").style.display = "block";
-        x.type = "password";
-      }
+        }
 
-    }
-    function disappear(el) {
+        function disappear(el) {
             var element = el;
             element.remove();
         }
-  </script>
-  <script>
-    $("body").on('click', '.toggle-password-register', function() {
-      $(this).toggleClass("fa-eye fa-eye-slash");
-      var input = $("#pass");
-      if (input.attr("type") === "password") {
-        input.attr("type", "text");
-      } else {
-        input.attr("type", "password");
-      }
+    </script>
+    <script>
+        $("body").on('click', '.toggle-password-register', function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $("#pass");
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
 
-    });
-    $("body").on('click', '.toggle-password-login', function() {
-      $(this).toggleClass("fa-eye fa-eye-slash");
-      var input = $("#password");
-      if (input.attr("type") === "password") {
-        input.attr("type", "text");
-      } else {
-        input.attr("type", "password");
-      }
+        });
+        $("body").on('click', '.toggle-password-login', function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $("#password");
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
 
-    });
-  </script>
+        });
+    </script>
 </main>
 {% endblock %}

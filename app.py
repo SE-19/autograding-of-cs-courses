@@ -168,6 +168,9 @@ def mark_assignment():
 def assignments():
     return render_template("assignments.html")
 
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
 # Here started the forgot password scene
 @app.route('/forgotpass')
 def forgotpass():
@@ -241,7 +244,7 @@ def TA_manage():
     data['Teacher_otp'] = teacher.otp
     data['TAs'] = TA.query.filter_by(head_id = session['logged_in_teacher_id']).all()
     return render_template("TA_manage.html",data=data)
-
+  
 @app.route('/logout')
 def logout():
     session.clear()
@@ -254,7 +257,7 @@ def OTPgenerator():
     for c in range(22):
         OTP += string[math.floor(random.randint(0,len(string)-1))]
     return OTP
-
+  
 if __name__ == "__main__":
     app.run(debug=True)
 
