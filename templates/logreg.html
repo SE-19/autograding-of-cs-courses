@@ -17,40 +17,18 @@
                 <input type="email" class="form-control" id="email" autocomplete="off" name="email" placeholder="Email Address" aria-describedby="emailHelp" required>
                 <label for="email" class="form-label" style="font-weight: bolder;">Email address
                         </label>
-            </div>
-            <div class="mb-3 form-floating">
-                <input id="password" name="password" type="password" class="form-control" placeholder="Password" required autocomplete="off">
-                <label for="password" class="form-label" style="font-weight: bolder;">Password</label>
-                <img id="showpass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px;cursor:pointer;" src="/static/images/visibility.png" alt="">
-                <img id="hidepass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px; display: none;cursor:pointer;" src="/static/images/visibility (1).png" alt="">
-                <a href="" style="text-decoration: none;float:right !important; font-weight: bolder;">Forgot
-                                                                                                                                                            Password?</a>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
-    </div>
 
-    <!-- ------------------------------------------- Registration Section----------------------------------------------------- -->
-
-    <div class="container bg-white py-4 rounded col-md-6" id="registerationsection">
-        <h1 class="box-title">Register</h1>
-        <form class="" action="" method="post">
-            <div class="form-floating my-2">
-                <input type="text" class="form-control" id="name" name="name" required autocomplete="off" placeholder="First name">
-                <label for="name" class="form-label" style="font-weight: bolder;">Full Name</label>
-            </div>
-            <div class="form-floating my-2">
-                <input type="text" class="form-control" id="cnic" name="cnic" required autocomplete="off" placeholder="CNIC">
-                <label for="cnic" class="form-label" style="font-weight: bolder;">CNIC</label>
-            </div>
-            <div class="form-floating my-2">
-                <input type="text" class="form-control" id="department" name="department" required autocomplete="off" placeholder="Department">
-                <label for="department" style="font-weight: bolder; margin-bottom: 8px;">Department</label>
-            </div>
-            <div class="form-floating my-2">
-                <input type="text" class="form-control" id="phone_no" name="phone_no" required autocomplete="off" placeholder="Phone No">
-                <label for="phone_no" class="form-label" style="font-weight: bolder;">Phone No</label>
-            </div>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Password" required autocomplete="off">
+                        <label for="password" class="form-label" style="font-weight: bolder;">Password</label>
+                        <img id="showpass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px;cursor:pointer;" src="/static/images/visibility.png" alt="">
+                        <img id="hidepass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px; display: none;cursor:pointer;" src="/static/images/visibility (1).png" alt="">
+                        <a href="{{url_for('forgotpass')}}" style="text-decoration: none;float:right !important; font-weight: bolder;">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
+        </div>
 
             <div class="form-floating my-2">
                 <select class="form-select" aria-label="Default select example" id="role" name="role" required>
@@ -58,12 +36,39 @@
                         <option value="1">Teacher</option>
                         <option value="2">Teaching Assistant</option>
                     </select>
-                <label for="role" class="form-label" style="font-weight: bolder;">Role</label>
-            </div>
-            <div class="form-floating my-2">
-                <input type="email" class="form-control" id="email_add" aria-describedby="emailHelp" name="email_add" required autocomplete="off" placeholder="Email">
-                <label for="email_add" class="form-label" style="font-weight: bolder;">Email address</label>
-                <div id="emailHelp" class="form-text" style="font-weight: 600;">Email must be correct. It serves as your username and makes account recovery possible.</div>
+                    <label for="role" class="form-label" style="font-weight: bolder;">Role</label>
+                </div>
+                <div id="otp-section" class="form-floating my-2" style="display:none">
+                    <input type="text" class="form-control" id="teacher_otp" name="otp" autocomplete="off" placeholder="OTP">
+                    <label for="otp" class="form-label" style="font-weight: bolder;">OTP</label>
+                    <div id="otpHelp" class="form-text" style="font-weight: 600;">Write the OTP that your teacher provided.</div>    
+                </div>
+                <div class="form-floating my-2">
+                    <input type="email" class="form-control" id="email_add" aria-describedby="emailHelp" name="email_add" required autocomplete="off" placeholder="Email">
+                    <label for="email_add" class="form-label" style="font-weight: bolder;">Email address</label>
+                    <div id="emailHelp" class="form-text" style="font-weight: 600;">Email must be correct. It serves as your username and makes account recovery possible.</div>
+                </div>
+                <div class="form-floating my-2">
+                    <input type="password" class="form-control" id="pass" name="pass" required autocomplete="off" placeholder="Password">
+                    <label for="pass" class="form-label" style="font-weight: bolder;">Password</label>
+                    <img id="showpass1" onclick="visiblesignup1(event)" style="float: right; margin-top: -34px;margin-right: 10px;" src="/static/images/visibility.png" alt="">
+                    <img id="hidepass1" onclick="visiblesignup1(event)" style="float: right; margin-top: -34px;margin-right: 10px; display: none;" src="/static/images/visibility (1).png" alt=""></div>
+
+                    <div id="emailHelp" class="form-text" style="font-weight: 600;">Please confirm your password before submitting.</div>
+                <div class="col-12 mt-2">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+        <!-- ------------------------------------------- Section Changer----------------------------------------------------- -->
+
+        <div class="container" style="margin-top: 30px; font-size: 15px;font-weight: bolder;font-size: 15px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <hr style="border:2px solid black;"></div>
+                <div class="col-md-12">
+                    <p onclick="logorreg(event)" id="loginorregister" style="text-decoration: none; float: right; font-weight: bolder;cursor:pointer;">Create New Account</p>
+                </div>
             </div>
 
             <div class="form-floating my-2">
@@ -134,12 +139,27 @@
             document.getElementById("signinsection").style.display = "block";
 
 
+            }
         }
-    }
 
-    function disappear(el) {
-        var element = el;
-        element.remove();
-    }
-</script>
+        function otp_show_or_not(){
+            role = document.getElementById("role");
+            if (role.value == 2){
+                otp = document.getElementById("otp-section");
+                otp.style.display = 'block';
+                otp.required = true
+            }
+            else {
+                otp = document.getElementById("otp-section");
+                otp.style.display = 'none';
+                otp.required = false
+            }
+        }
+
+        function disappear(el) {
+            var element = el;
+            element.remove();
+        }
+        document.getElementById("role").addEventListener('change',()=>otp_show_or_not());
+    </script>
 {% endblock %}
