@@ -7,6 +7,8 @@ import random
 
 from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
+import smtplib
+from random import randint
 SECRET_KEY = secrets.token_urlsafe(16)
 
 app = Flask(__name__)
@@ -166,6 +168,69 @@ def mark_assignment():
 def assignments():
     return render_template("assignments.html")
 
+# Here started the forgot password scene
+@app.route('/forgotpass')
+def forgotpass():
+    return render_template("forgotpass.html")
+
+def send_email(from_addr, to_addr_list,message,login, password, smtpserver='smtp.gmail.com:587'):
+    server = smtplib.SMTP(smtpserver)
+    server.starttls()
+    server.login(login,password)
+    server.sendmail(from_addr, to_addr_list,message)
+    server.quit()
+
+@app.route("/accountfound",methods=['GET','POST'])
+def accountfound():
+    errornf=False
+    accf=False
+    if request.method=="POST":
+        email=request.form["email"]
+        query= Teacher.query.filter_by(email=email).first()
+        if(query is None):
+            errornf=True
+            return render_template("forgotpass.html",errornf=errornf)
+        else:
+            accf=True
+            otp=f"{randint(100,999)}-{randint(100,999)}"
+            session["otp"]=otp
+            session["emailtochange"]=email
+            msg=f"Dear Sir,\n\t\tWe are glad that your account can be recovered. Your verification code is: {otp}"
+            send_email("Auto Grade",f"{email}",msg,"autogradeforcs@gmail.com","123testing!")
+            return render_template("forgotpass.html",accf=accf)
+    return redirect(url_for("forgot_password"))
+
+@app.route("/otpver",methods=['GET','POST'])
+def otp_verification():
+    errorincotp=False
+    if request.method=="POST":
+        otp=request.form["otp"]
+        if(session["otp"]!=otp):
+            errorincotp=True
+            return render_template("forgotpass.html",errorincotp=errorincotp)
+        else:
+            otpiscorrect=True
+            session.pop("otp",None)
+            return render_template("forgotpass.html",otpiscorrect=otpiscorrect)
+
+    if "otp" in session and "emailtochange" in session:
+        session.pop("otp",None)
+        session.pop("emailtochange",None)
+    return redirect(url_for("forgot_password"))
+
+@app.route("/updatepassword",methods=['GET','POST'])
+def update_pass():
+    if request.method=="POST":
+        newpass=request.form["newpass"]
+        query=Teacher.query.filter_by(email=session["emailtochange"]).first()
+        query.password = generate_password_hash(newpass)
+        db.session.commit()
+        session.pop("emailtochange",None)
+        print("Password changed successfully.", newpass)
+        return redirect(url_for("login_register"))
+    if "emailtochange" in session:
+           session.pop("emailtochange",None)
+    return redirect(url_for("forgot_password"))
 @app.route("/TA_manage", methods=['GET','POST'])
 def TA_manage():
     if request.method == 'POST':
