@@ -83,6 +83,10 @@ def homepage():
 
 @app.route("/auth", methods=["GET", "POST"])
 def login_register():
+    if 'logged_in_teacher_id' in session:
+        return redirect(url_for("homepage"))
+    if "logged_in_ta_id" in session:
+        return redirect(url_for("homepage"))
     if request.method == "POST":
         error = None
         if 'email' in request.form:
@@ -158,18 +162,30 @@ def login_register():
 
 @app.route("/create_assignment")
 def create_assignment():
+    if 'logged_in_teacher_id' not in session or "logged_in_ta_id" not in session:
+        return redirect(url_for("login_register"))
+    if "logged_in_ta_id" in session:
+        error = "TA does not have access to create Assignments!"
+        flash(error)
+        return redirect(url_for(homepage))
     return render_template("create_assignment.html")
 
 @app.route("/mark_assignment")
 def mark_assignment():
+    if 'logged_in_teacher_id' not in session or "logged_in_ta_id" not in session:
+        return redirect(url_for("login_register"))
     return render_template("mark_assignment.html")
 
 @app.route("/assignments")
 def assignments():
+    if 'logged_in_teacher_id' not in session or "logged_in_ta_id" not in session:
+        return redirect(url_for("login_register"))
     return render_template("assignments.html")
 
 @app.route("/profile")
 def profile():
+    if 'logged_in_teacher_id' not in session or "logged_in_ta_id" not in session:
+        return redirect(url_for("login_register"))
     return render_template("profile.html")
 # Here started the forgot password scene
 @app.route('/forgotpass')
@@ -239,6 +255,12 @@ def TA_manage():
     if request.method == 'POST':
         ta_id = request.form['ta_id']
         TA.query.filter_by(ta_id = ta_id).delete()
+    if "logged_in_teacher_id" not in session:
+        return redirect(url_for("homepage"))
+    if "logged_in_ta_id" in session:
+        error = "Access Denied!"
+        flash(error)
+        return redirect(url_for(homepage))
     teacher = Teacher.query.filter_by(teacher_id=session['logged_in_teacher_id']).first()
     data = {}
     data['Teacher_otp'] = teacher.otp
@@ -248,7 +270,7 @@ def TA_manage():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('homepage'))
+    return redirect(url_for('login_register'))
 
 def OTPgenerator():
     string = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
