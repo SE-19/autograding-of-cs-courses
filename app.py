@@ -178,14 +178,10 @@ def mark_assignment():
 
 @app.route("/assignments")
 def assignments():
-    if 'logged_in_teacher_id' not in session or "logged_in_ta_id" not in session:
-        return redirect(url_for("login_register"))
     return render_template("assignments.html")
 
 @app.route("/profile")
 def profile():
-    if 'logged_in_teacher_id' not in session or "logged_in_ta_id" not in session:
-        return redirect(url_for("login_register"))
     return render_template("profile.html")
 # Here started the forgot password scene
 @app.route('/forgotpass')
