@@ -15,17 +15,14 @@
         <form action="" method="post"autocomplete="off">  
             <div class="mb-3 form-floating">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="email" autocomplete="off" name="email" placeholder="Email Address" aria-describedby="emailHelp" required>
-                    <label for="email" class="form-label" style="font-weight: bolder;">Email address
-                    </label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" aria-describedby="emailHelp" maxlength="42" required>
+                    <label for="email" class="form-label" style="font-weight: bolder;">Email address</label>
                 </div>
                 <div class="my-3 form-floating">
-                    <input id="password" name="password" type="password" class="form-control" placeholder="Password" required autocomplete="off">
+                    <input id="password" name="password" type="password" class="form-control" placeholder="Password" maxlength="16" required>
                     <label for="password" class="form-label" style="font-weight: bolder;">Password</label>
-                    <img id="showpass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px;cursor:pointer;" src="/static/images/visibility.png" alt="">
-                    <img id="hidepass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px; display: none;cursor:pointer;" src="/static/images/visibility (1).png" alt="">
-                    <a href="{{url_for('forgotpass')}}" style="text-decoration: none;float:right !important; font-weight: bolder;">Forgot Password?</a>
                 </div>
+                <a href="{{url_for('forgotpass')}}" style="text-decoration: none;float:right !important; font-weight: bolder;">Forgot Password?</a>
                         <button type="submit" class="btn btn-primary">Sign in</button>
             </div>
         </form>
@@ -35,48 +32,51 @@
 
         <div class="container bg-white py-4 rounded col-md-6" id="registerationsection">
             <h1 class="box-title">Register</h1>
-            <form class="" action="" method="post">
+            <form class="" action="" method="post" autocomplete="off">
                 <div class="form-floating my-2">
-                    <input type="text" class="form-control" id="name" name="name" required autocomplete="off" placeholder="First name">
+                    <input type="text" class="form-control" id="name" name="name" required placeholder="First name" maxlength="42">
                     <label for="name" class="form-label" style="font-weight: bolder;">Full Name</label>
                 </div>
                 <div class="form-floating my-2">
-                    <input type="text" class="form-control" id="cnic" name="cnic" required autocomplete="off" placeholder="CNIC">
+                    <input type="text" class="form-control" id="cnic" name="cnic" required placeholder="CNIC" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="13">
                     <label for="cnic" class="form-label" style="font-weight: bolder;">CNIC</label>
                 </div>
                 <div class="form-floating my-2">
-                    <input type="text" class="form-control" id="department" name="department" required autocomplete="off" placeholder="Department">
+                    <input type="text" class="form-control" id="department" name="department" required placeholder="Department" oninput="this.value = this.value.replace(/[0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="42">
                     <label for="department" style="font-weight: bolder; margin-bottom: 8px;">Department</label>
                 </div>
                 <div class="form-floating my-2">
-                    <input type="text" class="form-control" id="phone_no" name="phone_no" required autocomplete="off" placeholder="Phone No">
+                    <input type="text" class="form-control" id="phone_no" name="phone_no" required placeholder="Phone No" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="11">
                     <label for="phone_no" class="form-label" style="font-weight: bolder;">Phone No</label>
                 </div>
                 <div class="form-floating my-2">
                     <select class="form-select" aria-label="Default select example" id="role" name="role" required>
-                        <option selected>Select form menu</option>
-                        <option value="1">Teacher</option>
+                        <option value="1" selected>Teacher</option>
                         <option value="2">Teaching Assistant</option>
                     </select>
                     <label for="role" class="form-label" style="font-weight: bolder;">Role</label>
                 </div>
                 <div id="otp-section" class="form-floating my-2" style="display:none">
-                    <input type="text" class="form-control" id="teacher_otp" name="otp" autocomplete="off" placeholder="OTP">
+                    <input type="text" class="form-control" id="teacher_otp" name="otp" maxlength="22" placeholder="OTP">
                     <label for="otp" class="form-label" style="font-weight: bolder;">OTP</label>
                     <div id="otpHelp" class="form-text" style="font-weight: 600;">Write the OTP that your teacher provided.</div>    
                 </div>
                 <div class="form-floating my-2">
-                    <input type="email" class="form-control" id="email_add" aria-describedby="emailHelp" name="email_add" required autocomplete="off" placeholder="Email">
+                    <input type="email" class="form-control" id="email_add" aria-describedby="emailHelp" name="email_add" required placeholder="Email">
                     <label for="email_add" class="form-label" style="font-weight: bolder;">Email address</label>
                     <div id="emailHelp" class="form-text" style="font-weight: 600;">Email must be correct. It serves as your username and makes account recovery possible.</div>
                 </div>
                 <div class="form-floating my-2">
-                    <input type="password" class="form-control" id="pass" name="pass" required autocomplete="off" placeholder="Password">
+                    <input type="password" class="form-control" id="pass" name="pass" required placeholder="Password" maxlength="16">
                     <label for="pass" class="form-label" style="font-weight: bolder;">Password</label>
-                    <img id="showpass1" onclick="visiblesignup1(event)" style="float: right; margin-top: -34px;margin-right: 10px;" src="/static/images/visibility.png" alt="">
-                    <img id="hidepass1" onclick="visiblesignup1(event)" style="float: right; margin-top: -34px;margin-right: 10px; display: none;" src="/static/images/visibility (1).png" alt=""></div>
+                </div>
+                <div id="emailHelp" class="form-text" style="font-weight: 600;">Please confirm your password before submitting.</div>
 
-                    <div id="emailHelp" class="form-text" style="font-weight: 600;">Please confirm your password before submitting.</div>
+                    <div class="form-floating my-2">
+                        <input type="password" class="form-control" id="conpass" name="pass" required placeholder="Confirm Password" maxlength="16">
+                        <label for="pass" class="form-label" style="font-weight: bolder;">Confirm Password</label>
+                    </div>
+                    <p></p>
                 <div class="col-12 mt-2">
                     <button class="btn btn-primary" type="submit">Register</button>
                 </div>
@@ -97,37 +97,6 @@
 
 
 <script>
-    function visiblesignin(e) {
-
-        var x = document.getElementById("password");
-        if (e.target.id == "showpass") {
-            e.target.style.display = "none";
-            document.getElementById("hidepass").style.display = "block";
-            x.type = "text";
-        } else if (e.target.id == "hidepass") {
-            e.target.style.display = "none";
-            document.getElementById("showpass").style.display = "block";
-            x.type = "password";
-        }
-
-    }
-
-    function visiblesignup1(e) {
-
-        var x = document.getElementById("pass");
-        if (e.target.id == "showpass1") {
-            e.target.style.display = "none";
-            document.getElementById("hidepass1").style.display = "block";
-            x.type = "text";
-        } else if (e.target.id == "hidepass1") {
-            e.target.style.display = "none";
-            document.getElementById("showpass1").style.display = "block";
-            x.type = "password";
-        }
-
-    }
-
-
     function logorreg(e) {
         if (e.target.innerHTML == "Create New Account") {
             e.target.innerHTML = "Already have an account? Log In";
