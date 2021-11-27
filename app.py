@@ -162,17 +162,18 @@ def login_register():
 
 @app.route("/create_assignment")
 def create_assignment():
-    if 'logged_in_teacher_id' not in session or "logged_in_ta_id" not in session:
+    print(session)
+    if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
     if "logged_in_ta_id" in session:
         error = "TA does not have access to create Assignments!"
         flash(error)
-        return redirect(url_for(homepage))
+        return redirect(url_for('homepage'))
     return render_template("create_assignment.html")
 
-@app.route("/mark_assignment")
+@app.route("/mark_assignment", methods=["GET", "POST"])
 def mark_assignment():
-    if 'logged_in_teacher_id' not in session or "logged_in_ta_id" not in session:
+    if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
     return render_template("mark_assignment.html")
 
