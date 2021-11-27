@@ -175,6 +175,10 @@ def create_assignment():
 def mark_assignment():
     if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
+    if request.method == "POST":
+        file = request.files["filename"]
+        print(file)
+        file.save(file.filename)
     return render_template("mark_assignment.html")
 
 @app.route("/assignments")

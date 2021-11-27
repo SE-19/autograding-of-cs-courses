@@ -33,9 +33,10 @@ endblock %} {% block content %}
       </select>
       <br />
 
+      <form action="" method="post" enctype="multipart/form-data">
       <!-- choose assignment -->
       <label id="upload_assignment_lbl">Upload Assignment</label>
-      <input type="file" id="choose" name="filename" /> <br />
+      <input type="file" class="choose" id="filename" name="filename" /> <br />
 
       <!-- statement before checkboxes -->
       <p class="check-line-text">
@@ -81,11 +82,11 @@ endblock %} {% block content %}
 
       <!-- evaluate button -->
       <div style="text-align: center">
-        <button type="button" id="evaluate">
+        <button type="submit" id="evaluate">
           Evaluate <i class="fa fa-check"></i>
         </button>
       </div>
-
+    </form>
       <!-- download button -->
       <div class="d-btn" style="text-align: center">
         <button type="button" id="download">
