@@ -9,6 +9,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
 import smtplib
 from random import randint
+
+from mark_assignment import extract_assignments, check_plagiarism, clean_assignment_dir
+
 SECRET_KEY = secrets.token_urlsafe(16)
 
 app = Flask(__name__)
@@ -51,6 +54,9 @@ class Assignment(db.Model):
     graded=db.Column(db.Boolean,default=False,nullable=False)
     teacher_id = db.Column(db.Integer,db.ForeignKey('teacher.teacher_id'))
     # functions=db.relationship('Function',backref="assignment")
+
+    def __repr__(self) -> str:
+        return f"<Assignment {self.title}, {self.teacher_id}>"
 
 class Function(db.Model):
     function_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
@@ -175,7 +181,27 @@ def create_assignment():
 def mark_assignment():
     if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
-    return render_template("mark_assignment.html")
+    if request.method == "POST":
+        file = request.files["filename"]
+        if not check_extension(file.filename):
+            flash("The extension must be a .zip or .rar file!")
+        else:
+            file_name = ""
+            if file.filename.endswith(".zip"):
+                file_name = "assignments.zip"
+            if file.filename.endswith(".rar"):
+                file_name = "assignments.rar"
+            file.save("./assignment/" + file_name)
+            print(file_name)
+            extract_assignments(file_name)
+            check_plagiarism()
+            clean_assignment_dir()
+    assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
+    print(assignments)
+    return render_template("mark_assignment.html", assignments=assignments)
+
+def check_extension(filename):
+    return filename.endswith(".zip") or filename.endswith(".rar")
 
 @app.route("/assignments")
 def assignments():

@@ -27,15 +27,16 @@ endblock %} {% block content %}
         class="select_assignment"
         required="True"
       >
-        <option value="a1">Assignment lab 1</option>
-        <option value="a2">Assignment lab 2</option>
-        <option value="a3">Assignment lab 3</option>
+        {% for a in assignments %}
+        <option value="{{a.assignment_id}}">{{ a.title }}</option>
+        {% endfor %}
       </select>
       <br />
 
+      <form action="" method="post" enctype="multipart/form-data">
       <!-- choose assignment -->
       <label id="upload_assignment_lbl">Upload Assignment</label>
-      <input type="file" id="choose" name="filename" /> <br />
+      <input type="file" class="choose" id="filename" name="filename" /> <br />
 
       <!-- statement before checkboxes -->
       <p class="check-line-text">
@@ -81,11 +82,11 @@ endblock %} {% block content %}
 
       <!-- evaluate button -->
       <div style="text-align: center">
-        <button type="button" id="evaluate">
+        <button type="submit" id="evaluate">
           Evaluate <i class="fa fa-check"></i>
         </button>
       </div>
-
+    </form>
       <!-- download button -->
       <div class="d-btn" style="text-align: center">
         <button type="button" id="download">
