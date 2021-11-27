@@ -6,6 +6,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+
 def extract_assignments(filename):
     path = "./assignment/" + filename
     if filename.endswith(".zip"):
@@ -102,24 +103,37 @@ def get_directories():
     return directories
 
 def test_function(test_cases, directories):
+    result = {}
     for t in test_cases:
         func = t[0]
         params = t[1]
         expected = t[2]
-        print("-" * 30, t, "-" * 30)
+        marks = t[3]
+        # print("-" * 30, t, "-" * 30)
         for d in directories:
+            score = 0
+            
             i = __import__("assignment." + d+'.assignment')
             # print(dir())
-            print(getattr(getattr(i, d), "assignment"))
+            # print(getattr(getattr(i, d), "assignment"))
             function = getattr(getattr(getattr(i, d), "assignment"), func)
-            print(d, function(*params), function(*params) == expected)
+            value = function(*params)
+            if value == expected:
+                score = marks
+            # print(d, function(*params), value == expected)
+            if d in result.keys():
+                if func in result[d].keys():
+                    result[d][func] += score
+                else:
+                    result[d][func] = score
+            else:
+                result[d] = {func:score}
+    print(result)
 
-if __name__ == "__main__":
-    # test_cases = [
-    #     ["factorial", [5], 120],
-    #     ["factorial", [12], 479001600],
-    #     ["factorial", [24], 620448401733239439360000],
-    # ]
-    # test_function(test_cases, get_directories())
+
+
+# if __name__ == "__main__":
+    # test_function(get_test_cases(1), get_directories())
     # print(check_plagiarism())
-    generate_plag_report()
+    # generate_plag_report()
+    
