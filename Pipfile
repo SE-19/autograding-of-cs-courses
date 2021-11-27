@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 flask = "*"
 flask-sqlalchemy = "*"
+patool = "*"
+scikit-learn = "*"
 
 [dev-packages]
 

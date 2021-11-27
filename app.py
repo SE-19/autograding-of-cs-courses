@@ -9,6 +9,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
 import smtplib
 from random import randint
+
+from mark_assignment import extract_assignments, check_plagiarism, clean_assignment_dir
+
 SECRET_KEY = secrets.token_urlsafe(16)
 
 app = Flask(__name__)
@@ -177,9 +180,23 @@ def mark_assignment():
         return redirect(url_for("login_register"))
     if request.method == "POST":
         file = request.files["filename"]
-        print(file)
-        file.save(file.filename)
+        if not check_extension(file.filename):
+            flash("The extension must be a .zip or .rar file!")
+        else:
+            file_name = ""
+            if file.filename.endswith(".zip"):
+                file_name = "assignments.zip"
+            if file.filename.endswith(".rar"):
+                file_name = "assignments.rar"
+            file.save("./assignment/" + file_name)
+            print(file_name)
+            extract_assignments(file_name)
+            check_plagiarism()
+            clean_assignment_dir()
     return render_template("mark_assignment.html")
+
+def check_extension(filename):
+    return filename.endswith(".zip") or filename.endswith(".rar")
 
 @app.route("/assignments")
 def assignments():
