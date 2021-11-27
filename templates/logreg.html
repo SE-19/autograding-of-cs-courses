@@ -12,19 +12,20 @@
     {% endfor %}
     <div class="container bg-white py-4 rounded col-md-6" id="signinsection">
         <h1 class="box-title">Login</h1>
-        <form action="" method="post">
+        <form action="" method="post"autocomplete="off">  
             <div class="mb-3 form-floating">
-                <input type="email" class="form-control" id="email" autocomplete="off" name="email" placeholder="Email Address" aria-describedby="emailHelp" required>
-                <label for="email" class="form-label" style="font-weight: bolder;">Email address
-                        </label>
-
-                        <div class="my-3 form-floating">
-                            <input id="password" name="password" type="password" class="form-control" placeholder="Password" required autocomplete="off">
-                            <label for="password" class="form-label" style="font-weight: bolder;">Password</label>
-                            <img id="showpass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px;cursor:pointer;" src="/static/images/visibility.png" alt="">
-                            <img id="hidepass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px; display: none;cursor:pointer;" src="/static/images/visibility (1).png" alt="">
-                            <a href="{{url_for('forgotpass')}}" style="text-decoration: none;float:right !important; font-weight: bolder;">Forgot Password?</a>
-                        </div>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" autocomplete="off" name="email" placeholder="Email Address" aria-describedby="emailHelp" required>
+                    <label for="email" class="form-label" style="font-weight: bolder;">Email address
+                    </label>
+                </div>
+                <div class="my-3 form-floating">
+                    <input id="password" name="password" type="password" class="form-control" placeholder="Password" required autocomplete="off">
+                    <label for="password" class="form-label" style="font-weight: bolder;">Password</label>
+                    <img id="showpass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px;cursor:pointer;" src="/static/images/visibility.png" alt="">
+                    <img id="hidepass" onclick="visiblesignin(event)" style="float: right; margin-top: -34px;margin-right: 10px; display: none;cursor:pointer;" src="/static/images/visibility (1).png" alt="">
+                    <a href="{{url_for('forgotpass')}}" style="text-decoration: none;float:right !important; font-weight: bolder;">Forgot Password?</a>
+                </div>
                         <button type="submit" class="btn btn-primary">Sign in</button>
             </div>
         </form>
