@@ -27,8 +27,6 @@ def extract_assignments(filename):
             os.remove(path)
     # print(os.listdir("./assignment"))
 
-# extract_assignments("assignments.rar")
-
 def get_paths_and_files_content():
     files_content = []
     root = './assignment'
@@ -42,7 +40,6 @@ def get_paths_and_files_content():
                 files_content.append(file.read())
     return paths, files_content
 
-# print(get_paths_and_files_content())
 def vectorize(text):
     return TfidfVectorizer().fit_transform(text).toarray()
 
@@ -61,9 +58,6 @@ def check_plag(paths_vectors):
             report.append((paths_vectors[i][0], paths_vectors[j][0], score))
     return report
 
-# print(get_paths_and_files_content())
-# print(check_plag(get_paths_and_vectors(*get_paths_and_files_content())))
-
 def check_plagiarism():
     print(check_plag(get_paths_and_vectors(*get_paths_and_files_content())))
 
@@ -78,3 +72,34 @@ def clean_assignment_dir():
                 shutil.rmtree(file_path)
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+def get_directories():
+    root = './assignment'
+    directories = []
+    for i in os.listdir(root):
+        path = os.path.join(root, i)
+        if os.path.isdir(path):
+            directories.append(i)
+    return directories
+
+print(get_directories())
+
+def test_function(test_cases, directories):
+    for t in test_cases:
+        func = t[0]
+        params = t[1]
+        expected = t[2]
+        print("-" * 30, t, "-" * 30)
+        for d in directories:
+            i = __import__("assignment." + d+'.assignment')
+            # print(dir())
+            print(getattr(getattr(i, d), "assignment"))
+            function = getattr(getattr(getattr(i, d), "assignment"), func)
+            print(d, function(*params), function(*params) == expected)
+test_cases = [
+    ["factorial", [5], 120],
+    ["factorial", [12], 479001600],
+    ["factorial", [24], 620448401733239439360000],
+]
+
+test_function(test_cases, get_directories())

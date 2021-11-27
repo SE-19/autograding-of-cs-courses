@@ -55,6 +55,9 @@ class Assignment(db.Model):
     teacher_id = db.Column(db.Integer,db.ForeignKey('teacher.teacher_id'))
     # functions=db.relationship('Function',backref="assignment")
 
+    def __repr__(self) -> str:
+        return f"<Assignment {self.title}, {self.teacher_id}>"
+
 class Function(db.Model):
     function_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     graded=db.Column(db.String(5),nullable=False)
@@ -193,7 +196,9 @@ def mark_assignment():
             extract_assignments(file_name)
             check_plagiarism()
             clean_assignment_dir()
-    return render_template("mark_assignment.html")
+    assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
+    print(assignments)
+    return render_template("mark_assignment.html", assignments=assignments)
 
 def check_extension(filename):
     return filename.endswith(".zip") or filename.endswith(".rar")
