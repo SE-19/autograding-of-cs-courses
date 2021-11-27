@@ -1,6 +1,7 @@
 import os, shutil
 import zipfile
 import patoolib
+import pandas as pd
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -47,11 +48,10 @@ def get_paths_and_vectors(paths, files_content):
     paths_vectors = list(zip(paths, vectorize(files_content)))
     return paths_vectors
 
-
 def check_plag(paths_vectors):
     report = []
     for i in range(len(paths_vectors)):
-        for j in range(i+1, len(paths_vectors)):
+        for j in range(i, len(paths_vectors)):
             vector_1 = paths_vectors[i][1]
             vector_2 = paths_vectors[j][1]
             score = round(cosine_similarity([vector_1, vector_2])[0][1]*100, 3)
@@ -59,7 +59,26 @@ def check_plag(paths_vectors):
     return report
 
 def check_plagiarism():
-    print(check_plag(get_paths_and_vectors(*get_paths_and_files_content())))
+    return check_plag(get_paths_and_vectors(*get_paths_and_files_content()))
+
+def generate_plag_report():
+    result = check_plagiarism()
+    temp = {}
+    for i in result:
+        if i[0] in temp.keys():
+            temp[i[0]].append(i[2])
+        else:
+            temp[i[0]] = [i[2]]
+        if i[0] == i[1]:
+            continue
+        if i[1] in temp.keys():
+            temp[i[1]].append(i[2])
+        else:
+            temp[i[1]] = [i[2]]
+    # print(temp)
+    df = pd.DataFrame(temp, index=temp.keys())
+    print(df)
+    df.to_csv("./reports/plagiarism report.csv")
 
 def clean_assignment_dir():
     folder = './assignment'
@@ -82,8 +101,6 @@ def get_directories():
             directories.append(i)
     return directories
 
-print(get_directories())
-
 def test_function(test_cases, directories):
     for t in test_cases:
         func = t[0]
@@ -96,10 +113,13 @@ def test_function(test_cases, directories):
             print(getattr(getattr(i, d), "assignment"))
             function = getattr(getattr(getattr(i, d), "assignment"), func)
             print(d, function(*params), function(*params) == expected)
-test_cases = [
-    ["factorial", [5], 120],
-    ["factorial", [12], 479001600],
-    ["factorial", [24], 620448401733239439360000],
-]
 
-test_function(test_cases, get_directories())
+if __name__ == "__main__":
+    # test_cases = [
+    #     ["factorial", [5], 120],
+    #     ["factorial", [12], 479001600],
+    #     ["factorial", [24], 620448401733239439360000],
+    # ]
+    # test_function(test_cases, get_directories())
+    # print(check_plagiarism())
+    generate_plag_report()
