@@ -194,6 +194,8 @@ def mark_assignment():
     if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
     if request.method == "POST":
+        assignment_id = request.form['select_assignment']
+        print(assignment_id)
         file = request.files["filename"]
         if not check_extension(file.filename):
             flash("The extension must be a .zip or .rar file!")
@@ -211,7 +213,7 @@ def mark_assignment():
             clean_assignment_dir()
             return send_file("./reports/plagiarism report.csv", as_attachment=True)
     assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
-    print(assignments)
+    # print(assignments)
     return render_template("mark_assignment.html", assignments=assignments)
 
 def check_extension(filename):
