@@ -128,7 +128,8 @@ def test_function(test_cases, directories):
                     result[d][func] = score
             else:
                 result[d] = {func:score}
-    print(result)
+    pd.DataFrame(result).T.to_csv("./reports/evaluated report.csv")
+    return pd.DataFrame(result).T
 
 
 
