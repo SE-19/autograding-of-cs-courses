@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash, send_file
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
@@ -60,7 +60,6 @@ class Assignment(db.Model):
 
 class Function(db.Model):
     function_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    graded=db.Column(db.String(5),nullable=False)
     assignment_id = db.Column(db.Integer,db.ForeignKey('assignment.assignment_id'))
     docstring = db.Column(db.String(2000))
     marks = db.Column(db.Integer,nullable=False)
@@ -164,8 +163,6 @@ def login_register():
 
     return render_template("logreg.html")
 
-
-
 @app.route("/create_assignment")
 def create_assignment():
     print(session)
@@ -196,6 +193,7 @@ def mark_assignment():
             extract_assignments(file_name)
             check_plagiarism()
             clean_assignment_dir()
+            return send_file("./reports/plagiarism report.csv", as_attachment=True)
     assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
     print(assignments)
     return render_template("mark_assignment.html", assignments=assignments)
@@ -273,6 +271,7 @@ def update_pass():
     if "emailtochange" in session:
            session.pop("emailtochange",None)
     return redirect(url_for("forgot_password"))
+
 @app.route("/TA_manage", methods=['GET','POST'])
 def TA_manage():
     if request.method == 'POST':
