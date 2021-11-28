@@ -10,7 +10,7 @@ import secrets
 import smtplib
 from random import randint
 
-from mark_assignment import extract_assignments, check_plagiarism, clean_assignment_dir, get_directories, test_function
+from mark_assignment import extract_assignments, generate_plag_report, clean_assignment_dir, get_directories, test_function
 
 SECRET_KEY = secrets.token_urlsafe(16)
 
@@ -208,7 +208,7 @@ def mark_assignment():
             file.save("./assignment/" + file_name)
             print(file_name)
             extract_assignments(file_name)
-            check_plagiarism()
+            generate_plag_report()
             test_function(get_test_cases(1), get_directories())
             clean_assignment_dir()
             return send_file("./reports/plagiarism report.csv", as_attachment=True)

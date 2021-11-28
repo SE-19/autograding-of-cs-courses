@@ -137,4 +137,9 @@ def test_function(test_cases, directories):
     # test_function(get_test_cases(1), get_directories())
     # print(check_plagiarism())
     # generate_plag_report()
-    
+    """ 
+    test_cases = [
+        ['factorial', [5], 120],
+        ['factorial', [12], zxklcjvlzxcjv],
+    ]
+     """
