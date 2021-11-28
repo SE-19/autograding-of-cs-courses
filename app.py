@@ -128,6 +128,7 @@ def login_register():
                         return redirect(url_for("homepage"))
                     else:
                         error = "The Password did not match! Please try again!"
+                        flash(error)
             else:
                 if check_password_hash(teacher.password, password):
                     print("logged in successfully")
@@ -136,7 +137,7 @@ def login_register():
                     return redirect(url_for("homepage"))
                 else:
                     error = "The Password did not match! Please try again!"
-            flash(error)
+                    flash(error)
         elif request.form['name'] != "":
             if request.form['role'] == '1':
                 name = request.form['name']

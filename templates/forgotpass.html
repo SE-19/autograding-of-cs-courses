@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="container" id="emailsection" style="margin-top: 30px; font-size: 15px;">
+    <div class="container" id="emailsection" style="margin-top: 30px; margin-bottom: 30px; font-size: 15px;">
 
         <form action="/accountfound" method="post" >
             <div class="mb-3" >
@@ -49,30 +49,25 @@
         </form>
     </div>
 
-    <div class="container" id="otpsection" style="margin-top: 30px; font-size: 15px; display: none;">
+    <div class="container" id="otpsection" style="margin-top: 30px; margin-bottom: 30px;  font-size: 15px; display: none;">
 
         <form action="/otpver" method="post" >
             <div class="mb-3" >
                 <label for="otp" class="form-label" style="font-weight: bolder;">Verfication code</label>
-                <input type="text" placeholder="xxx-xxx" class="form-control" id="otp" name="otp" aria-describedby="otpHelp" required>
+                <input type="text" placeholder="xxx-xxx" class="form-control" id="otp" name="otp" aria-describedby="otpHelp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="7" required>
             </div>
-            <button type="submit" class="btn btn-primary">Proceed</button>
+            <button type="submit" class="btn btn-primary mb-3">Proceed</button>
         </form>
     </div>
 
-    <div class="container" id="newpasssection" style="margin-top: 30px; font-size: 15px; display: none;">
+    <div class="container" id="newpasssection" style="margin-top: 30px; margin-bottom: 30px; font-size: 15px; display: none;">
 
         <form action="/updatepassword" method="post" >
             <div class="mb-3" >
                 <label for="newpass" class="form-label" style="font-weight: bolder;">New password</label>
-                <input type="password"  class="form-control" id="newpass" name="newpass" aria-describedby="otpHelp" required>
-                <img id="showpass" onclick="visible(event)"
-                    style="float: right; margin-top: -27px;margin-right: 10px;" src="/static/visibility.png" alt="">
-                <img id="hidepass" onclick="visible(event)"
-                    style="float: right; margin-top: -27px;margin-right: 10px; display: none;"
-                    src="/static/visibility (1).png" alt="">
+                <input type="password"  class="form-control" id="newpass" name="newpass" aria-describedby="otpHelp" maxlength="16" required>
             </div>
-            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary mb-3">Confirm</button>
         </form>
     </div>
 
