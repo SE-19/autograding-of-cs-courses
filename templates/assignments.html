@@ -38,7 +38,6 @@
     </style>
     <section>
         <div class="container" style="padding: 25px;">
-
             <div class="row">
                 <div class="col-md-6 ">
                     <h3 style="font-weight: bolder; " id="dmsheading">Assignments
@@ -64,18 +63,19 @@
                     <th scope="col">#</th>
                     <th scope="col">Assignment Title</th>
                     <th scope="col">Mark Assignments</th>
-                    <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                   </tr>
                 </thead>
                 <tbody class="table-body">
-                    <tr>
-                        <th>1</th>
-                        <td>PF Assignment</td>
-                        <td><i class="fas fa-external-link-alt btn btn-outline-success"></i></td>
-                        <td><i class="fas fa-edit btn btn-outline-primary"></i></td>
-                        <td><i class="fas fa-trash-alt btn btn-outline-danger"></i></td>
-                    </tr>
+                    {% for a in assignments %}
+                        <tr>
+                            <th>{{ loop.index }}</th>
+                            <td>{{ a.title }}</td>
+                            <td><i class="fas fa-external-link-alt btn btn-outline-success"></i></td>
+                            <td><i class="fas fa-trash-alt btn btn-outline-danger"></i></td>
+                        </tr>
+                    {% endfor %}
+                    
                 </tbody>
                 <tbody id="table-body"></tbody>
               </table>
