@@ -198,8 +198,10 @@ def mark_assignment():
     if request.method == "POST":
         assignment_id = request.form['select_assignment']
         # print(assignment_id)
-        plagiarism_check = request.form['plagiarism']
-        print(plagiarism_check)
+        plagiarism_check = 'off'
+        if 'plagiarism' in request.form:
+            plagiarism_check = request.form['plagiarism']
+            print(plagiarism_check)
         file = request.files["filename"]
         if not check_extension(file.filename):
             flash("The extension must be a .zip or .rar file!")
@@ -219,16 +221,29 @@ def mark_assignment():
             archive_reports()
             clean_reports_dir()
             return send_file("reports.zip", as_attachment=True)
-    assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
-    # print(assignments)
-    return render_template("mark_assignment.html", assignments=assignments)
+    if 'logged_in_teacher_id' in session:
+        all_assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
+    if 'logged_in_ta_id' in session:
+        ta = TA.query.filter_by(ta_id=session['logged_in_ta_id']).first()
+        all_assignments = Assignment.query.filter_by(teacher_id=ta.head_id).all()
+    print(all_assignments)
+    return render_template("mark_assignment.html", assignments=all_assignments)
 
 def check_extension(filename):
     return filename.endswith(".zip") or filename.endswith(".rar")
 
 @app.route("/assignments")
 def assignments():
-    return render_template("assignments.html")
+    if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
+        return redirect(url_for("login_register"))
+    if 'logged_in_teacher_id' in session:
+        all_assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
+        print(all_assignments)
+    if 'logged_in_ta_id' in session:
+        ta = TA.query.filter_by(ta_id=session['logged_in_ta_id']).first()
+        all_assignments = Assignment.query.filter_by(teacher_id=ta.head_id).all()
+        print(all_assignments)
+    return render_template("assignments.html", assignments=all_assignments)
 
 @app.route("/profile")
 def profile():
