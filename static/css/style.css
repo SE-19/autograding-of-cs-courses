@@ -313,7 +313,7 @@ body{
   border-radius: 30px;
 }
 .left-card {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--bg-color);
   margin-right: 3rem;
 }
 .right-card {
@@ -329,7 +329,18 @@ body{
   cursor: pointer;
   text-align: center;
 }
+
+.card-heading>h1>a{
+  text-decoration: none;
+  color:var(--light-color);
+}
+.card-heading>h1>a:hover{
+  text-decoration: none;
+  color:var(--bg-color);
+}
+
 .card-heading:hover {
+  text-decoration: none;
   background-color: var(--light-color);
   color: var(--secondary-bg-color);
 }

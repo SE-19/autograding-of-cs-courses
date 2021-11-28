@@ -44,6 +44,7 @@
             </li>
             <li>
               {% if "logged_in_teacher_id" in session or "logged_in_ta_id" in session %}
+                <a class="login-button" href="{{url_for('profile')}}">Profile</a>
                 <a class="login-button" href="{{url_for('logout')}}">Log Out</a>
               {% else %}
               <a class="login-button" href="{{url_for('login_register')}}">Login / Register</a>
