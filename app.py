@@ -247,7 +247,39 @@ def assignments():
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html")
+    if 'logged_in_teacher_id' in session:
+        user = Teacher.query.filter_by(teacher_id = session['logged_in_teacher_id']).first()
+        return render_template("profile.html",c_user=user)
+    elif 'logged_in_ta_id' in session:
+        user = TA.query.filter_by(ta_id = session['logged_in_ta_id']).first()
+        return render_template("profile.html",c_user=user)
+    else:
+        redirect(url_for('login_register'))
+
+
+@app.route("/change_password" ,methods=["GET", "POST"])
+def change_password():
+    if request.method == "POST":
+        cur_pass = request.form['cur_pass']
+        new_pass = request.form['new_pass']
+        conf_pass = request.form['conf_pass']
+        print(cur_pass,new_pass,conf_pass)
+        if 'logged_in_teacher_id' in session:
+            user = Teacher.query.filter_by(teacher_id = session['logged_in_teacher_id']).first()
+        elif 'logged_in_ta_id' in session:
+            user = TA.query.filter_by(ta_id = session['logged_in_ta_id']).first()
+        if check_password_hash(user.password,cur_pass):
+            if new_pass == conf_pass:
+                user.password = generate_password_hash(new_pass)
+                db.session.commit()
+                return redirect('logout')
+            else:
+                flash("Password is not confirmed")
+                return render_template("change_password.html")
+        else:
+            flash("Wrong current password")
+            return render_template("change_password.html")
+    return render_template("change_password.html")
 # Here started the forgot password scene
 @app.route('/forgotpass')
 def forgotpass():
