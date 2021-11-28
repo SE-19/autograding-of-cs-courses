@@ -10,7 +10,8 @@ import secrets
 import smtplib
 from random import randint
 
-from mark_assignment import extract_assignments, generate_plag_report, clean_assignment_dir, get_directories, test_function
+from mark_assignment import extract_assignments, generate_plag_report, \
+                clean_assignment_dir, get_directories, test_function, archive_reports, clean_reports_dir
 
 SECRET_KEY = secrets.token_urlsafe(16)
 
@@ -196,7 +197,9 @@ def mark_assignment():
         return redirect(url_for("login_register"))
     if request.method == "POST":
         assignment_id = request.form['select_assignment']
-        print(assignment_id)
+        # print(assignment_id)
+        plagiarism_check = request.form['plagiarism']
+        print(plagiarism_check)
         file = request.files["filename"]
         if not check_extension(file.filename):
             flash("The extension must be a .zip or .rar file!")
@@ -207,12 +210,15 @@ def mark_assignment():
             if file.filename.endswith(".rar"):
                 file_name = "assignments.rar"
             file.save("./assignment/" + file_name)
-            print(file_name)
+            # print(file_name)
             extract_assignments(file_name)
-            generate_plag_report()
-            test_function(get_test_cases(1), get_directories())
+            if plagiarism_check == "on":
+                generate_plag_report()
+            test_function(get_test_cases(assignment_id), get_directories())
             clean_assignment_dir()
-            return send_file("./reports/plagiarism report.csv", as_attachment=True)
+            archive_reports()
+            clean_reports_dir()
+            return send_file("reports.zip", as_attachment=True)
     assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
     # print(assignments)
     return render_template("mark_assignment.html", assignments=assignments)

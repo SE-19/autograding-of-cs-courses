@@ -93,6 +93,18 @@ def clean_assignment_dir():
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))
 
+def clean_reports_dir():
+    folder = './reports'
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
+
 def get_directories():
     root = './assignment'
     directories = []
@@ -131,9 +143,10 @@ def test_function(test_cases, directories):
     pd.DataFrame(result).T.to_csv("./reports/evaluated report.csv")
     return pd.DataFrame(result).T
 
+def archive_reports():
+    shutil.make_archive("reports", 'zip', "./reports")
 
-
-# if __name__ == "__main__":
+if __name__ == "__main__":
     # test_function(get_test_cases(1), get_directories())
     # print(check_plagiarism())
     # generate_plag_report()
@@ -143,3 +156,4 @@ def test_function(test_cases, directories):
         ['factorial', [12], zxklcjvlzxcjv],
     ]
      """
+    clean_reports_dir()
