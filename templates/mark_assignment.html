@@ -19,23 +19,23 @@ endblock %} {% block content %}
   <!-- Adding the assignment selector -->
   <div class="rounded bg-white shadow mb-4 mt-3 outside-container">
     <div class="inside-container mx-3">
-      <label for="select_assignment" id="select_assignment_lbl">
-        Select Assignment</label
-      >
-      <select
-        name="select_assignment"
-        class="select_assignment"
-        required="True"
-      >
-        <option value="a1">Assignment lab 1</option>
-        <option value="a2">Assignment lab 2</option>
-        <option value="a3">Assignment lab 3</option>
-      </select>
-      <br />
-
+      <form action="" method="post" enctype="multipart/form-data">
+        <label for="select_assignment" id="select_assignment_lbl">
+          Select Assignment</label
+        >
+        <select
+          name="select_assignment"
+          class="select_assignment"
+          required="True"
+        >
+          {% for a in assignments %}
+          <option value="{{a.assignment_id}}">{{ a.title }}</option>
+          {% endfor %}
+        </select>
+        <br />
       <!-- choose assignment -->
       <label id="upload_assignment_lbl">Upload Assignment</label>
-      <input type="file" id="choose" name="filename" /> <br />
+      <input type="file" class="choose" id="filename" name="filename" /> <br />
 
       <!-- statement before checkboxes -->
       <p class="check-line-text">
@@ -81,11 +81,11 @@ endblock %} {% block content %}
 
       <!-- evaluate button -->
       <div style="text-align: center">
-        <button type="button" id="evaluate">
+        <button type="submit" id="evaluate">
           Evaluate <i class="fa fa-check"></i>
         </button>
       </div>
-
+    </form>
       <!-- download button -->
       <div class="d-btn" style="text-align: center">
         <button type="button" id="download">

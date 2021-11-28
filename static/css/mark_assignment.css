@@ -20,7 +20,7 @@
 
 .select_assignment:hover,
 .select_assignment:focus,
-#choose::-webkit-file-upload-button:hover {
+.choose::-webkit-file-upload-button:hover {
   outline: none;
   color: #ffffff;
   background-color: var(--tertiary-bg-color) !important;
@@ -28,13 +28,13 @@
 option {
   cursor: pointer;
 }
-#choose {
+.choose {
   margin-top: 40px;
   margin-bottom: 30px;
   width: 300px;
   cursor: pointer;
 }
-#choose::-webkit-file-upload-button {
+.choose::-webkit-file-upload-button {
   border: 1px solid var(--tertiary-bg-color);
   border-radius: 5px;
   width: 160px;
@@ -155,10 +155,10 @@ option {
     width: 160px;
   }
   .select_assignment,
-  #choose {
+  .choose {
     width: 220px;
   }
-  #choose::-webkit-file-upload-button {
+  .choose::-webkit-file-upload-button {
     width: 100px;
   }
   .check-color:checked::before {

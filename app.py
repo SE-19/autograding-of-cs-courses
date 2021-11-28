@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash, send_file
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
@@ -9,6 +9,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
 import smtplib
 from random import randint
+
+from mark_assignment import extract_assignments, check_plagiarism, clean_assignment_dir, get_directories, test_function
+
 SECRET_KEY = secrets.token_urlsafe(16)
 
 app = Flask(__name__)
@@ -45,6 +48,9 @@ class TA(db.Model):
     department = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(500), nullable=False)
 
+    def __repr__(self) -> str:
+        return f"{self.ta_id}, {self.name}"
+
 class Assignment(db.Model):
     assignment_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     title = db.Column(db.String(1000), unique=True, nullable=False)
@@ -52,29 +58,43 @@ class Assignment(db.Model):
     teacher_id = db.Column(db.Integer,db.ForeignKey('teacher.teacher_id'))
     # functions=db.relationship('Function',backref="assignment")
 
+    def __repr__(self) -> str:
+        return f"<Assignment {self.title}, {self.assignment_id}>"
+
 class Function(db.Model):
     function_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    graded=db.Column(db.String(5),nullable=False)
     assignment_id = db.Column(db.Integer,db.ForeignKey('assignment.assignment_id'))
     docstring = db.Column(db.String(2000))
+    func_name = db.Column(db.String(200),nullable=False)
     marks = db.Column(db.Integer,nullable=False)
-    # parameters_id=db.relationship('FPR',backref="function")
+    
+    def __repr__(self) -> str:
+        return f"<Function {self.func_name}, {self.function_id}>"
 
 class Fpr(db.Model):
     func_param_rel_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     function_id = db.Column(db.Integer,db.ForeignKey('function.function_id'))
-    # parameters=db.relationship('Parameter',backref="funcparamrel",uselist=False)
-    # expected_values=db.relationship('ExpectedValue',backref="funcparamrel",uselist=False)
+    
+    def __repr__(self) -> str:
+        return f"<FunctionParameterRelation {self.func_param_rel_id}>"
 
 class Parameter(db.Model):
     param_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
     func_param_rel_id= db.Column(db.Integer,db.ForeignKey('fpr.func_param_rel_id'))
     parameter = db.Column(db.String(1000))
+    datatype = db.Column(db.String(55), nullable=False)
+
+    def __repr__(self) -> str:
+        return f"<Parameter {self.parameter}, {self.datatype}, {self.param_id}>"
 
 class ExpectedValue(db.Model):
     expected_value_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
     func_param_rel_id= db.Column(db.Integer,db.ForeignKey('fpr.func_param_rel_id'))
     expected_value= db.Column(db.String(1000))
+    datatype = db.Column(db.String(55), nullable=False)
+
+    def __repr__(self) -> str:
+        return f"<ExpectedValue {self.expected_value}, {self.datatype}, {self.expected_value_id}>"
 
 
 @app.route("/")
@@ -159,8 +179,6 @@ def login_register():
 
     return render_template("logreg.html")
 
-
-
 @app.route("/create_assignment")
 def create_assignment():
     print(session)
@@ -176,7 +194,31 @@ def create_assignment():
 def mark_assignment():
     if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
-    return render_template("mark_assignment.html")
+    if request.method == "POST":
+        assignment_id = request.form['select_assignment']
+        print(assignment_id)
+        file = request.files["filename"]
+        if not check_extension(file.filename):
+            flash("The extension must be a .zip or .rar file!")
+        else:
+            file_name = ""
+            if file.filename.endswith(".zip"):
+                file_name = "assignments.zip"
+            if file.filename.endswith(".rar"):
+                file_name = "assignments.rar"
+            file.save("./assignment/" + file_name)
+            print(file_name)
+            extract_assignments(file_name)
+            check_plagiarism()
+            test_function(get_test_cases(1), get_directories())
+            clean_assignment_dir()
+            return send_file("./reports/plagiarism report.csv", as_attachment=True)
+    assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
+    # print(assignments)
+    return render_template("mark_assignment.html", assignments=assignments)
+
+def check_extension(filename):
+    return filename.endswith(".zip") or filename.endswith(".rar")
 
 @app.route("/assignments")
 def assignments():
@@ -248,6 +290,7 @@ def update_pass():
     if "emailtochange" in session:
            session.pop("emailtochange",None)
     return redirect(url_for("forgot_password"))
+
 @app.route("/TA_manage", methods=['GET','POST'])
 def TA_manage():
     if request.method == 'POST':
@@ -278,6 +321,62 @@ def OTPgenerator():
         OTP += string[math.floor(random.randint(0,len(string)-1))]
     return OTP
   
+
+def get_test_cases(assignment_id):
+    # assignment = Assignment.query.filter_by(assignment_id=assignment_id).first()
+    # print("-"*10 + "Assignment: " + assignment.title + "-"*10)
+    functions = Function.query.filter_by(assignment_id=assignment_id).all()
+    test_cases = []
+    for function in functions:
+        # print("-"*10 + "Function: " + function.func_name + "-"*10)
+        relations = Fpr.query.filter_by(function_id=function.function_id).all()
+        marks = function.marks/len(relations)
+        for r in relations:
+            temp = [function.func_name]
+            # print("-"*10 + "Relations: " + str(r) + "-"*10)
+            params = Parameter.query.filter_by(func_param_rel_id=r.func_param_rel_id).all()
+            parameters = []
+            for p in params:
+                parameters.append(get_param(p))
+            # print(parameters)
+            temp.append(parameters)
+            ev = ExpectedValue.query.filter_by(func_param_rel_id=r.func_param_rel_id).first()
+            expected_value = get_ex_value(ev)
+            # print(expected_value)
+            temp.append(expected_value)
+            temp.append(marks)
+            test_cases.append(temp)
+    print(test_cases)
+    return test_cases
+
+def get_param(param):
+    if param.datatype == "int":
+        return int(param.parameter)      
+    if param.datatype == "float":
+        return float(param.parameter)
+    if param.datatype == "str":
+        return param.parameter
+    if param.datatype == "list":
+        return list(param.parameter) 
+    if param.datatype == "tuple":
+        return tuple(param.parameter)
+    if param.datatype == "dict":
+        return dict(param.parameter)  
+
+def get_ex_value(param):
+    if param.datatype == "int":
+        return int(param.expected_value)      
+    if param.datatype == "float":
+        return float(param.expected_value)
+    if param.datatype == "str":
+        return param.expected_value
+    if param.datatype == "list":
+        return list(param.expected_value) 
+    if param.datatype == "tuple":
+        return tuple(param.expected_value)
+    if param.datatype == "dict":
+        return dict(param.expected_value)  
+
 if __name__ == "__main__":
     app.run(debug=True)
 
