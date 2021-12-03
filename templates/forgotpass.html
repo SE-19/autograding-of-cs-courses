@@ -54,7 +54,7 @@
         <form action="/otpver" method="post" >
             <div class="mb-3" >
                 <label for="otp" class="form-label" style="font-weight: bolder;">Verfication code</label>
-                <input type="text" placeholder="xxx-xxx" class="form-control" id="otp" name="otp" aria-describedby="otpHelp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="7" required>
+                <input type="text" placeholder="xxx-xxx" class="form-control" id="otp" name="otp" aria-describedby="otpHelp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/[-]).replace(/(\..*)\./g, '$1');" maxlength="7" required>
             </div>
             <button type="submit" class="btn btn-primary mb-3">Proceed</button>
         </form>
