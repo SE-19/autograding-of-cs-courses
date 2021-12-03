@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash, send_file
+from flask import Flask, render_template, request, redirect, session, url_for, flash, send_file, jsonify
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
@@ -83,7 +83,6 @@ class Parameter(db.Model):
     param_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
     func_param_rel_id= db.Column(db.Integer,db.ForeignKey('fpr.func_param_rel_id'))
     parameter = db.Column(db.String(1000))
-    datatype = db.Column(db.String(55), nullable=False)
 
     def __repr__(self) -> str:
         return f"<Parameter {self.parameter}, {self.datatype}, {self.param_id}>"
@@ -92,7 +91,6 @@ class ExpectedValue(db.Model):
     expected_value_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
     func_param_rel_id= db.Column(db.Integer,db.ForeignKey('fpr.func_param_rel_id'))
     expected_value= db.Column(db.String(1000))
-    datatype = db.Column(db.String(55), nullable=False)
 
     def __repr__(self) -> str:
         return f"<ExpectedValue {self.expected_value}, {self.datatype}, {self.expected_value_id}>"
@@ -182,13 +180,41 @@ def login_register():
 
 @app.route("/create_assignment", methods=["GET", "POST"])
 def create_assignment():
-    print(session)
+    # print(session)
+    session['assignment'] = 'an assignment'
     if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
     if "logged_in_ta_id" in session:
         error = "TA does not have access to create Assignments!"
         flash(error)
         return redirect(url_for('homepage'))
+    if request.method == 'POST':
+        assignment_var = request.get_json()
+        assignment = Assignment(title=assignment_var['assignment_title'], teacher_id=session['logged_in_teacher_id'])
+        db.session.add(assignment)
+        db.session.commit()
+        functions = assignment_var['functions_testcases']
+        #'functions_testcases': [{'func_name': '', 'params': [], 'marks': 0, 'docstring': '', 'test_cases': []}]
+        for func in range(len(functions)-1):# skip the last one..
+            f = functions[func]
+            # print(f)
+            function = Function(assignment_id=assignment.assignment_id, docstring=f['docstring'], marks=f['marks'], func_name=f['func_name'])
+            db.session.add(function)
+            db.session.commit()
+            # print(function)
+            for t in f['test_cases']:
+                test_case = Fpr(function_id=function.function_id)
+                db.session.add(test_case)
+                db.session.commit()
+                for i in t['test_params']:
+                    test_param = Parameter(func_param_rel_id=test_case.func_param_rel_id, parameter=i)
+                    # func_param_rel_id= db.Column(db.Integer,db.ForeignKey('fpr.func_param_rel_id'))
+                    db.session.add(test_param)
+                    db.session.commit()
+                ex_val = ExpectedValue(func_param_rel_id=test_case.func_param_rel_id, expected_value=t['ex_value'])
+                db.session.add(ex_val)
+                db.session.commit()
+        print("ALLL DONEEEE")
     return render_template("create_assignment.html")
 
 @app.route("/mark_assignment", methods=["GET", "POST"])
