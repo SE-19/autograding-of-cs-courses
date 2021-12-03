@@ -202,7 +202,7 @@ endblock %} {% block content %}
   });
   document.getElementById("newFunction").addEventListener("click", () => {
     let funcName = document.getElementById("func-name").value;
-    let params = document.getElementById("params").value.split(",");
+    let params = document.getElementById("params").value;
     let marks = document.getElementById("marks").value;
     let docstring = document.getElementById("docstring").value;
     assignment.assignment_title = document.getElementById('assignment-title').value;

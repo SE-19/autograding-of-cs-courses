@@ -31,11 +31,6 @@ class Teacher(db.Model):
     password = db.Column(db.String(500), nullable=False)
     otp = db.Column(db.String(25), nullable=False)
 
-
-    # tas=db.relationship('TA',backref="head")
-    # assignments=db.relationship('Assignment',backref="teacher")
-    
-
     def __repr__(self) -> str:
         return f"{self.teacher_id}, {self.name}"
 
@@ -66,13 +61,14 @@ class Function(db.Model):
     function_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     assignment_id = db.Column(db.Integer,db.ForeignKey('assignment.assignment_id'))
     docstring = db.Column(db.String(2000))
+    parameters = db.Column(db.String(2000))
     func_name = db.Column(db.String(200),nullable=False)
     marks = db.Column(db.Integer,nullable=False)
     
     def __repr__(self) -> str:
         return f"<Function {self.func_name}, {self.function_id}>"
 
-class Fpr(db.Model):
+class TestFunctions(db.Model):
     func_param_rel_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     function_id = db.Column(db.Integer,db.ForeignKey('function.function_id'))
     
@@ -81,7 +77,7 @@ class Fpr(db.Model):
 
 class Parameter(db.Model):
     param_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
-    func_param_rel_id= db.Column(db.Integer,db.ForeignKey('fpr.func_param_rel_id'))
+    func_param_rel_id= db.Column(db.Integer,db.ForeignKey('test_functions.func_param_rel_id'))
     parameter = db.Column(db.String(1000))
 
     def __repr__(self) -> str:
@@ -89,7 +85,7 @@ class Parameter(db.Model):
 
 class ExpectedValue(db.Model):
     expected_value_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
-    func_param_rel_id= db.Column(db.Integer,db.ForeignKey('fpr.func_param_rel_id'))
+    func_param_rel_id= db.Column(db.Integer,db.ForeignKey('test_functions.func_param_rel_id'))
     expected_value= db.Column(db.String(1000))
 
     def __repr__(self) -> str:
@@ -198,17 +194,16 @@ def create_assignment():
         for func in range(len(functions)-1):# skip the last one..
             f = functions[func]
             # print(f)
-            function = Function(assignment_id=assignment.assignment_id, docstring=f['docstring'], marks=f['marks'], func_name=f['func_name'])
+            function = Function(assignment_id=assignment.assignment_id, parameters=f['params'], docstring=f['docstring'], marks=f['marks'], func_name=f['func_name'])
             db.session.add(function)
             db.session.commit()
             # print(function)
             for t in f['test_cases']:
-                test_case = Fpr(function_id=function.function_id)
+                test_case = TestFunctions(function_id=function.function_id)
                 db.session.add(test_case)
                 db.session.commit()
                 for i in t['test_params']:
                     test_param = Parameter(func_param_rel_id=test_case.func_param_rel_id, parameter=i)
-                    # func_param_rel_id= db.Column(db.Integer,db.ForeignKey('fpr.func_param_rel_id'))
                     db.session.add(test_param)
                     db.session.commit()
                 ex_val = ExpectedValue(func_param_rel_id=test_case.func_param_rel_id, expected_value=t['ex_value'])
@@ -408,7 +403,7 @@ def get_test_cases(assignment_id):
     test_cases = []
     for function in functions:
         # print("-"*10 + "Function: " + function.func_name + "-"*10)
-        relations = Fpr.query.filter_by(function_id=function.function_id).all()
+        relations = TestFunctions.query.filter_by(function_id=function.function_id).all()
         marks = function.marks/len(relations)
         for r in relations:
             temp = [function.func_name]
