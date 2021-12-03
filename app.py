@@ -114,7 +114,7 @@ def login_register():
             # meaning first form fill kia hai
             email = request.form['email']
             password = request.form['password']
-            print(email, password)
+            # print(email, password)
             teacher = Teacher.query.filter_by(email=email).first()# get record from database.
             if teacher == None:
                 ta = TA.query.filter_by(email=email).first()
@@ -123,7 +123,7 @@ def login_register():
                     flash(error)
                 else:
                     if check_password_hash(ta.password, password):
-                        print("logged in successfully")
+                        # print("logged in successfully")
                         session['logged_in_ta_id'] = ta.ta_id
                         flash("Log-in Successful!")
                         return redirect(url_for("homepage"))
@@ -132,7 +132,7 @@ def login_register():
                         flash(error)
             else:
                 if check_password_hash(teacher.password, password):
-                    print("logged in successfully")
+                    # print("logged in successfully")
                     session['logged_in_teacher_id'] = teacher.teacher_id
                     flash("Log-in Successful!")
                     return redirect(url_for("homepage"))
@@ -180,7 +180,7 @@ def login_register():
 
     return render_template("logreg.html")
 
-@app.route("/create_assignment")
+@app.route("/create_assignment", methods=["GET", "POST"])
 def create_assignment():
     print(session)
     if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
@@ -226,7 +226,7 @@ def mark_assignment():
     if 'logged_in_ta_id' in session:
         ta = TA.query.filter_by(ta_id=session['logged_in_ta_id']).first()
         all_assignments = Assignment.query.filter_by(teacher_id=ta.head_id).all()
-    print(all_assignments)
+    # print(all_assignments)
     return render_template("mark_assignment.html", assignments=all_assignments)
 
 def check_extension(filename):
@@ -238,11 +238,11 @@ def assignments():
         return redirect(url_for("login_register"))
     if 'logged_in_teacher_id' in session:
         all_assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
-        print(all_assignments)
+        # print(all_assignments)
     if 'logged_in_ta_id' in session:
         ta = TA.query.filter_by(ta_id=session['logged_in_ta_id']).first()
         all_assignments = Assignment.query.filter_by(teacher_id=ta.head_id).all()
-        print(all_assignments)
+        # print(all_assignments)
     return render_template("assignments.html", assignments=all_assignments)
 
 @app.route("/profile")
@@ -263,7 +263,7 @@ def change_password():
         cur_pass = request.form['cur_pass']
         new_pass = request.form['new_pass']
         conf_pass = request.form['conf_pass']
-        print(cur_pass,new_pass,conf_pass)
+        # print(cur_pass,new_pass,conf_pass)
         if 'logged_in_teacher_id' in session:
             user = Teacher.query.filter_by(teacher_id = session['logged_in_teacher_id']).first()
         elif 'logged_in_ta_id' in session:
@@ -338,7 +338,7 @@ def update_pass():
         query.password = generate_password_hash(newpass)
         db.session.commit()
         session.pop("emailtochange",None)
-        print("Password changed successfully.", newpass)
+        # print("Password changed successfully.", newpass)
         return redirect(url_for("login_register"))
     if "emailtochange" in session:
            session.pop("emailtochange",None)
@@ -390,45 +390,17 @@ def get_test_cases(assignment_id):
             params = Parameter.query.filter_by(func_param_rel_id=r.func_param_rel_id).all()
             parameters = []
             for p in params:
-                parameters.append(get_param(p))
+                parameters.append(eval(p.parameter))
             # print(parameters)
             temp.append(parameters)
             ev = ExpectedValue.query.filter_by(func_param_rel_id=r.func_param_rel_id).first()
-            expected_value = get_ex_value(ev)
+            expected_value = eval(ev.expected_value)
             # print(expected_value)
             temp.append(expected_value)
             temp.append(marks)
             test_cases.append(temp)
-    print(test_cases)
+    # print(test_cases)
     return test_cases
-
-def get_param(param):
-    if param.datatype == "int":
-        return int(param.parameter)      
-    if param.datatype == "float":
-        return float(param.parameter)
-    if param.datatype == "str":
-        return param.parameter
-    if param.datatype == "list":
-        return list(param.parameter) 
-    if param.datatype == "tuple":
-        return tuple(param.parameter)
-    if param.datatype == "dict":
-        return dict(param.parameter)  
-
-def get_ex_value(param):
-    if param.datatype == "int":
-        return int(param.expected_value)      
-    if param.datatype == "float":
-        return float(param.expected_value)
-    if param.datatype == "str":
-        return param.expected_value
-    if param.datatype == "list":
-        return list(param.expected_value) 
-    if param.datatype == "tuple":
-        return tuple(param.expected_value)
-    if param.datatype == "dict":
-        return dict(param.expected_value)  
 
 if __name__ == "__main__":
     app.run(debug=True)
