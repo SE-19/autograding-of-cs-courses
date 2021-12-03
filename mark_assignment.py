@@ -19,7 +19,7 @@ def extract_assignments(filename):
 
     for file_name in os.listdir('./assignment'):
         path = "./assignment/" + file_name
-        print(path)
+        # print(path)
         if file_name.endswith(".zip"):
             with zipfile.ZipFile(path) as zip_file:
                 zip_file.extractall("./assignment")
@@ -78,7 +78,7 @@ def generate_plag_report():
             temp[i[1]] = [i[2]]
     # print(temp)
     df = pd.DataFrame(temp, index=temp.keys())
-    print(df)
+    # print(df)
     df.to_csv("./reports/plagiarism report.csv")
 
 def clean_assignment_dir():
