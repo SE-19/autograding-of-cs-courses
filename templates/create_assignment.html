@@ -10,6 +10,7 @@ endblock %} {% block content %}
   rel="stylesheet"
   href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/static/css/create_assignment.css" />
 <main class="container">
   <h1 id="heading" class="text-white mt-3">Create Assignment</h1>
@@ -21,6 +22,7 @@ endblock %} {% block content %}
         <input
           class="form-control my-2"
           id="assignment-title"
+          name="assignment-title"
           type="text"
           placeholder="Assignment Title"
           autocomplete="off"
@@ -32,6 +34,7 @@ endblock %} {% block content %}
         <input
           class="form-control my-2"
           id="func-name"
+          name="func-name"
           type="text"
           placeholder="Function Name"
           autocomplete="off"
@@ -43,6 +46,7 @@ endblock %} {% block content %}
         <input
           class="form-control my-2"
           id="params"
+          name="params"
           type="text"
           placeholder="Parameters (comma separated)"
           autocomplete="off"
@@ -54,6 +58,7 @@ endblock %} {% block content %}
         <input
           class="form-control my-2"
           id="marks"
+          name="marks"
           type="number"
           placeholder="Marks"
           autocomplete="off"
@@ -67,7 +72,7 @@ endblock %} {% block content %}
       <div class="form-floating field">
         <textarea
           class="form-control my-2"
-          name=""
+          name="docstring"
           id="docstring"
           cols="40"
           rows="5"
@@ -79,6 +84,7 @@ endblock %} {% block content %}
         <input
           class="form-control my-2"
           id="test-params"
+          name="test-params"
           type="text"
           placeholder="Test Parameters"
           autocomplete="off"
@@ -90,16 +96,17 @@ endblock %} {% block content %}
         <input
           class="form-control my-2"
           id="ex-value"
+          name="ex-value"
           type="text"
           placeholder="Expected Value"
           autocomplete="off"
         />
         <label for="ex-value">Expected Value</label>
       </div>
-      <button id="newTestCase" type="button" class="btn new-test-case-btn">
+      <button id="newTestCase" name="newTestCase" type="button" class="btn new-test-case-btn">
         New Test Case
       </button>
-      <button id="newFunction" type="button" class="btn new-test-case-btn">
+      <button id="newFunction" name="newFunction" type="button" class="btn new-test-case-btn">
         New Function
       </button>
     </div>
@@ -118,17 +125,29 @@ endblock %} {% block content %}
         </thead>
         <tbody id="table-body"></tbody>
       </table>
-      <button class="btn new-test-case-btn" type="submit">
-        Create Template
-      </button>
-      <button class="btn new-test-case-btn" type="submit">
-        Save Assignment
+      <button class="btn new-test-case-btn" type="submit" id="submit-btn">
+        Save Assignment & Create Template
       </button>
     </div>
   </form>
 </main>
 <script>
+
   var num = 1; // For numbering on the table
+  var func_count = 0;
+  var assignment = {
+    'assignment_title':'',
+    'functions_testcases':[
+      {
+        'func_name':'',
+        'params':[],
+        'marks':0,
+        'docstring':'',
+        'test_cases':[]
+      }
+    ]
+  };
+  
   function addIcon(style) {
     let icon = document.createElement("i");
     icon.classList.add("fas");
@@ -146,10 +165,15 @@ endblock %} {% block content %}
     // getting the values and clearing the fields
     let funcName = document.getElementById("func-name").value;
     let marks = document.getElementById("marks").value;
-    let testParams = document.getElementById("test-params").value;
+    let testParams = document.getElementById("test-params").value.split(",");
     let exValue = document.getElementById("ex-value").value;
     document.getElementById("test-params").value = "";
     document.getElementById("ex-value").value = "";
+    assignment.functions_testcases[func_count].test_cases.push({
+      'test_params':testParams,
+      'ex_value':exValue
+    });
+    console.log(assignment);
 
     let row = document.createElement("tr");
 
@@ -177,6 +201,25 @@ endblock %} {% block content %}
     num++;
   });
   document.getElementById("newFunction").addEventListener("click", () => {
+    let funcName = document.getElementById("func-name").value;
+    let params = document.getElementById("params").value.split(",");
+    let marks = document.getElementById("marks").value;
+    let docstring = document.getElementById("docstring").value;
+    assignment.assignment_title = document.getElementById('assignment-title').value;
+    assignment.functions_testcases[func_count].func_name = funcName;
+    assignment.functions_testcases[func_count].params = params;
+    assignment.functions_testcases[func_count].marks = marks;
+    assignment.functions_testcases[func_count].docstring = docstring;
+    func_count++;
+    assignment.functions_testcases.push({
+      'func_name':'',
+      'params':[],
+      'marks':0,
+      'docstring':'',
+      'test_cases':[]
+    });
+    console.log(assignment);
+
     document.getElementById("func-name").value = "";
     document.getElementById("params").value = "";
     document.getElementById("docstring").value = "";
@@ -184,6 +227,22 @@ endblock %} {% block content %}
     document.getElementById("test-params").value = "";
     document.getElementById("ex-value").value = "";
   });
+
+  $(document).ready(function(){
+    $('form').on('submit', function(event) {
+      console.log(assignment);
+      $.ajax({
+        url: "{{url_for('create_assignment')}}",
+        contentType: 'application/json',
+        dataType : 'json',
+        type: 'POST',
+        data: JSON.stringify(assignment)
+      })
+      event.preventDefault();
+      console.log("Boom");
+    });
+  })
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
