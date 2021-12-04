@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, redirect, session, url_for, flash, send_file, jsonify
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import exc
+from sqlalchemy import exc, desc
 import math
 import random
 import os
-from sqlalchemy.orm import joinedload
 
 from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
@@ -275,28 +274,45 @@ def mark_assignment():
             # clean_reports_dir()
             return send_file("./reports/reports.zip", as_attachment=True)
     if 'logged_in_teacher_id' in session:
-        all_assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
+        all_assignments = reversed(Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all())
     if 'logged_in_ta_id' in session:
         ta = TA.query.filter_by(ta_id=session['logged_in_ta_id']).first()
-        all_assignments = Assignment.query.filter_by(teacher_id=ta.head_id).all()
+        all_assignments = reversed(Assignment.query.filter_by(teacher_id=ta.head_id).all())
     # print(all_assignments)
     return render_template("mark_assignment.html", assignments=all_assignments)
 
 def check_extension(filename):
     return filename.endswith(".zip") or filename.endswith(".rar")
 
-@app.route("/assignments")
+@app.route("/assignments", methods=["GET", "POST"])
 def assignments():
     if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
     if 'logged_in_teacher_id' in session:
-        all_assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
+        all_assignments = reversed(Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all())
         # print(all_assignments)
     if 'logged_in_ta_id' in session:
         ta = TA.query.filter_by(ta_id=session['logged_in_ta_id']).first()
-        all_assignments = Assignment.query.filter_by(teacher_id=ta.head_id).all()
+        all_assignments = reversed(Assignment.query.filter_by(teacher_id=ta.head_id).all())
         # print(all_assignments)
     return render_template("assignments.html", assignments=all_assignments)
+
+@app.route("/delete_assignment/<id>", methods=["POST"])
+def delete_assignment(id):
+    Assignment.query.filter_by(assignment_id=int(id)).delete()
+    functions = Function.query.filter_by(assignment_id=int(id)).all()
+    for f in functions:
+        temp_id = f.function_id
+        Function.query.filter_by(function_id=int(temp_id)).delete()
+        testcases = TestFunctions.query.filter_by(function_id=int(temp_id)).all()
+        for t in testcases:
+            x_id = t.func_param_rel_id
+            TestFunctions.query.filter_by(function_id=int(x_id)).delete()
+            Parameter.query.filter_by(func_param_rel_id=x_id).delete()
+            ExpectedValue.query.filter_by(func_param_rel_id=x_id).delete()
+    # assignment.delete()
+    db.session.commit()
+    return redirect(url_for("assignments"))
 
 @app.route("/profile")
 def profile():
@@ -360,7 +376,7 @@ def accountfound():
             otp=f"{randint(100,999)}-{randint(100,999)}"
             session["otp"]=otp
             session["emailtochange"]=email
-            msg=f"Dear Sir,\n\t\tWe are glad that your account can be recovered. Your verification code is: {otp}"
+            msg=f"Dear Sir/Ma'am,\n\t\tWe are glad that your account can be recovered. Your verification code is: {otp}"
             send_email("Auto Grade",f"{email}",msg,"autogradeforcs@gmail.com","123testing!")
             return render_template("forgotpass.html",accf=accf)
     return redirect(url_for("forgot_password"))

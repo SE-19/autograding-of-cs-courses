@@ -130,12 +130,17 @@ def test_function(test_cases, directories, log=False):
             # print(dir())
             # print(getattr(getattr(i, d), "assignment"))
             function = getattr(getattr(getattr(i, d), "assignment"), func)
-            value = function(*params)
+            try:
+                value = function(*params)
+            except Exception as e:
+                if log == True:
+                    create_log(d, e)
             if value == expected:
                 score = marks
             else:
                 if log == True:
-                    check_log(d, params, expected, value)
+                    error_msg = f"Expected {{ {expected} }} but got {{ {value} }} on parameter {{{params}}}"
+                    create_log(d, error_msg)
             # print(d, function(*params), value == expected)
             if d in result.keys():
                 if func in result[d].keys():
@@ -148,13 +153,13 @@ def test_function(test_cases, directories, log=False):
     return pd.DataFrame(result).T
 
 
-def check_log(roll_num, params, expected_val, current_val):
+def create_log(roll_num, error_msg):
     # formating the current local time
     date_time = datetime.datetime.now().strftime("%b-%d-%y %H:%M:%S")
     # create assignment log file
+    msg = f"[{date_time}] [{roll_num}] " + error_msg + "\n"
     with open("./log/"+str(roll_num)+".log", "a") as log_file:
-        log_file.write("["+str(date_time)+"] ["+str(roll_num)+"] Expected {"+str(
-            expected_val)+"} but got {"+str(current_val)+"} on parameter {"+str(params)+"}\n")
+        log_file.write(msg)
         
 def archive(val):
     if val == "log":
