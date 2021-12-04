@@ -10,6 +10,7 @@
   rel="stylesheet"
   href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
@@ -68,11 +69,13 @@
                 </thead>
                 <tbody class="table-body">
                     {% for a in assignments %}
-                        <tr>
+                        <tr id="row-{{ loop.index }}">
                             <th>{{ loop.index }}</th>
                             <td>{{ a.title }}</td>
-                            <td><i class="fas fa-external-link-alt btn btn-outline-success"></i></td>
-                            <td><i class="fas fa-trash-alt btn btn-outline-danger"></i></td>
+                            <td><a class="btn btn-outline-success" href="{{ url_for('mark_assignment') }}">Mark Assignment</a></td>
+                            <td><form action="/delete_assignment/{{ a.assignment_id }}" method="POST"><button class="btn btn-outline-danger" type="submit" id="submit-btn">
+                                Delete
+                              </button></form></td>
                         </tr>
                     {% endfor %}
                     

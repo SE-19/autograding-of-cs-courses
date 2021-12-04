@@ -120,7 +120,6 @@ endblock %} {% block content %}
             <th scope="col">Marks</th>
             <th scope="col">Test Parameters</th>
             <th scope="col">Expected Value</th>
-            <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
@@ -201,7 +200,7 @@ endblock %} {% block content %}
     row.appendChild(addColumn("td", marks));
     row.appendChild(addColumn("td", testParams));
     row.appendChild(addColumn("td", exValue));
-    row.appendChild(editColumn);
+    // row.appendChild(editColumn);
     row.appendChild(delColumn);
     document.getElementById("table-body").appendChild(row);
     num++;
