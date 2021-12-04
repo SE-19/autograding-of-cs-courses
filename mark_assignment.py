@@ -3,6 +3,7 @@ import zipfile
 import patoolib
 import pandas as pd
 import datetime
+from multiprocessing import Process
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -130,11 +131,18 @@ def test_function(test_cases, directories, log=False):
             # print(dir())
             # print(getattr(getattr(i, d), "assignment"))
             function = getattr(getattr(getattr(i, d), "assignment"), func)
+            value = None
             try:
+                p = Process(target=function, args=(params))
+                p.start()
+                p.join(timeout=15)
+                p.terminate()
+                if p.exitcode is None:
+                    raise Exception("The Function took too long to compute.")
                 value = function(*params)
             except Exception as e:
                 if log == True:
-                    create_log(d, e)
+                    create_log(d, str(e))
             if value == expected:
                 score = marks
             else:
