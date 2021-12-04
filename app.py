@@ -217,7 +217,6 @@ def create_assignment():
                 ex_val = ExpectedValue(func_param_rel_id=test_case.func_param_rel_id, expected_value=t['ex_value'])
                 db.session.add(ex_val)
                 db.session.commit()
-        print("ALLL DONEEEE")
         os.rename("./template/assignment.txt", "./template/assignment.py")
         return jsonify({"success":"./template/assignment.py"})
         # return send_file("./template/assignment.py", as_attachment=True)
@@ -264,9 +263,15 @@ def mark_assignment():
             extract_assignments(file_name)
             if plagiarism_check == "on":
                 generate_plag_report()
-            if logfile == "on":
+            if logfile == "on" and plagiarism_check == "on":
+                test_function(get_test_cases(assignment_id), get_directories(), True, True)
+                archive("log")
+            elif logfile == "on" and not (plagiarism_check == "on"):
                 test_function(get_test_cases(assignment_id), get_directories(), True)
                 archive("log")
+            elif not (logfile == "on") and plagiarism_check == "on":
+                test_function(get_test_cases(assignment_id), get_directories(), False, True)
+                # archive("log")
             else:
                 test_function(get_test_cases(assignment_id), get_directories())
             # clean_assignment_dir()

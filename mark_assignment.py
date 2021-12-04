@@ -3,6 +3,8 @@ import zipfile
 import patoolib
 import pandas as pd
 import datetime
+import tracemalloc
+import gc
 from multiprocessing import Process
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -66,6 +68,7 @@ def check_plagiarism():
 
 def generate_plag_report():
     result = check_plagiarism()
+    print("result: ", result)
     temp = {}
     for i in result:
         if i[0] in temp.keys():
@@ -116,15 +119,22 @@ def get_directories():
             directories.append(i)
     return directories
 
-def test_function(test_cases, directories, log=False):
+def test_function(test_cases, directories, log=False, plag=False):
     result = {}
+    size = {}
     for t in test_cases:
         func = t[0]
         params = t[1]
         expected = t[2]
         marks = t[3]
-        # print("-" * 30, t, "-" * 30)
+        # if func not in size.keys():
         for d in directories:
+            if plag:
+                if d not in size.keys():
+                    size[d] = {}
+                else:
+                    if func not in size[d].keys():
+                        size[d][func] = 0
             score = 0
             
             i = __import__("assignment." + d+'.assignment')
@@ -135,11 +145,17 @@ def test_function(test_cases, directories, log=False):
             try:
                 p = Process(target=function, args=(params))
                 p.start()
-                p.join(timeout=15)
+                p.join(timeout=10)
                 p.terminate()
                 if p.exitcode is None:
                     raise Exception("The Function took too long to compute.")
+                if plag:
+                    tracemalloc.start()
                 value = function(*params)
+                if plag:
+                    current, peak = tracemalloc.get_traced_memory()
+                    gc.collect()
+                    size[d][func] += current
             except Exception as e:
                 if log == True:
                     create_log(d, str(e))
@@ -157,9 +173,43 @@ def test_function(test_cases, directories, log=False):
                     result[d][func] = score
             else:
                 result[d] = {func:score}
+    if plag:
+        tracemalloc.stop()
+        size = change_format(size)
+        diff = diff_size(size)
+        pd.DataFrame(diff).to_csv("./report/memory plagiarism.csv")
     pd.DataFrame(result).T.to_csv("./report/evaluated report.csv")
     return pd.DataFrame(result).T
 
+def diff_size(size):
+    result = {}
+    for k,v in size.items():
+        for i in range(len(v)):
+            for j in range(i+1, len(v)):
+                f1 = v[i][1]
+                f2 = v[j][1]
+                score = difference_percentage(f1,f2)
+                if score < 5.0:
+                    s1 = v[i][0]
+                    s2 = v[j][0]
+                    if k not in result.keys():
+                        result[k] = [(s1, s2, round(100 - score, 4))]
+                    else:
+                        result[k].append((s1, s2, round(100 - score, 4)))
+    return result
+
+def change_format(size):
+    temp = {}
+    for k, v in size.items():
+        for key in v.keys():# keys --> factorial, ...
+            if key not in temp.keys():
+                temp[key] = [(k, v[key])]
+            else:
+                temp[key].append((k, v[key]))
+    return temp
+
+def difference_percentage(f1,f2):
+    return abs(f1-f2)/((f1+f2)/2) * 100
 
 def create_log(roll_num, error_msg):
     # formating the current local time
