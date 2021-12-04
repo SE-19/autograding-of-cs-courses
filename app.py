@@ -53,7 +53,7 @@ class TA(db.Model):
 
 class Assignment(db.Model):
     assignment_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    title = db.Column(db.String(1000), unique=True, nullable=False)
+    title = db.Column(db.String(1000), nullable=False)
     graded=db.Column(db.Boolean,default=False,nullable=False)
     teacher_id = db.Column(db.Integer,db.ForeignKey('teacher.teacher_id'))
     # functions=db.relationship('Function',backref="assignment")
