@@ -29,3 +29,10 @@
     width: 100%;
   }
 }
+.link{
+  text-decoration: none;
+  color: #fd7014;
+}
+.link:hover{
+  color: white;
+}

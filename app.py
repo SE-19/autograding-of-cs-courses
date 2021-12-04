@@ -5,6 +5,7 @@ from sqlalchemy import exc
 import math
 import random
 import os
+from sqlalchemy.orm import joinedload
 
 from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
@@ -190,6 +191,8 @@ def create_assignment():
     if request.method == 'POST':
         if not os.path.isdir("./template"):
             os.mkdir("./template")
+        if os.path.isfile("./template/assignment.py"):
+            os.remove("./template/assignment.py")
         assignment_var = request.get_json()
         assignment = Assignment(title=assignment_var['assignment_title'], teacher_id=session['logged_in_teacher_id'])
         db.session.add(assignment)
@@ -217,8 +220,13 @@ def create_assignment():
                 db.session.commit()
         print("ALLL DONEEEE")
         os.rename("./template/assignment.txt", "./template/assignment.py")
-        return send_file("./template/assignment.py", as_attachment=True)
+        return jsonify({"success":"./template/assignment.py"})
+        # return send_file("./template/assignment.py", as_attachment=True)
     return render_template("create_assignment.html")
+
+@app.route("/download_template")
+def download_template():
+    return send_file("./template/assignment.py", as_attachment=True)
 
 @app.route("/mark_assignment", methods=["GET", "POST"])
 def mark_assignment():
@@ -436,5 +444,5 @@ def get_test_cases(assignment_id):
     return test_cases
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 

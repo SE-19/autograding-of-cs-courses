@@ -111,6 +111,7 @@ endblock %} {% block content %}
       </button>
     </div>
     <div class="secondary rounded">
+      
       <table class="table mt-4" id="confirmation-table">
         <thead>
           <tr>
@@ -126,10 +127,15 @@ endblock %} {% block content %}
         <tbody id="table-body"></tbody>
       </table>
       <button class="btn new-test-case-btn" type="submit" id="submit-btn">
-        Save Assignment & Create Template
+        Save Assignment
       </button>
+      
+        <a class="btn new-test-case-btn" href="{{ url_for('download_template') }}">
+          Download Template
+        </a>
     </div>
   </form>
+  
 </main>
 <script>
 
@@ -237,11 +243,13 @@ endblock %} {% block content %}
         contentType: 'application/json',
         dataType : 'json',
         type: 'POST',
-        data: JSON.stringify(assignment)
+        data: JSON.stringify(assignment),
+        success: function(response){
+          // console.log(response);
+          console.log(response.success);
+          // window.location.href = './template/assignment.py';
+        },
       })
-      req.done((data)=>{
-        console.log("SUCCESSS");
-      });
       event.preventDefault();
       console.log("Boom");
     });
