@@ -1,6 +1,6 @@
-def factorial(num):
+def fib(n):
     """
-    Returns the factorial of num
+    
     """
     return None
 

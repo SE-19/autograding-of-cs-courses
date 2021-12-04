@@ -129,7 +129,7 @@ endblock %} {% block content %}
         Save Assignment
       </button>
       
-        <a class="btn new-test-case-btn" href="{{ url_for('download_template') }}">
+        <a id="download-btn" class="btn new-test-case-btn" href="{{ url_for('download_template') }}" disabled>
           Download Template
         </a>
     </div>
@@ -234,6 +234,7 @@ endblock %} {% block content %}
   });
 
   $(document).ready(function(){
+    document.getElementById("download-btn").style.display = "none";
     $('form').on('submit', function(event) {
       console.log(assignment);
       var req;
@@ -246,6 +247,8 @@ endblock %} {% block content %}
         success: function(response){
           // console.log(response);
           console.log(response.success);
+          // document.getElementById("download-btn").disabled = false;
+          document.getElementById("download-btn").style.display = "inline-block";
           // window.location.href = './template/assignment.py';
         },
       })
