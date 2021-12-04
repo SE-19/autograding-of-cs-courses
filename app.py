@@ -13,7 +13,7 @@ import smtplib
 from random import randint
 
 from mark_assignment import extract_assignments, generate_plag_report, \
-                clean_assignment_dir, get_directories, test_function, archive_reports, clean_reports_dir
+                clean_assignment_dir, get_directories, test_function, archive, clean_reports_dir
 
 from create_template import create_template
 
@@ -237,12 +237,20 @@ def mark_assignment():
             os.mkdir("./assignment")
         if not os.path.isdir("./reports"):
             os.mkdir("./reports")
+        if not os.path.isdir("./report"):
+            os.mkdir("./report")
+        if not os.path.isdir("./log"):
+            os.mkdir("./log")
         assignment_id = request.form['select_assignment']
         # print(assignment_id)
         plagiarism_check = 'off'
         if 'plagiarism' in request.form:
             plagiarism_check = request.form['plagiarism']
-            print(plagiarism_check)
+            # print(plagiarism_check)
+        logfile = 'off'
+        if 'logfile' in request.form:
+            logfile = request.form['logfile']
+            # print(plagiarism_check)
         file = request.files["filename"]
         if not check_extension(file.filename):
             flash("The extension must be a .zip or .rar file!")
@@ -257,11 +265,15 @@ def mark_assignment():
             extract_assignments(file_name)
             if plagiarism_check == "on":
                 generate_plag_report()
-            test_function(get_test_cases(assignment_id), get_directories())
-            clean_assignment_dir()
-            archive_reports()
-            clean_reports_dir()
-            return send_file("reports.zip", as_attachment=True)
+            if logfile == "on":
+                test_function(get_test_cases(assignment_id), get_directories(), True)
+                archive("log")
+            else:
+                test_function(get_test_cases(assignment_id), get_directories())
+            # clean_assignment_dir()
+            archive("reports")
+            # clean_reports_dir()
+            return send_file("./reports/reports.zip", as_attachment=True)
     if 'logged_in_teacher_id' in session:
         all_assignments = Assignment.query.filter_by(teacher_id=session['logged_in_teacher_id']).all()
     if 'logged_in_ta_id' in session:
