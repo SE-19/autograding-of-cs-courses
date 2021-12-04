@@ -1,11 +1,10 @@
 def create_template(function_name, docstring, parameters):
-    params = ', '.join(parameters)
-    with open('assignment.py','w') as tp:
-        tp.write(f"def {function_name}({params}):\n    \"\"\"{docstring}\"\"\"\n    return None\n")
+    with open('./template/assignment.txt','a') as tp:
+        tp.write(f"def {function_name}({parameters}):\n    \"\"\"\n    {docstring}\n    \"\"\"\n    return None\n\n")
 
+if __name__ == "__main__":
+    function_name = "factorial"
+    docstring = "Returns the factorial of a num"
+    parameters = "num"
 
-function_name = "factorial"
-docstring = "Returns the factorial of a number\n    The number must be zero or greater than zero."
-parameters = ["num", "iter", "alpha"]
-
-create_template(function_name, docstring, parameters)
+    create_template(function_name, docstring, parameters)

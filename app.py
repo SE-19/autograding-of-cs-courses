@@ -14,6 +14,8 @@ from random import randint
 from mark_assignment import extract_assignments, generate_plag_report, \
                 clean_assignment_dir, get_directories, test_function, archive_reports, clean_reports_dir
 
+from create_template import create_template
+
 SECRET_KEY = secrets.token_urlsafe(16)
 
 app = Flask(__name__)
@@ -186,6 +188,8 @@ def create_assignment():
         flash(error)
         return redirect(url_for('homepage'))
     if request.method == 'POST':
+        if not os.path.isdir("./template"):
+            os.mkdir("./template")
         assignment_var = request.get_json()
         assignment = Assignment(title=assignment_var['assignment_title'], teacher_id=session['logged_in_teacher_id'])
         db.session.add(assignment)
@@ -199,6 +203,7 @@ def create_assignment():
             db.session.add(function)
             db.session.commit()
             # print(function)
+            create_template(f['func_name'], f['docstring'], f['params'])
             for t in f['test_cases']:
                 test_case = TestFunctions(function_id=function.function_id)
                 db.session.add(test_case)
@@ -211,6 +216,8 @@ def create_assignment():
                 db.session.add(ex_val)
                 db.session.commit()
         print("ALLL DONEEEE")
+        os.rename("./template/assignment.txt", "./template/assignment.py")
+        return send_file("./template/assignment.py", as_attachment=True)
     return render_template("create_assignment.html")
 
 @app.route("/mark_assignment", methods=["GET", "POST"])

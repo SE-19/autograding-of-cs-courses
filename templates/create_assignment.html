@@ -231,13 +231,17 @@ endblock %} {% block content %}
   $(document).ready(function(){
     $('form').on('submit', function(event) {
       console.log(assignment);
-      $.ajax({
+      var req;
+      req = $.ajax({
         url: "{{url_for('create_assignment')}}",
         contentType: 'application/json',
         dataType : 'json',
         type: 'POST',
         data: JSON.stringify(assignment)
       })
+      req.done((data)=>{
+        console.log("SUCCESSS");
+      });
       event.preventDefault();
       console.log("Boom");
     });
