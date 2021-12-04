@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
 import math
 import random
+import os
 
 from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
@@ -217,6 +218,10 @@ def mark_assignment():
     if 'logged_in_teacher_id' not in session and "logged_in_ta_id" not in session:
         return redirect(url_for("login_register"))
     if request.method == "POST":
+        if not os.path.isdir("./assignment"):
+            os.mkdir("./assignment")
+        if not os.path.isdir("./reports"):
+            os.mkdir("./reports")
         assignment_id = request.form['select_assignment']
         # print(assignment_id)
         plagiarism_check = 'off'
