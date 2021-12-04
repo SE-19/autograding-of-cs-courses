@@ -2,6 +2,7 @@ import os, shutil
 import zipfile
 import patoolib
 import pandas as pd
+import datetime
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -79,7 +80,7 @@ def generate_plag_report():
     # print(temp)
     df = pd.DataFrame(temp, index=temp.keys())
     # print(df)
-    df.to_csv("./reports/plagiarism report.csv")
+    df.to_csv("./report/plagiarism report.csv")
 
 def clean_assignment_dir():
     folder = './assignment'
@@ -94,7 +95,7 @@ def clean_assignment_dir():
             print('Failed to delete %s. Reason: %s' % (file_path, e))
 
 def clean_reports_dir():
-    folder = './reports'
+    folder = './report'
     for filename in os.listdir(folder):
         file_path = os.path.join(folder, filename)
         try:
@@ -114,7 +115,7 @@ def get_directories():
             directories.append(i)
     return directories
 
-def test_function(test_cases, directories):
+def test_function(test_cases, directories, log=False):
     result = {}
     for t in test_cases:
         func = t[0]
@@ -132,6 +133,9 @@ def test_function(test_cases, directories):
             value = function(*params)
             if value == expected:
                 score = marks
+            else:
+                if log == True:
+                    check_log(d, params, expected, value)
             # print(d, function(*params), value == expected)
             if d in result.keys():
                 if func in result[d].keys():
@@ -140,12 +144,27 @@ def test_function(test_cases, directories):
                     result[d][func] = score
             else:
                 result[d] = {func:score}
-    pd.DataFrame(result).T.to_csv("./reports/evaluated report.csv")
+    pd.DataFrame(result).T.to_csv("./report/evaluated report.csv")
     return pd.DataFrame(result).T
 
-def archive_reports():
-    shutil.make_archive("reports", 'zip', "./reports")
 
+def check_log(roll_num, params, expected_val, current_val):
+    # formating the current local time
+    date_time = datetime.datetime.now().strftime("%b-%d-%y %H:%M:%S")
+    # create assignment log file
+    with open("./log/"+str(roll_num)+".log", "a") as log_file:
+        log_file.write("["+str(date_time)+"] ["+str(roll_num)+"] Expected {"+str(
+            expected_val)+"} but got {"+str(current_val)+"} on parameter {"+str(params)+"}\n")
+        
+def archive(val):
+    if val == "log":
+        shutil.make_archive("./report/log", 'zip', "./log")
+        shutil.rmtree("./log")
+    if val == "reports":
+        shutil.make_archive("./reports/reports", 'zip', "./report")
+        shutil.rmtree("./report")
+        shutil.rmtree("./assignment")
+        
 if __name__ == "__main__":
     # test_function(get_test_cases(1), get_directories())
     # print(check_plagiarism())
