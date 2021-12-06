@@ -196,6 +196,14 @@ def diff_size(size):
                         result[k] = [(s1, s2, round(100 - score, 4))]
                     else:
                         result[k].append((s1, s2, round(100 - score, 4)))
+    print(result)
+    max_len = 0
+    for k, v in result.items():
+        if len(v) > max_len:
+            max_len = len(v)
+    for k, v in result.items():
+        if len(v) < max_len:
+            v.append(0)
     return result
 
 def change_format(size):
