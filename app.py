@@ -217,7 +217,6 @@ def create_assignment():
                 ex_val = ExpectedValue(func_param_rel_id=test_case.func_param_rel_id, expected_value=t['ex_value'])
                 db.session.add(ex_val)
                 db.session.commit()
-        os.rename("./template/assignment.txt", "./template/assignment.py")
         return jsonify({"success":"./template/assignment.py"})
         # return send_file("./template/assignment.py", as_attachment=True)
     return render_template("create_assignment.html")
