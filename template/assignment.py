@@ -1,6 +1,6 @@
 def fibonacci(n):
     """
-    generate fibonacci series
+    returns nth fibonacci series
     """
     return None
 
