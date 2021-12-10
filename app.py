@@ -476,5 +476,6 @@ def get_test_cases(assignment_id):
     return test_cases
 
 if __name__ == "__main__":
+    print("God is the greatest")
     app.run(debug=False)
 
