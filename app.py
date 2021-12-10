@@ -19,7 +19,7 @@ from create_template import create_template
 SECRET_KEY = secrets.token_urlsafe(16)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///autograde.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://lplssjusbwlymo:31bd54bec9a37daf6cc9f0e03c30bb2cffb45fa3645565a0efab3ffbd4586615@ec2-52-7-30-112.compute-1.amazonaws.com:5432/d6nvpv17et6qni"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = SECRET_KEY
 db = SQLAlchemy(app)
@@ -217,7 +217,6 @@ def create_assignment():
                 ex_val = ExpectedValue(func_param_rel_id=test_case.func_param_rel_id, expected_value=t['ex_value'])
                 db.session.add(ex_val)
                 db.session.commit()
-        os.rename("./template/assignment.txt", "./template/assignment.py")
         return jsonify({"success":"./template/assignment.py"})
         # return send_file("./template/assignment.py", as_attachment=True)
     return render_template("create_assignment.html")

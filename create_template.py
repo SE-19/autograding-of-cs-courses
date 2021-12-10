@@ -1,5 +1,5 @@
 def create_template(function_name, docstring, parameters):
-    with open('./template/assignment.txt','a') as tp:
+    with open('./template/assignment.py','a') as tp:
         tp.write(f"def {function_name}({parameters}):\n    \"\"\"\n    {docstring}\n    \"\"\"\n    return None\n\n")
 
 if __name__ == "__main__":

@@ -104,10 +104,10 @@ endblock %} {% block content %}
         <label for="ex-value">Expected Value</label>
       </div>
       <button id="newTestCase" name="newTestCase" type="button" class="btn new-test-case-btn">
-        New Test Case
+        Add Test Case
       </button>
       <button id="newFunction" name="newFunction" type="button" class="btn new-test-case-btn">
-        New Function
+        Add Function
       </button>
     </div>
     <div class="secondary rounded">
@@ -169,8 +169,25 @@ endblock %} {% block content %}
     // This event will clear the test cases and add them in the table
     // getting the values and clearing the fields
     let funcName = document.getElementById("func-name").value;
+    // console.log(funcName.charAt(0));
+    if (funcName === "") {
+      window.alert("Function name is improper!");
+      return;
+    }
+    let nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    for (let i = 0; i < nums.length; i++){
+      if (funcName.startsWith(nums[i].toString())){
+        window.alert("Function name is improper!");
+        return;
+      }
+    }
     let marks = document.getElementById("marks").value;
+    let params = document.getElementById("params").value.split(",");
     let testParams = document.getElementById("test-params").value.split(",");
+    if (testParams.length !== params.length) {
+      window.alert("length of parameters and test parameters must be equal!");
+      return;
+    }
     let exValue = document.getElementById("ex-value").value;
     document.getElementById("test-params").value = "";
     document.getElementById("ex-value").value = "";
@@ -181,18 +198,40 @@ endblock %} {% block content %}
     console.log(assignment);
 
     let row = document.createElement("tr");
-
-    let editColumn = document.createElement("td"); // edit
-    let editBtn = document.createElement("button");
-    editBtn.classList.add("btn");
-    editBtn.classList.add("btn-outline-primary");
-    editBtn.appendChild(addIcon("fa-edit"));
-    editColumn.appendChild(editBtn);
+    row.setAttribute("class", `${num}-${func_count}-row`);
     let delColumn = document.createElement("td"); // delete
     let detBtn = document.createElement("button");
     detBtn.classList.add("btn");
     detBtn.classList.add("btn-outline-danger");
     detBtn.appendChild(addIcon("fa-trash-alt"));
+    detBtn.setAttribute("type", "button");
+    detBtn.setAttribute("id", `${num}-${func_count}-row`);
+    detBtn.addEventListener("click", (e)=>{
+      let x = e.srcElement.id.split("-");
+      let num_row = x[0];
+      let func_row = x[1];
+      var elem = document.getElementsByClassName(e.srcElement.id)[0];
+      a = elem.childNodes[3].innerHTML.split(",");
+      let b = elem.childNodes[4].innerHTML;
+      // console.log(x);
+      // console.log(assignment.functions_testcases[func_row]);
+      let t = assignment.functions_testcases[func_row].test_cases;
+      // let index = -1;//t.test_params.indexOf(x);
+      let change = [];
+      for (let i = 0; i < t.length; i++) {
+        console.log(t[i].test_params);
+        console.log(x);
+        console.log(t[i].test_params == x);
+        if (t[i].test_params === a && t[i].ex_value === b){
+          console.log("chal ja plz");
+        } else {
+          change.push(t[i]);
+        }
+      }
+      assignment.functions_testcases[func_row].test_cases = change;
+      elem.remove();
+      
+    })
     delColumn.appendChild(detBtn);
 
     row.appendChild(addColumn("th", num));
@@ -211,6 +250,10 @@ endblock %} {% block content %}
     let marks = document.getElementById("marks").value;
     let docstring = document.getElementById("docstring").value;
     assignment.assignment_title = document.getElementById('assignment-title').value;
+    if (document.getElementById('assignment-title').value === ""){
+      window.alert("The assignment title is null, please enter a title");
+      return;
+    }
     assignment.functions_testcases[func_count].func_name = funcName;
     assignment.functions_testcases[func_count].params = params;
     assignment.functions_testcases[func_count].marks = marks;

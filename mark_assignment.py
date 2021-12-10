@@ -201,9 +201,13 @@ def diff_size(size):
     for k, v in result.items():
         if len(v) > max_len:
             max_len = len(v)
+    print(max_len)
     for k, v in result.items():
-        if len(v) < max_len:
+        x = len(v)
+        while x < max_len:
             v.append(0)
+            x = len(v)
+    print(result)
     return result
 
 def change_format(size):
