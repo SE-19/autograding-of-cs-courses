@@ -1,12 +1,13 @@
-def to_lower_case(s):
+def num_to_array(n):
     """
-    This function should return lowercase `s`
+    --> n=123
+--> ["1", "2", "3"]
     """
     return None
 
-def fibonacci(nth_term):
+def factorial(n):
     """
-    give nth term in fibonacci series
+    return the factorial of n
     """
     return None
 

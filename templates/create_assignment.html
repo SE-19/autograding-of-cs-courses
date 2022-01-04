@@ -184,10 +184,10 @@ endblock %} {% block content %}
     let marks = document.getElementById("marks").value;
     let params = document.getElementById("params").value.split(",");
     let testParams = document.getElementById("test-params").value.split(",");
-    if (testParams.length !== params.length) {
-      window.alert("length of parameters and test parameters must be equal!");
-      return;
-    }
+    // if (testParams.length !== params.length) {
+    //   window.alert("length of parameters and test parameters must be equal!");
+    //   return;
+    // }
     let exValue = document.getElementById("ex-value").value;
     document.getElementById("test-params").value = "";
     document.getElementById("ex-value").value = "";
